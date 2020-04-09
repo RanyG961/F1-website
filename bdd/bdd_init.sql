@@ -48,5 +48,7 @@ CREATE TABLE tracks (
 );
 
 CREATE TABLE race (
-    
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    laps INT UNSIGNED,
+    date DATE
 );
