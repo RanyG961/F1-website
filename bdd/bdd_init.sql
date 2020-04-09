@@ -60,3 +60,7 @@ CREATE TABLE race_results (
     PRIMARY KEY(race_id, pilot_id)
 );
 
+CREATE TABLE qualification (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    date DATE
+);
