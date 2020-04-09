@@ -11,7 +11,7 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     nickname VARCHAR(255) NOT NULL,
     mail VARCHAR(255) NOT NULL,
-    is_admin ENUM('true', 'false') NOT NULL DEFAULT 'false'
+    is_admin BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE pilots (
