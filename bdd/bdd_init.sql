@@ -74,6 +74,13 @@ CREATE TABLE quali_results (
 );
 
 CREATE TABLE free_practice (
-    id INT UNSIGNED REFERENCES AUTO_INCREMENT,
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     date DATE
+);
+
+CREATE TABLE fp_results (
+    fp_id INT UNSIGNED REFERENCES free_practice(id),
+    pilot_id INT UNSIGNED REFERENCES pilot(id),
+    nb_laps INT UNSIGNED,
+    best_time TIME(3)
 );
