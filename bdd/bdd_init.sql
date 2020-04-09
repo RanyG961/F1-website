@@ -82,5 +82,6 @@ CREATE TABLE fp_results (
     fp_id INT UNSIGNED REFERENCES free_practice(id),
     pilot_id INT UNSIGNED REFERENCES pilot(id),
     nb_laps INT UNSIGNED,
-    best_time TIME(3)
+    best_time TIME(3),
+    PRIMARY KEY(fp_id, pilot_id)
 );
