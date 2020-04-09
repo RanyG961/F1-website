@@ -52,3 +52,11 @@ CREATE TABLE race (
     laps INT UNSIGNED,
     date DATE
 );
+
+CREATE TABLE race_results (
+    race_id INT UNSIGNED REFERENCES race(id),
+    pilot_id INT UNSIGNED REFERENCES pilots(id),
+    position INT UNSIGNED,
+    PRIMARY KEY(race_id, pilot_id)
+);
+
