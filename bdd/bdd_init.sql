@@ -8,8 +8,8 @@ CREATE TABLE users (
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     birthdate DATE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    nickname VARCHAR(255) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    nickname VARCHAR(10) NOT NULL,
     mail VARCHAR(255) NOT NULL,
     is_admin BOOLEAN NOT NULL DEFAULT FALSE
 );
@@ -85,6 +85,13 @@ CREATE TABLE fp_results (
     nb_laps INT UNSIGNED,
     best_time TIME(3),
     PRIMARY KEY(fp_id, pilot_id)
+);
+
+CREATE TABLE race_we (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    race_id INT UNSIGNED REFERENCES race(id),
+    quali_id INT UNSIGNED REFERENCES qualification(id),
+    fp_id INT UNSIGNED REFERENCES free_practice(id)
 );
 
 CREATE TABLE prognosis (
