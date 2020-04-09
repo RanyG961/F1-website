@@ -22,3 +22,13 @@ CREATE TABLE pilots (
     twitter VARCHAR(255),
     instagram VARCHAR(255)
 );
+
+CREATE TABLE teams (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    engine VARCHAR(255),
+    car_name VARCHAR(255),
+    date DATE
+);
+
+
