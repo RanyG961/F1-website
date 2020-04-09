@@ -57,10 +57,23 @@ CREATE TABLE race_results (
     race_id INT UNSIGNED REFERENCES race(id),
     pilot_id INT UNSIGNED REFERENCES pilots(id),
     position INT UNSIGNED,
+    time TIME(3),
     PRIMARY KEY(race_id, pilot_id)
 );
 
 CREATE TABLE qualification (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    date DATE
+);
+
+CREATE TABLE quali_results (
+    quali_id INT UNSIGNED REFERENCES qualification(id),
+    pilot_id INT UNSIGNED REFERENCES pilot(id),
+    time TIME(3),
+    PRIMARY KEY(quali_id, pilot_id)
+);
+
+CREATE TABLE free_practice (
+    id INT UNSIGNED REFERENCES AUTO_INCREMENT,
     date DATE
 );
