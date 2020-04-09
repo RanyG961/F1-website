@@ -35,6 +35,7 @@ CREATE TABLE pilot_team (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     pilot_id INT REFERENCES pilots(id),
     team_id INT REFERENCES teams(id),
+    pilot_number INT UNSIGNED,
     data DATE
 );
 
