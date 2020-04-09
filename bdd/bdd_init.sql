@@ -85,3 +85,13 @@ CREATE TABLE fp_results (
     best_time TIME(3),
     PRIMARY KEY(fp_id, pilot_id)
 );
+
+CREATE TABLE prognosis (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT UNSIGNED REFERENCES users(id),
+    race_id INT UNSIGNED REFERENCES race(id),
+    pilot_id INT UNSIGNED REFERENCES pilot(id),
+    position INT UNSIGNED
+);
+
+
