@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <title> Formulaire test </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="all">
+        <h1> Test est admin </h1>
+        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+            <div class="couple">
+                <label for="firstName"> Prénom : </label>
+                <input type="text" id="firstName" name="firstName" required />
+            </div>
+
+            <div class="couple">
+                <label for="lastName"> Nom : </label>
+                <input type="text" id="lastName" name="lastName" required />
+            </div>
+
+            <div class="couple">
+                <label for="birthdate"> Date de naissance : </label>
+                <input type="date" id="birthdate" name="birthdate" required />
+            </div>
+
+            <div class="couple">
+                <label for="mail"> Email : </label>
+                <input type="email" id="mail" name="mail" required />
+            </div>
+
+            <div class="couple">
+                <label for="pwd"> Mot de passe : </label>
+                <input type="password" id="pwd" name="pwd" required />
+            </div>
+
+            <div class="couple">
+                <label for="nickname"> Pseudo : </label>
+                <input type="text" id="nickname" name="nickname" required />
+            </div>
+
+            <input id="button-id" type="submit" valeur="ajouter" id="ajouter" />
+
+
+        </form>
+    </div>
+
+</body>
+
+</html>
