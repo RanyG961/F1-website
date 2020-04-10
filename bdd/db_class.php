@@ -1,5 +1,5 @@
 <?php
-class bdd_connection{
+class db_connection{
     private $servername = "localhost";
     private $username = "root";
     private $password = "dzer56Hr";
