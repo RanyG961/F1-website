@@ -1,0 +1,58 @@
+body,
+h1,
+ul,
+li,
+div,
+a,
+span,
+h2,
+h3 {
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    color: rgba(0,0,0,0.6);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}    
+
+body
+{
+    background: #F1F1F1;
+}
+
+#connexion {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#connexion ul li
+{
+    display: table;
+    padding-right: 10px;
+    float: left;
+}
+#all {
+    width: 100%;
+    display: table;
+}
+
+#menu {
+   margin: 0;
+   padding: 0;
+   background: black;
+   text-align: center ;
+   color: red;
+}
+
+#menu li
+{
+    display: table;
+    float: left;
+    padding: 0;
+    margin: 0;
+    padding-left: 10px;
+    
+}
