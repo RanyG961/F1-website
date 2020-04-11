@@ -1,10 +1,11 @@
 .formulaire {
     text-align: center;
     display: table;
-    margin-top: 160px;
+    margin-top: 170px;
     white-space: pre;
     margin-left: auto;
     margin-right: auto;
+    min-height: 100vh;
 }
 
 .titre {
@@ -14,37 +15,38 @@
 }
 
 #formInscription {
-    box-sizing: border-box;
-    background-attachment: rgba(0, 0, 0, 0.5);
-    border-radius: 15px;
-    border: 1px solid darkgrey;
     margin-bottom: 10px;
 }
 
 .saisie {
     border: none;
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.562);
     background-color: transparent;
     outline: none;
     color: black;
-}
-
-.bouton {
-    padding: 15px 10px;
-    font-size: 15px;
-    background-color: black;
-    color: red;
-    border: none;
-    border-radius: 10px;
+    width: 200px;
+    height: 30px;
+    padding: 5px;
+    margin-bottom: 20px;
+    font-size: 18px;
 }
 
 ::placeholder {
     text-align: center;
+    color: rgb(131, 2, 13);
+    opacity: 0.6;
 }
 
-#pwd
+.bouton {
+    padding: 15px 10px;
+    background-color: red;
+    color: #F1F1F1;
+    border: none;
+    border-radius: 10px;
+}
+
+#acceptTerms
 {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    opacity: 0.6;
 }
 
