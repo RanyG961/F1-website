@@ -1,30 +1,29 @@
 <?php
-
-$servername = "localhost";
-$username = "root";
-$password = "dzer56Hr";
-$bdd_name = "f1_website";
+include "../bdd/db_class.php";
 
 
 /**
  * initialise the connection.
- * Return null if failed, connection object if ok
+ * Return false if failed, true otherwise
  */
 function create_database(){
+    $db_obj = new dbClass();
     try{
-        $conn = new PDO("mysql:host=$servername", $username, $password);
+
+        $conn = new PDO("mysql:host=" . $db_obj->getServername(), $db_obj->getUsername(), $db_obj->getPassword());
     
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "CREATE DATABASE " . $bdd_name;
+        $sql = "CREATE DATABASE " . $db_obj->getDbName();
     
-        $sql->exec($sql);
+        $conn->exec($sql);
 
-        return conn;
+        $conn = null;
+
+        return true;
     }
     
     catch(PDOException $e){
-        echo $sql . "<br>" . $e->getMessage();
-        return null;
+        return false;
     }
 }
 
@@ -32,7 +31,23 @@ function create_database(){
  * 
  */
 function create_table(){
+    $sql_script = file_get_contents("../bdd/bdd_tables.sql");
+
+    if(!$sql_script){
+        return false;
+    }
+
+    try{
+        $db_obj = new dbClass();
+        $conn = $db_obj->dbConnect();
     
+        $conn->exec($sql_script);
+
+        return true;
+    }
+    catch(PDOException $e){
+        return false;
+    }
 }
 
 

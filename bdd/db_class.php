@@ -1,6 +1,6 @@
 <?php
-class db_connection{
-    private $servername = "localhost";
+class dbClass{
+    private $servername = "127.0.0.1";
     private $username = "root";
     private $password = "dzer56Hr";
     private $db_name = "f1_website";
@@ -9,32 +9,37 @@ class db_connection{
      * Return the name of the server
      */
     function getServername(){
-        return $servername;
+        return $this->servername;
     }
 
     /**
      * Return the name of the user
      */
     function getUsername(){
-        return $username;
+        return $this->username;
     }
 
     /**
      * Return the password
      */
     function getPassword(){
-        return $password;
+        return $this->password;
     }
 
     /**
      * Return the name of the database
      */
     function getDbName(){
-        return $db_name;
+        return $this->db_name;
     }
 
     function dbConnect(){
-        return new PDO("mysql:host=$servername;dbname=$db_name", $username, $password);
+        try {
+            return new PDO("mysql:host=$this->servername;dbname=$this->db_name", $this->username, $this->password);
+        }
+        catch(PDOException $e){
+            return null;
+        }
     }
 }
 
