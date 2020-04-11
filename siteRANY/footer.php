@@ -7,7 +7,7 @@
                 </ul>  
             </nav>
         </footer>
-    
+    </div>
 </body>
 
 </html>
