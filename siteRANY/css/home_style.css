@@ -18,15 +18,16 @@ h3 {
 #all {
     width: 100%;
     display: table;
-    min-height: 100vh; /* plaque le footer au sol BRAAAHH */
+    min-height: 100%;
+    /* plaque le footer au sol BRAAAHH */
 }
 
 body {
     background: #F1F1F1;
+    height: 100%;
 }
 
-header
-{
+header {
     background: #F1F1F1;
     position: fixed;
     width: 100%;
@@ -42,8 +43,7 @@ header
     background: black;
 }
 
-#headerMenu ul
-{
+#headerMenu ul {
     width: 1200px;
     margin-left: auto;
     margin-right: auto;
@@ -60,13 +60,11 @@ header
     padding-left: 10px;
 }
 
-#headerMenu li a 
-{
-    color: red; 
+#headerMenu li a {
+    color: red;
 }
 
-#logo
-{
+#logo {
     width: 100px;
 }
 
@@ -75,7 +73,8 @@ header
     height: 100px;
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* PLAQUE TOUT A DROITE */ 
+    justify-content: flex-end;
+    /* PLAQUE TOUT A DROITE */
 }
 
 #connexion ul li {
@@ -84,39 +83,33 @@ header
     float: left;
 }
 
-#preTweets
-{
+#preTweets {
     display: table;
 }
 
-#presentation
-{
+#presentation {
     display: table;
     width: 425px;
     float: left;
 }
 
-#content
-{
+#content {
     width: 900px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 185px;
 }
 
-#tweets
-{
+#tweets {
     float: left;
     margin-left: 50px;
 }
 
-h2
-{
+h2 {
     text-align: center;
 }
 
-#classementGeneral
-{
+#classementGeneral {
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -124,13 +117,11 @@ h2
     justify-content: space-between;
 }
 
-#classementGeneral li
-{
+#classementGeneral li {
     cursor: pointer;
 }
 
-#footerMenu
-{
+#footerMenu {
     display: flex;
     align-items: center;
     width: 100%;
@@ -139,8 +130,7 @@ h2
     background: black;
 }
 
-#footerMenu ul
-{
+#footerMenu ul {
     width: 900px;
     margin-left: auto;
     margin-right: auto;
@@ -149,13 +139,10 @@ h2
     justify-content: space-between;
 }
 
-#footerMenu li a
-{
-    color: red; 
-}
-
-#footerMenu li span
-{
+#footerMenu li a {
     color: red;
 }
 
+#footerMenu li span {
+    color: red;
+}
