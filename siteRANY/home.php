@@ -32,8 +32,7 @@
                     <li> Joueurs </li>
                 </ul>
             </div>
-        </div>
-        </div>
-    <?php
+        </div>    
+<?php
             require 'footer.php';
     ?>  
