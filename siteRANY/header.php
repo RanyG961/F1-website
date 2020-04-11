@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div id="all"> 
+    
         <header>
             <div id="connexion">
                 <ul>
@@ -56,3 +56,4 @@
                 </ul>
             </nav>
         </header>
+        <div id="all"> 
