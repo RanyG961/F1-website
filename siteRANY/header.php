@@ -3,18 +3,18 @@
 
 <head>
     <meta charset="utf-8" />
-    <title> Accueil </title>
+    <title>Index</title>
     <link rel="stylesheet" href="css/home_style.css">
+    <link rel="stylesheet" href="css/inscriptionConnexion_style.css">
 </head>
 
 <body>
-   
     <div id="all"> 
         <header>
             <div id="connexion">
                 <ul>
                     <li>
-                        <a href="connecter.php"> Se connecter </a>
+                        <a href="connexion.php"> Se connecter </a>
                     </li>
                     <li>
                         <span> | </span>
