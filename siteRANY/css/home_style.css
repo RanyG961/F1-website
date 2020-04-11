@@ -1,0 +1,161 @@
+body,
+h1,
+ul,
+li,
+div,
+a,
+span,
+h2,
+h3 {
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.6);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#all {
+    width: 100%;
+    display: table;
+    min-height: 100vh; /* plaque le footer au sol BRAAAHH */
+}
+
+body {
+    background: #F1F1F1;
+}
+
+header
+{
+    background: #F1F1F1;
+    position: fixed;
+    width: 100%;
+}
+
+#headerMenu {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    padding: 0;
+    background: black;
+}
+
+#headerMenu ul
+{
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#headerMenu li {
+    display: table;
+    float: left;
+    padding: 0;
+    margin: 0;
+    padding-left: 10px;
+}
+
+#headerMenu li a 
+{
+    color: red; 
+}
+
+#logo
+{
+    width: 100px;
+}
+
+#connexion {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* PLAQUE TOUT A DROITE */ 
+}
+
+#connexion ul li {
+    display: table;
+    padding-right: 10px;
+    float: left;
+}
+
+#preTweets
+{
+    display: table;
+}
+
+#presentation
+{
+    display: table;
+    width: 425px;
+    float: left;
+}
+
+#content
+{
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 185px;
+}
+
+#tweets
+{
+    float: left;
+    margin-left: 50px;
+}
+
+h2
+{
+    text-align: center;
+}
+
+#classementGeneral
+{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#classementGeneral li
+{
+    cursor: pointer;
+}
+
+#footerMenu
+{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: black;
+}
+
+#footerMenu ul
+{
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#footerMenu li a
+{
+    color: red; 
+}
+
+#footerMenu li span
+{
+    color: red;
+}
+

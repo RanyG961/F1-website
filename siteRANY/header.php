@@ -3,13 +3,14 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Header</title>
-    <link rel="stylesheet" href="css/header_style.css">
+    <title> Accueil </title>
+    <link rel="stylesheet" href="css/home_style.css">
 </head>
 
 <body>
-    <header>
-        <div id="all">
+   
+    <div id="all"> 
+        <header>
             <div id="connexion">
                 <ul>
                     <li>
@@ -25,11 +26,11 @@
                 </ul>
             </div>
 
-            <nav id="menu">
+            <nav id="headerMenu">
                 <ul>
                     <li>
                         <a href="home.php">
-                            <img src="img/F1-logo.png" alt="F1-logo" width="55" />
+                            <img id="logo" src="img/logo.png" alt="F1-logo" />
                         </a>
                     </li>
 
@@ -54,8 +55,4 @@
                     </li>
                 </ul>
             </nav>
-        </div>
-    </header>
-</body>
-
-</html>
+        </header>
