@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Index</title>
+    <link rel="stylesheet" href="css/helmet_checkbox.css">
     <link rel="stylesheet" href="css/home_style.css">
     <link rel="stylesheet" href="css/inscriptionConnexion_style.css">
 </head>

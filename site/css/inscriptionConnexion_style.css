@@ -2,15 +2,26 @@
     text-align: center;
     display: table;
     margin-top: 170px;
-    white-space: pre;
     margin-left: auto;
     margin-right: auto;
     min-height: 100vh;
+    width: 500px;
+}
+
+.form-margin-top
+{
+    margin-top: 25px;
+}
+
+.formulaire .form-width
+{
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .titre {
     text-align: center;
-    margin-left: 45px;
     font-size: 30px;
 }
 
@@ -29,6 +40,7 @@
     padding: 5px;
     margin-bottom: 20px;
     font-size: 18px;
+    text-align: center;
 }
 
 ::placeholder {
@@ -45,8 +57,44 @@
     border-radius: 10px;
 }
 
-#acceptTerms
+.formulaire .bouton
 {
-    opacity: 0.6;
+    margin-top: 25px;
 }
+
+#accept-term-container
+{
+    display: flex;
+    cursor: pointer;
+    width: 510px;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+
+
+#accept-terms
+{
+    display: none;
+}
+
+#accept-term-container .helmet-checkbox
+{
+    width: 25px;
+}
+
+.helmet-checkbox #visiere
+{
+    transform: rotate(-10deg) translate(-50px, 0);
+    transition-duration: 313ms;
+}
+
+#accept-terms:checked ~ .helmet-checkbox #visiere
+{
+    transform: rotate(0) translate(0, 0);
+}
+
+
+
 
