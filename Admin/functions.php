@@ -80,23 +80,20 @@ function admin_exists(){
  * Return true if succesfully created
  */
 function create_account(){
+    extract($_POST);
+    
     // if something is not set, we return false
-    if(!(isset($_POST["lastName"])
-        && isset($_POST["firstName"])
-        && isset($_POST["birthdate"])
-        && isset($_POST["mail"])
-        && isset($_POST["pwd"])
-        && isset($_POST["nickname"]))
+    if(!(isset($lastName)
+        && isset($firstName)
+        && isset($birthdate)
+        && isset($mail)
+        && isset($pwd)
+        && isset($nickname))
     ){
         return false;
     }
 
-    $firstName = $_POST["firstName"];
-    $lastName = $_POST["lastName"];
-    $birthdate = $_POST["birthdate"];
-    $pwd = $_POST["pwd"];
-    $nickname = $_POST["nickname"];
-    $mail = $_POST["mail"];
+
 
     try{
         $sql = "INSERT INTO users(first_name, last_name, birthdate, password, nickname, mail, is_admin) VALUES(?, ?, ?, ?, ?, ?, ?)";
