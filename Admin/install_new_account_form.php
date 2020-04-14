@@ -1,5 +1,5 @@
 <h1> Create an admin account </h1>
-<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+<form action="inscription_redirect.php" method="post">
     <div class="couple">
         <label for="lastName"> Name: </label>
         <input type="text" id="lastName" name="lastName" required />

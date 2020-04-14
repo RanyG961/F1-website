@@ -14,17 +14,15 @@
     <div id="all">
     <?php
     
-
     $is_db = create_database();
 
-    if($is_db){
-        $is_table = create_table();
-        if($is_table){
-            include "install_new_account_form.php";
-        }
+    $is_table = create_table() && !admin_exists();
+
+    if($is_table){
+        include "install_new_account_form.php";
     }
     else{
-        echo "The database already exists!";
+        include "go_to_admin_page.php";
     }
 
     ?>
