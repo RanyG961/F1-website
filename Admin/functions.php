@@ -23,6 +23,7 @@ function create_database(){
     }
     
     catch(PDOException $e){
+        echo $e;
         return false;
     }
 }
@@ -115,6 +116,3 @@ function create_account(){
 
     return false;
 }
-
-
-?>
