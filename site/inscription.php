@@ -3,14 +3,16 @@
 ?>
     <div class="formulaire">
         <h2 class="titre"> Inscription </h2>   
-        <form id="formInscription" class="form-margin-top" action="$_SERVER['PHP_SELF']" method="post">
+        <form id="formInscription" class="form-margin-top" action="confirmation_inscription.php" method="post">
             <div class="form-width">
                 <input type="text" placeholder="Nom" id="nom" name="nom" class="saisie" required />
                 <input type="text" placeholder="Prénom" id="prenom" name="prenom" class="saisie" required />
                 <input type="text" placeholder="Pseudo" id="pseudo" name="pseudo" class="saisie" required />
+                <input type="date" placeholder="Date de naissance" id="birthdate" name="birthdate" class="saisie" required/>
                 <input type="email" placeholder="E-mail" id="email" name="email"  class="saisie" required />
                 <input type="password" placeholder="Mot de passe" id="pwd" name="pwd" class="saisie" required/>
-                <input type ="tel" placeholder="Numéro de téléphone" name="tel" Pattern="^9[0-9]{7}"  minlength="10" maxlength="10" class="saisie" required/>
+                <input type="password" placeholder="Confirmez votre mot de passe" id="pwdConfirm" name="pwdConfirm" class="saisie" required/>
+                <input type ="tel" placeholder="Numéro de téléphone" name="tel" Pattern="^(\+33|0033|0)(6|7)[0-9]{8}"  minlength="10" maxlength="12" class="saisie" required/>
             </div>
             <label id="accept-term-container">
                 <input id="accept-terms" type="checkbox" name="acceptTerms" />
