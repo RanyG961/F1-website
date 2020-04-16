@@ -1,4 +1,4 @@
-<?php
+ <?php
 class dbClass{
     private $servername = "127.0.0.1";
     private $username = "root";
