@@ -1,5 +1,6 @@
 <?php
 include "functions_users.php";
+init_session();
 
 
 if(nickname_exists() && email_exists() &&  password_est_valide())
