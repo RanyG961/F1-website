@@ -56,7 +56,7 @@ function nickname_exists()
 function email_exists()
 {
     extract($_POST);
-$errors = array();
+    $errors = array();
     if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
     {
         $errors['mail'] = "Votre email n'est pas valide";
@@ -101,7 +101,7 @@ function password_est_valide()
 
     $longueur_pwd = strlen($pwd);
 
-    if(empty($pwd) || $pwd != $pwdConfirm)
+    if(empty($pwd) || empty($pwdConfirm) || $pwd != $pwdConfirm)
     {
         $errors['pwd'] = "Problème dans la confirmation du mot de passe";
         return false;
@@ -155,3 +155,82 @@ function create_account(){
 
     return true;
 }
+
+/**
+ * Init session() properly
+ * Return true if the session started or false if not
+ */
+function init_session()
+{
+    if(!session_id())
+    {
+        session_start();
+        session_regenerate_id();
+        return true;
+    }
+
+    return false;
+}
+
+/** 
+ * Destroy session() properly
+ */
+function clean_session()
+{
+    session_unset();
+    session_destroy();
+}
+
+function verif_utilisateur()
+{
+    extract($_POST);
+    $errors = array();
+
+    if(!(isset($identifiant) && isset($pwd)))
+    {
+        return false;
+    }
+
+    if(empty($identifiant) && empty($pwd))
+    {
+        return false;
+    }
+    $password_clear = hash("sha256", $pwd);
+
+    try
+    {
+        $sql = "SELECT * FROM users WHERE (nickname = :identifiant OR mail = :identifiant) AND password = :password_clear";
+
+        $db = new dbClass();
+        $conn = $db->dbConnect();
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sth = $conn->prepare($sql);
+        $sth->execute(array(':identifiant' => $identifiant, ':password_clear' => $password_clear));
+
+        $result = $sth->fetch();
+
+        if($result)
+        {
+            $_SESSION['auth'] = $result;
+            $_SESSION['flash']['success'] = 'Vous êtes maintenant connecté';
+            return true;
+        }
+        else
+        {
+            $_SESSION['flash']['error'] = "Identifiant ou mot de passe incorrect";
+            return false;
+        }
+    }
+    catch (PDOException $e)
+    {
+        echo $e;
+        return false;
+    }
+    return true;
+}
+
+/**
+ * if (session_status() == PHP_SESSION_NONE)
+ * if(isset($_SESSION['auth']))
+ */
