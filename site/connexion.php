@@ -1,10 +1,8 @@
 <?php
     include "functions_users.php";
-?>
-<?php
-  init_session();
+    init_session();
   
-  require 'header.php';
+    require 'header.php';
 ?>
 
     <div class="formulaire">

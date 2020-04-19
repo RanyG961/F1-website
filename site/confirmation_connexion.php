@@ -5,7 +5,7 @@ include "functions_users.php";
 
 if(verif_utilisateur())
 {
-    header("Location:homeConnect.php");
+    header("Location:home.php");
 }
 else
 {
