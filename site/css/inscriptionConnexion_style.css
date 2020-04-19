@@ -95,6 +95,9 @@
     transform: rotate(0) translate(0, 0);
 }
 
-
+.is-error
+{
+    border-color: red;
+}
 
 
