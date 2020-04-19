@@ -1,13 +1,14 @@
 <?php
-
+include "init_session.php";
 include "functions_users.php";
 
 
 if(verif_utilisateur())
 {
-    header("Location:homeConnect.php");
+    header("Location:home.php");
 }
 else
 {
-    header("Location:probleme.php");
+    clean_session();
+    header("Location:connexion.php");
 }

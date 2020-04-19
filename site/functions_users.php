@@ -1,5 +1,5 @@
 <?php
-include "../bdd/db_class.php";
+require_once "../bdd/db_class.php";
 
 
 
@@ -108,7 +108,7 @@ function password_est_valide()
     }
     else if($longueur_pwd < 6 || !preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $pwd))
     {
-        echo "Le mot de passe n'est pas conforme";
+        // echo "Le mot de passe n'est pas conforme";
         return false;
     }
     else 
@@ -156,21 +156,6 @@ function create_account(){
     return true;
 }
 
-/**
- * Init session() properly
- * Return true if the session started or false if not
- */
-function init_session()
-{
-    if(!session_id())
-    {
-        session_start();
-        session_regenerate_id();
-        return true;
-    }
-
-    return false;
-}
 
 /** 
  * Destroy session() properly
@@ -234,3 +219,4 @@ function verif_utilisateur()
  * if (session_status() == PHP_SESSION_NONE)
  * if(isset($_SESSION['auth']))
  */
+?>

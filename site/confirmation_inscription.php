@@ -1,17 +1,18 @@
 <?php
 include "functions_users.php";
-init_session();
 
+header("Location: home.php");
 
-if(nickname_exists() && email_exists() &&  password_est_valide())
-{
-    if(create_account())
-    {
-        header("Location:homeConnect.php");
-    }
-}
-else
-{
-    header("Location:probleme.php");
-}
-
+// if(nickname_exists() && email_exists() &&  password_est_valide())
+// {
+//     if(create_account())
+//     {
+//         header("Location: home.php");
+//     }
+// }
+// else
+// {
+//     //header("Location: site/home.php");
+//     // header("Location:inscription.php");
+// }
+?>

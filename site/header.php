@@ -1,3 +1,6 @@
+<!-- <?php
+// error_reporting(E_ERROR | E_PARSE); // Pour désactiver les messages d'erreur et de warning
+?> -->
 <!DOCTYPE HTML>
 <html lang="fr">
 
@@ -10,7 +13,6 @@
 </head>
 
 <body>
-    
         <header>
             <div id="connexion">
                 <ul>

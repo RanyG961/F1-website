@@ -8,4 +8,4 @@ else{
     header("Location: bdd_install.php");
 }
 
-?>
+

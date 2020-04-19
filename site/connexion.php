@@ -1,9 +1,4 @@
 <?php
-    include "functions_users.php";
-?>
-<?php
-  init_session();
-  
   require 'header.php';
 ?>
 
