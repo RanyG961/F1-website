@@ -19,7 +19,7 @@ function nickname_exists()
     if(empty($pseudo) || !preg_match('/^[a-zA-Z0-9_]+$/', $pseudo))
     {
         $errors['pseudo'] = "Votre pseudo n'est pas valide";
-        return "?is_nickname=true";
+        return "is_nickname=true&";
     }
 
     try
@@ -35,17 +35,17 @@ function nickname_exists()
         if($user)
         {
             $errors['pseudo'] = "Ce pseudo existe déjà !";
-            return "?is_nickname=true";
+            return "is_nickname=true&";
         }
         else 
         {
-            return true;
+            return "";
         }
     }
     catch(PDOException $e)
     {
         echo $e;
-        return "?is_nickname=true";
+        return "is_nickname=true&";
     }
 }
 
@@ -60,7 +60,7 @@ function email_exists()
     if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
     {
         $errors['mail'] = "Votre email n'est pas valide";
-        return false;
+        return "is_email=true&";
     }
 
     try
@@ -76,17 +76,17 @@ function email_exists()
         if($user)
         {
             $errors['mail'] = "Ce mail existe déjà !";
-            return false;
+            return "is_email=true&";
         }
         else 
         {
-            return true;
+            return "";
         }
     }
     catch(PDOException $e)
     {
         echo $e;
-        return false;
+        return "is_email=true&";
     }
 }
 
@@ -101,19 +101,23 @@ function password_est_valide()
 
     $longueur_pwd = strlen($pwd);
 
-    if(empty($pwd) || empty($pwdConfirm) || $pwd != $pwdConfirm)
+    if(empty($pwd) || empty($pwdConfirm))
     {
         $errors['pwd'] = "Problème dans la confirmation du mot de passe";
-        return false;
+        return "is_pwd=true&";
+    }
+    if($pwd != $pwdConfirm)
+    {
+        return "is_pwd=true&is_pwd_confirm=true&";
     }
     else if($longueur_pwd < 6 || !preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $pwd))
     {
         echo "Le mot de passe n'est pas conforme";
-        return false;
+        return "is_pwd=true&";
     }
     else 
     {
-        return true;
+        return "";
     }
 } 
 
@@ -121,7 +125,7 @@ function password_est_valide()
  * Create a user account
  * Return true if succesfully created
  */
-function create_account(){
+function create_account($is_admin){
     extract($_POST);
     $errors = array();
     
@@ -137,6 +141,9 @@ function create_account(){
     ){
         return false;
     }
+    
+    $pwd = hash("sha256", $pwd);
+
 
     try{
         $sql = "INSERT INTO users(first_name, last_name, birthdate, password, nickname, mail, is_admin) VALUES(?, ?, ?, ?, ?, ?, ?)";
@@ -146,7 +153,7 @@ function create_account(){
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $sth = $conn->prepare($sql);
-        $sth->execute(array($prenom, $nom, $birthdate, hash("sha256", $pwd), $pseudo, $email, 0));
+        $sth->execute(array($prenom, $nom, $birthdate, $pwd, $pseudo, $email, is_admin));
     }
     catch(PDOException $e){
         echo $e;
