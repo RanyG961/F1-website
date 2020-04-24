@@ -14,14 +14,12 @@ function debug($variable)
  */
 function nickname_exists()
 {
-    $_SESSION['is_nickname'] = true;
     extract($_POST);
     $errors = array();
     if(empty($pseudo) || !preg_match('/^[a-zA-Z0-9_]+$/', $pseudo))
     {
         $errors['pseudo'] = "Votre pseudo n'est pas valide";
-        $_SESSION['is_nickname'] = false;
-        return false;
+        return "?is_nickname=true";
     }
 
     try
@@ -37,8 +35,7 @@ function nickname_exists()
         if($user)
         {
             $errors['pseudo'] = "Ce pseudo existe déjà !";
-            $_SESSION['is_nickname'] = false;
-            return false;
+            return "?is_nickname=true";
         }
         else 
         {
@@ -48,8 +45,7 @@ function nickname_exists()
     catch(PDOException $e)
     {
         echo $e;
-        $_SESSION['is_nickname'] = false;
-        return false;
+        return "?is_nickname=true";
     }
 }
 

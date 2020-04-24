@@ -7,7 +7,7 @@
 </head>
 <body>
     <div id="all">
-        <form action="connexion_redirect.php">
+        <form action="connexion_redirect.php" method="post">
             <label for="identifiant">Identifiant : </label><input id="identifiant" name="identifiant" type="text">
             <label for="password">Mot de passe : </label><input id="password" name="password" type="password">
             <input type="button" value="SUBMIT">

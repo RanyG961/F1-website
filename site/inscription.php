@@ -7,7 +7,7 @@
             <div class="form-width">
                 <input type="text" placeholder="Nom" id="nom" name="nom" class="saisie" required />
                 <input type="text" placeholder="Prénom" id="prenom" name="prenom" class="saisie" required />
-                <input type="text" placeholder="Pseudo" id="pseudo" name="pseudo" <?php if(!$_SESSION['is_nickname'] && $_SESSION["from_ci"]){echo "class='saisie is-error'";}else{echo "class='saisie'";}?> required />
+                <input type="text" placeholder="Pseudo" id="pseudo" name="pseudo" <?php if($_GET['is_nickname']){echo "class='saisie is-error'";}else{echo "class='saisie'";}?> required />
                 <input type="date" placeholder="Date de naissance" id="birthdate" name="birthdate" class="saisie" required/>
                 <input type="email" placeholder="E-mail" id="email" name="email"  class="saisie" required />
                 <input type="password" placeholder="Mot de passe" id="pwd" name="pwd" class="saisie" required/>

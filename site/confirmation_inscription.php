@@ -2,9 +2,9 @@
 include "functions_users.php";
 init_session();
 
-$_SESSION["from_ci"] = true;
+$is_error = nickname_exists();// . email_exists() .  password_est_valide();
 
-if(nickname_exists() && email_exists() &&  password_est_valide())
+if(!$is_error)
 {
     if(create_account())
     {
@@ -13,6 +13,6 @@ if(nickname_exists() && email_exists() &&  password_est_valide())
 }
 else
 {
-    header("Location:inscription.php");
+    header("Location:inscription.php" . $is_error);
 }
 
