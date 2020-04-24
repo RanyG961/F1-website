@@ -1,5 +1,8 @@
 <?php
-  require 'header.php';
+    include "functions_users.php";
+    init_session();
+  
+    require 'header.php';
 ?>
 
     <div class="formulaire">

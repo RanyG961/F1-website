@@ -1,6 +1,8 @@
-<!-- <?php
-// error_reporting(E_ERROR | E_PARSE); // Pour désactiver les messages d'erreur et de warning
-?> -->
+<?php
+require_once "functions_users.php";
+init_session();
+?>
+
 <!DOCTYPE HTML>
 <html lang="fr">
 
@@ -13,6 +15,7 @@
 </head>
 
 <body>
+    
         <header>
             <div id="connexion">
                 <ul>
