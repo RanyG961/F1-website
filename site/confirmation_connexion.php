@@ -2,7 +2,6 @@
 
 include "functions_users.php";
 
-
 if(verif_utilisateur())
 {
     header("Location:home.php");

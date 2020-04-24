@@ -9,9 +9,9 @@
                 <input type="text" placeholder="Prénom" id="prenom" name="prenom" class="saisie" required />
                 <input type="text" placeholder="Pseudo" id="pseudo" name="pseudo" <?php if($_GET['is_nickname']){echo "class='saisie is-error'";}else{echo "class='saisie'";}?> required />
                 <input type="date" placeholder="Date de naissance" id="birthdate" name="birthdate" class="saisie" required/>
-                <input type="email" placeholder="E-mail" id="email" name="email"  class="saisie" required />
-                <input type="password" placeholder="Mot de passe" id="pwd" name="pwd" class="saisie" required/>
-                <input type="password" placeholder="Confirmez votre mot de passe" id="pwdConfirm" name="pwdConfirm" class="saisie" required/>
+                <input type="email" placeholder="E-mail" id="email" name="email"  <?php if($_GET['is_email']){echo "class='saisie is-error'";}else{echo "class='saisie'";}?>  required />
+                <input type="password" placeholder="Mot de passe" id="pwd" name="pwd" <?php if($_GET['is_pwd']){echo "class='saisie is-error'";}else{echo "class='saisie'";}?> required/>
+                <input type="password" placeholder="Confirmez votre mot de passe" id="pwdConfirm" name="pwdConfirm" <?php if($_GET['is_pwd_confirm']){echo "class='saisie is-error'";}else{echo "class='saisie'";}?> required/>
                 <input type ="tel" placeholder="Numéro de téléphone" name="tel" Pattern="^(\+33|0033|0)(6|7)[0-9]{8}"  minlength="10" maxlength="12" class="saisie" required/>
             </div>
             <label id="accept-term-container">
