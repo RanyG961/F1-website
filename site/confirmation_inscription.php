@@ -1,5 +1,6 @@
 <?php
 include "functions_users.php";
+init_session();
 
 $_SESSION["from_ci"] = true;
 
