@@ -39,7 +39,7 @@ function nickname_exists()
         }
         else 
         {
-            return true;
+            return "";
         }
     }
     catch(PDOException $e)
