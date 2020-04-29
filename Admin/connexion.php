@@ -1,17 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connection</title>
-</head>
-<body>
-    <div id="all">
-        <form action="connexion_redirect.php" method="post">
-            <label for="identifiant">Identifiant : </label><input id="identifiant" name="identifiant" type="text">
-            <label for="password">Mot de passe : </label><input id="password" name="password" type="password">
-            <input type="button" value="SUBMIT">
+<?php
+    require_once "../site/functions_users.php";
+    init_session();
+  
+    require_once "admin_header.php";
+?>
+
+    <div class="formulaire">
+        <h2 class="titre"> Connexion </h2>
+        <form id="formConnexion" action="connexion_redirect.php" method="POST">
+            <div class="">
+                <input type="text" placeholder="Identifiant" id="identifiant" name="identifiant"  required />
+                <input type="password" id="pwd" name="pwd" placeholder="Mot de passe"  required />
+                <input type="submit" value="Connexion" class="bouton"/>
+            </div>
         </form>
     </div>
-</body>
-</html>
+<?php
+    require 'admin_footer.php';
+?>

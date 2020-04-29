@@ -1,12 +1,13 @@
 <?php
-include "../bdd/db_class.php";
+require_once "../bdd/db_class.php";
 
 
-
+/*
 function debug($variable)
 {
     echo '<pre>' . print_r($variable, true) . '</pre>';
 }
+*/
 
 /**
  * Verify if nickname is available and valid
@@ -153,7 +154,7 @@ function create_account($is_admin){
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $sth = $conn->prepare($sql);
-        $sth->execute(array($prenom, $nom, $birthdate, $pwd, $pseudo, $email, is_admin));
+        $sth->execute(array($prenom, $nom, $birthdate, $pwd, $pseudo, $email, $is_admin));
     }
     catch(PDOException $e){
         echo $e;
@@ -188,7 +189,7 @@ function clean_session()
     session_destroy();
 }
 
-function verif_utilisateur()
+function verif_utilisateur($test_admin)
 {
     extract($_POST);
     $errors = array();

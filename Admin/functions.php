@@ -1,6 +1,10 @@
 <?php
-include "../bdd/db_class.php";
+require_once "../bdd/db_class.php";
 
+function debug($variable)
+{
+    echo '<pre>' . print_r($variable, true) . '</pre>';
+}
 
 /**
  * initialise the connection.
@@ -76,44 +80,61 @@ function admin_exists(){
     return false;
 }
 
-/**
- * Create an admin account
- * Return true if succesfully created
- */
-function create_account(){
+function verif_utilisateur_admin()
+{
     extract($_POST);
-    
-    // if something is not set, we return false
-    if(!(isset($lastName)
-        && isset($firstName)
-        && isset($birthdate)
-        && isset($mail)
-        && isset($pwd)
-        && isset($nickname))
-    ){
+    $errors = array();
+
+    if(!(isset($identifiant) && isset($pwd)))
+    {
         return false;
     }
 
+    if(empty($identifiant) && empty($pwd))
+    {
+        return false;
+    }
+    $password_clear = hash("sha256", $pwd);
+    $test_admin = true;
 
-
-    try{
-        $sql = "INSERT INTO users(first_name, last_name, birthdate, password, nickname, mail, is_admin) VALUES(?, ?, ?, ?, ?, ?, ?)";
+    try
+    {
+        $sql = "SELECT * FROM users WHERE (nickname = :identifiant OR mail = :identifiant) AND password = :password_clear";
 
         $db = new dbClass();
         $conn = $db->dbConnect();
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $sth = $conn->prepare($sql);
+        $sth->execute(array(':identifiant' => $identifiant, ':password_clear' => $password_clear));
 
-        $sth->execute(array($firstName, $lastName, $birthdate, hash("sha256", $pwd), $nickname, $mail, TRUE));
+        $result = $sth->fetch();
 
-        return true;
+        if($result)
+        {
+            if($test_admin == $result['is_admin'])
+            {
+                $_SESSION['auth'] = $result;
+                $_SESSION['flash']['success'] = 'Vous êtes maintenant connecté';
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        else
+        {
+            $_SESSION['flash']['error'] = "Identifiant ou mot de passe incorrect";
+            return false;
+        }
     }
-    catch(PDOException $e){
+    catch (PDOException $e)
+    {
         echo $e;
         return false;
     }
-
-    return false;
+    return true;
 }
 
