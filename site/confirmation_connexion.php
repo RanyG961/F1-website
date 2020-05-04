@@ -1,6 +1,6 @@
 <?php
-
 include "functions_users.php";
+init_session();
 
 if(verif_utilisateur())
 {

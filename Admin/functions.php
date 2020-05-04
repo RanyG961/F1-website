@@ -116,7 +116,14 @@ function verif_utilisateur_admin()
             {
                 $_SESSION['auth'] = $result;
                 $_SESSION['flash']['success'] = 'Vous êtes maintenant connecté';
-                return true;
+                if(isset($_SESSION['auth']) && !empty($_SESSION['auth']))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
