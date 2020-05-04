@@ -17,6 +17,22 @@ init_session();
 <body>
     
         <header>
+        <?php if(is_logged()): ?>
+            <div id="connexion">
+                <ul>
+                    <li>
+                        <span> Bienvenue <?= $_SESSION['auth']['nickname']; ?> </span>
+                    </li>
+                    <li>
+                        <span> | </span>
+                    </li>
+                    <li>
+                        <a href="logout.php"> Se déconnecter </a>
+                    </li>
+
+                </ul>
+            </div>
+        <?php else: ?>
             <div id="connexion">
                 <ul>
                     <li>
@@ -31,7 +47,7 @@ init_session();
 
                 </ul>
             </div>
-
+        <?php endif; ?>
             <nav id="headerMenu">
                 <ul>
                     <li>

@@ -1,5 +1,5 @@
 <?php
 require_once "../site/functions_users.php";
-$_SESSION = array();
+init_session();
 clean_session();
-header ("Location: install_new_account_form.php");
+header ("Location: admin_home.php");

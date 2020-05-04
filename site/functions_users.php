@@ -189,7 +189,7 @@ function clean_session()
     session_destroy();
 }
 
-function verif_utilisateur($test_admin)
+function verif_utilisateur()
 {
     extract($_POST);
     $errors = array();
@@ -238,7 +238,16 @@ function verif_utilisateur($test_admin)
     return true;
 }
 
-/**
+function is_logged()
+{
+    if(isset($_SESSION['auth']))
+    {
+        return true;
+    }
+    return false;
+}
+
+/** 
  * if (session_status() == PHP_SESSION_NONE)
  * if(isset($_SESSION['auth']))
  */
