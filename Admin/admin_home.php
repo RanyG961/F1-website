@@ -1,6 +1,8 @@
 <?php
 require_once "../site/functions_users.php";
 init_session();
+require_once "functions.php";
+
 require_once "admin_header.php";
 ?>
 
@@ -8,6 +10,15 @@ require_once "admin_header.php";
 <?php if(is_logged()): ?>
     <span> Bienvenue <?= $_SESSION['auth']['nickname']; ?> </span>
     <a href="logout.php"> Se déconnecter </a>
+    <h1> Liste des membres </h1>
+    <ul>
+        <?php 
+            $membres = affiche_membres();
+            foreach ($membres as $membre): 
+        ?>
+            <li> <?= $membre['first_name'] ?> <?= $membre['last_name'] ?> - <?= $membre['birthdate'] ?> - <?= $membre['password'] ?> - <?= $membre['nickname'] ?> - <?= $membre['mail'] ?> - <?= $membre['is_admin'] ?></li>
+        <?php endforeach; ?>
+    </ul>
 <?php else: ?>
     <div class="formulaire">
         <h2 class="titre"> Connexion </h2>

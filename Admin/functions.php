@@ -145,3 +145,37 @@ function verif_utilisateur_admin()
     return true;
 }
 
+function affiche_membres()
+{
+    extract($_POST);
+
+    try
+    {
+        $sql = "SELECT * FROM users";
+
+        $db = new dbClass();
+        $conn = $db->dbConnect();
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sth = $conn->prepare($sql);
+        $sth->execute();
+
+        $membres = $sth->fetchAll();
+
+        //debug($membres);
+
+        if($membres)
+        {
+            return $membres;
+        }
+        else
+        {
+            echo "erreurs";
+        }
+    }
+    catch(PDOException $e)
+    {
+        echo $e;
+        return false;
+    }
+}
