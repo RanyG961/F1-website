@@ -247,6 +247,8 @@ function is_logged()
     return false;
 }
 
+
+
 /** 
  * if (session_status() == PHP_SESSION_NONE)
  * if(isset($_SESSION['auth']))

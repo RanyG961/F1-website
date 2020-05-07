@@ -162,8 +162,6 @@ function affiche_membres()
 
         $membres = $sth->fetchAll();
 
-        //debug($membres);
-
         if($membres)
         {
             return $membres;
@@ -177,5 +175,98 @@ function affiche_membres()
     {
         echo $e;
         return false;
+    }
+}
+
+function update_admin()
+{
+    extract($_GET);
+    $admin = "admin";
+    $superadmin = "superadmin";
+
+    if(isset($confirme) && !empty($confirme))
+    {
+        if(strcmp($type, $admin) == 0)
+        {
+            try
+            {
+                $sql = "UPDATE users SET is_admin = 1 WHERE id = ?";
+
+                $db = new dbClass();
+                $conn = $db->dbConnect();
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $sth = $conn->prepare($sql);
+                $sth->execute(array($confirme));
+            }
+            catch(PDOException $e)
+            {
+                echo $e;
+                return false;
+            }
+        }
+        else if(strcmp($type, $superadmin) == 0 && $value == 0)
+        {
+            try
+            {
+                $sql = "UPDATE users SET is_admin = 1 WHERE id = ?";
+
+                $db = new dbClass();
+                $conn = $db->dbConnect();
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $sth = $conn->prepare($sql);
+                $sth->execute(array($confirme));
+            }
+            catch(PDOException $e)
+            {
+                echo $e;
+                return false;
+            }
+        }
+        else if(strcmp($type, $superadmin) == 0 && $value == 1)
+        {
+            try
+            {
+                $sql = "UPDATE users SET is_admin = FALSE WHERE id = ?";
+
+                $db = new dbClass();
+                $conn = $db->dbConnect();
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $sth = $conn->prepare($sql);
+                $sth->execute(array($confirme));
+            }
+            catch(PDOException $e)
+            {
+                echo $e;
+                return false;
+            }
+        }
+    }
+}
+
+function supprime_compte()
+{
+    extract($_GET);
+
+    if(isset($supprime) && !empty($supprime))
+    {
+        try
+        {
+            $sql = "DELETE FROM users WHERE id = ?";
+
+            $db = new dbClass();
+            $conn = $db->dbConnect();
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $sth = $conn->prepare($sql);
+            $sth->execute(array($supprime));
+        }
+        catch(PDOException $e)
+        {
+            echo $e;
+            return false;
+        }
     }
 }

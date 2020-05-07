@@ -1,0 +1,26 @@
+body,
+h1,
+ul,
+li,
+div,
+span,
+h2,
+h3 {
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-family: Arial;
+}
+
+th
+{
+    letter-spacing: 2px;
+}
+
+td 
+{
+    text-align: center;
+    letter-spacing: 1px;
+}

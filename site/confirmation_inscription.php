@@ -6,7 +6,7 @@ $is_error = nickname_exists() . email_exists() .  password_est_valide();
 
 if(!$is_error)
 {
-    if(create_account(false))
+    if(create_account(0))
     {
         header("Location:home.php");
     }
