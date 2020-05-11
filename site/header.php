@@ -12,6 +12,7 @@ init_session();
     <link rel="stylesheet" href="css/helmet_checkbox.css">
     <link rel="stylesheet" href="css/home_style.css">
     <link rel="stylesheet" href="css/inscriptionConnexion_style.css">
+    <link rel="stylesheet" href="css/classement_style.css">
 </head>
 
 <body>
