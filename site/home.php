@@ -28,7 +28,7 @@
                 <h2> Classement </h2>
                 <ul id="classementGeneral">
                     <li> Pilotes </li>
-                    <li> Écuries </li>
+                    <li> Constructeurs </li>
                     <li> Joueurs </li>
                 </ul>
             </div>
