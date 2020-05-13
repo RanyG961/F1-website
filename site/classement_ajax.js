@@ -111,17 +111,20 @@ function main() {
             let pilotes = document.getElementById("pilotes")
             let constructeurs = document.getElementById("constructeurs")
 
+            affichageConstructeur(classementsConstructeur, tableConstructeurs)
+            affichagePilote(classementsPilote, tablePilotes)
+
+            tablePilotes.style.display = "block"
+            tableConstructeurs.style.display = "none"
 
             constructeurs.onclick = function()
             {
-                affichageConstructeur(classementsConstructeur, tableConstructeurs)
                 tablePilotes.style.display = "none"
                 tableConstructeurs.style.display = "block"
             }
 
             pilotes.onclick = function()
             {
-                affichagePilote(classementsPilote, tablePilotes)
                 tableConstructeurs.style.display = "none"
                 tablePilotes.style.display = "block"
             }
