@@ -1,4 +1,5 @@
 <?php
-$data = file_get_contents("2019_races.json");
+
+$data = file_get_contents($_GET["annee"] . "_races.json");
 
 echo $data;

@@ -1,21 +1,25 @@
 <?php
-$curl = curl_init("https://ergast.com/api/f1/2019/results.json?limit=1000");
 
-
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-$data_course = curl_exec($curl);
-
-if($data_course === FALSE)
+for($i = 2000; $i < 2020; $i++)
 {
-    var_dump(curl_error($curl));
-}
-else
-{
-    if(curl_getinfo($curl, CURLINFO_HTTP_CODE) === 200)
+    $curl = curl_init("https://ergast.com/api/f1/" . $i . "/results.json?limit=1000");
+    
+    
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $data_course = curl_exec($curl);
+    
+    if($data_course === FALSE)
     {
-        file_put_contents("2019_races.json", $data_course);
+        var_dump(curl_error($curl));
+    }
+    else
+    {
+        if(curl_getinfo($curl, CURLINFO_HTTP_CODE) === 200)
+        {
+            file_put_contents($i . "_races.json", $data_course);
+        }
+        
     }
     
+    curl_close($curl);
 }
-
-curl_close($curl);
