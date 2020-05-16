@@ -4,5 +4,24 @@
     margin-right: auto;
     margin-top: 200px;
 }
+#listePilote
+{
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 200px;
+}
 
+.draggable
+{
+    padding: 1rem;
+    background-color: #F1F1F1;
+    border: 1px solid red;
+    cursor: move;
+    text-align: center;
+}
 
+.draggable.dragging
+{
+    opacity: .3;
+}

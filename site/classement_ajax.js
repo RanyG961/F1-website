@@ -46,9 +46,6 @@ function generateRanking(races) {
         if (constructeur.constructorId === constructeur.constructorId) {
             contestant_team[code].points += classement.points
         }
-
-
-
     })
     for (var constructeur in contestant_team) {
         contestantsTeam_array.push(
