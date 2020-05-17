@@ -5,6 +5,7 @@ function main()
     {
         if (this.readyState == 4 && this.status == 200)
         {
+
             let result = document.getElementById("listePilote");
             let results = JSON.parse(xhttp.responseText);
 
@@ -27,8 +28,12 @@ function main()
 
                 ul.appendChild(li);
             }
+
+
+
+
             var draggables = document.querySelectorAll(".draggable");
-            console.log(draggables);
+            //console.log(draggables);
 
             var containers = document.querySelectorAll(".container");
 
@@ -70,6 +75,8 @@ function main()
                     }
                 });
             });
+
+
         }
     };
     xhttp.open("GET", "https://ergast.com/api/f1/2019/drivers.json", true);
@@ -105,4 +112,4 @@ function getDragAfterElement(container, y)
     ).element;
 }
 
-window.onload = main;
+window.onload = main

@@ -142,52 +142,6 @@ function affichageListeAnnee() {
 
 }
 
-function demandeClassement(annee, table_pilote, table_constructeur) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var rep = JSON.parse(this.responseText)
-
-            var classements = generateRanking(rep.MRData.RaceTable.Races)
-            var classementsConstructeur = classements.classementConstructeur
-            var classementsPilote = classements.classementPilote
-
-            // var table = document.querySelector("table")
-            var tablePilotes = document.getElementById(table_pilote)
-            var tableConstructeurs = document.getElementById(table_constructeur)
-
-            let pilotes = document.getElementById("pilotes")
-            let constructeurs = document.getElementById("constructeurs")
-
-            affichagePilote(classementsPilote, tablePilotes)
-            affichageConstructeur(classementsConstructeur, tableConstructeurs)
-
-            tablePilotes.style.display = "block"
-            tableConstructeurs.style.display = "none"
-
-            constructeurs.onclick = function () {
-                tablePilotes.style.display = "none"
-                tableConstructeurs.style.display = "block"
-            }
-
-            pilotes.onclick = function () {
-                tableConstructeurs.style.display = "none"
-                tablePilotes.style.display = "block"
-            }
-        }
-    }
-
-    xhttp.open("GET", `http://127.0.0.1:8000/site/php_ajax.php?annee=${annee}`, true);
-    xhttp.send(null);
-}
-
-
-function main() {
-    affichageListeAnnee()
-}
-
-window.onload = main
-
 function affichagePilote(classementsPilote, table) {
     //console.log(classementsPilote)
     let titre = []
@@ -235,3 +189,97 @@ function affichageConstructeur(classementsConstructeur, table) {
     generateTable(table, titre)
     generateTableHead(table, data)
 }
+
+/* function demandeClassement(annee, table_pilote, table_constructeur) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var rep = JSON.parse(this.responseText)
+
+            var classements = generateRanking(rep.MRData.RaceTable.Races)
+            var classementsConstructeur = classements.classementConstructeur
+            var classementsPilote = classements.classementPilote
+
+            // var table = document.querySelector("table")
+            var tablePilotes = document.getElementById(table_pilote)
+            var tableConstructeurs = document.getElementById(table_constructeur)
+
+            let pilotes = document.getElementById("pilotes")
+            let constructeurs = document.getElementById("constructeurs")
+
+            affichagePilote(classementsPilote, tablePilotes)
+            affichageConstructeur(classementsConstructeur, tableConstructeurs)
+
+            tablePilotes.style.display = "block"
+            tableConstructeurs.style.display = "none"
+
+            constructeurs.onclick = function () {
+                tablePilotes.style.display = "none"
+                tableConstructeurs.style.display = "block"
+            }
+
+            pilotes.onclick = function () {
+                tableConstructeurs.style.display = "none"
+                tablePilotes.style.display = "block"
+            }
+        }
+    }
+
+    xhttp.open("GET", `http://127.0.0.1:8000/site/php_ajax.php?annee=${annee}`, true);
+    xhttp.send(null);
+} */
+
+const demandeClassement = async function(annee, table_pilote, table_constructeur)
+{
+    try
+    {
+        let dataCourses = await fetch(`http://127.0.0.1:8000/site/php_ajax.php?annee=${annee}`)
+
+        if(dataCourses.ok)
+        {
+            let rep = await dataCourses.json()
+
+            var classements = generateRanking(rep.MRData.RaceTable.Races)
+            var classementsConstructeur = classements.classementConstructeur
+            var classementsPilote = classements.classementPilote
+
+            // var table = document.querySelector("table")
+            var tablePilotes = document.getElementById(table_pilote)
+            var tableConstructeurs = document.getElementById(table_constructeur)
+
+            let pilotes = document.getElementById("pilotes")
+            let constructeurs = document.getElementById("constructeurs")
+
+            affichagePilote(classementsPilote, tablePilotes)
+            affichageConstructeur(classementsConstructeur, tableConstructeurs)
+
+            tablePilotes.style.display = "block"
+            tableConstructeurs.style.display = "none"
+
+            constructeurs.onclick = function () {
+                tablePilotes.style.display = "none"
+                tableConstructeurs.style.display = "block"
+            }
+
+            pilotes.onclick = function () {
+                tableConstructeurs.style.display = "none"
+                tablePilotes.style.display = "block"
+            }
+        }
+        else
+        {
+            console.error("Retour du serveur :", dataCourses.status)
+        }
+    }
+    catch(e)
+    {
+        console.log(e)
+    }
+}
+
+
+function main() {
+    affichageListeAnnee()
+}
+
+window.onload = main

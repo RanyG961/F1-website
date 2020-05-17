@@ -9,7 +9,7 @@
     width: 900px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 200px;
+    margin-top: 15px;
 }
 
 .draggable
@@ -24,4 +24,12 @@
 .draggable.dragging
 {
     opacity: .3;
+}
+
+#listeCircuits
+{
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 200px;
 }

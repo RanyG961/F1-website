@@ -1,13 +1,11 @@
 <?php
 require_once "../bdd/db_class.php";
 
-
-/*
 function debug($variable)
 {
     echo '<pre>' . print_r($variable, true) . '</pre>';
 }
-*/
+
 
 /**
  * Verify if nickname is available and valid
@@ -253,3 +251,10 @@ function is_logged()
  * if (session_status() == PHP_SESSION_NONE)
  * if(isset($_SESSION['auth']))
  */
+
+ function insert_pronostic()
+ {
+    extract($_POST);
+
+    var_dump($_POST);
+ }
