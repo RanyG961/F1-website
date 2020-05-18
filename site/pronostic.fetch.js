@@ -25,6 +25,10 @@ const getCircuit = async function () {
 
                 select.appendChild(option)
             }
+            let selected = document.getElementById("liste")
+
+            var circuitID = selected.options[selected.selectedIndex].value;
+           
         } else {
             console.error("Retour du serveur : ", dataCircuits.status)
         }
@@ -113,23 +117,66 @@ function getDragAfterElement(container, y) {
             // console.log(offset)
 
             if (offset < 0 && offset > closest.offset) {
-                return { offset: offset, element: child }
+                return {
+                    offset: offset,
+                    element: child
+                }
             } else {
                 return closest
             }
-        },
-        { offset: Number.NEGATIVE_INFINITY }
+        }, {
+            offset: Number.NEGATIVE_INFINITY
+        }
     ).element
 }
 
-function main() 
+function sendData(form)
 {
+    form.addEventListener("submit", function (e) 
+    {
+        e.preventDefault()
+
+        let pilotes = document.querySelectorAll(".draggable")
+        let pilotesSend = []
+        let pilotesObjet = []
+        let rang = 0
+
+        for(let i = 0; i < pilotes.length; i++)
+        {
+            pilotesSend[i] = pilotes[i].innerText
+            rang++
+            pilotesObjet.push(
+                {
+                    Rang: rang,
+                    Nom: pilotesSend[i]
+                }
+            ) 
+        }
+
+
+        fetch("confirmation_prognosis.php", {
+            method: 'post',
+            body: JSON.stringify(pilotesObjet),
+            headers: {
+                "Content-Type": "application/json",
+                'Accept': 'application/json'
+            }
+        }).then(response => response.text()).then(response => {
+            console.log(response)
+        }).catch(error => console.log(error))
+    })
+}
+
+function main() {
     getCircuit()
     getPilotes()
 
+    let circuitID
+    let form = document.querySelector("#formPrognosis")
+    
+    console.log(circuitID)
+    sendData(form)
 }
 
+
 window.onload = main
-
-
-

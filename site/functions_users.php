@@ -254,7 +254,12 @@ function is_logged()
 
  function insert_pronostic()
  {
-    extract($_POST);
+    //extract($_POST);
+    $json = file_get_contents("php://input");
+    $data = json_decode($json, true);
 
-    var_dump($_POST);
+    var_dump($data);
+
+    echo $data[0]["Nom"] . "\n";
+    echo "id : " . $_SESSION["auth"]["id"];
  }
