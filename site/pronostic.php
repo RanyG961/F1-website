@@ -3,7 +3,7 @@
 <!-- <script src="pronostic_ajax.js"></script> -->
 <script src="pronostic.fetch.js"></script>
 
-<form id="formPrognosis" method="post">
+<form id="formPrognosis">
     <div id="listeCircuits">
 
     </div>
@@ -13,7 +13,7 @@
     </div>
 
     <?php if(is_logged()): ?>
-        <input type="submit" value="Confirmer" class="bouton" id="boutonPronostic"/>
+        <input type="button" value="Confirmer" class="bouton" id="boutonPronostic"/>
     <?php endif; ?>
 </form>
 

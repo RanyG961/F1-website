@@ -64,6 +64,8 @@ function getCircuit()
 
             circuit.appendChild(select)
 
+            
+
             for (let i = 0; i < liste_Circuits.Races.length; i++) {
                 let option = document.createElement("option")
 
@@ -73,8 +75,15 @@ function getCircuit()
                 raceID = liste_Circuits.Races[i].round
 
                 select.appendChild(option)
+
             }
-            let selected = document.getElementById("liste")
+            // let selected = document.getElementById("liste")
+
+            select.addEventListener('change', () => {
+                // 
+            })
+            
+            sendData(select)
             
             /* let circuitID = selected.options[selected.selectedIndex].value
             console.log("Le circuit choisit est : " + circuitID)
@@ -177,12 +186,14 @@ function getDragAfterElement(container, y) {
     ).element
 }
 
-function sendData(form, circuit)
+function sendData(select)
 {
-    form.addEventListener("submit", function (e) 
+    let button = document.getElementById("boutonPronostic")
+    button.addEventListener("click", function (e)
     {
         e.preventDefault()
-
+        let circuit = select.options[select.selectedIndex].value
+        console.log(select.selectedIndex)
         let pilotes = document.querySelectorAll(".draggable")
         let pilotesSend = []
         let pilotesObjet = []
@@ -218,25 +229,13 @@ function sendData(form, circuit)
 function main() {
     
     getPilotes()
-    //let selected
-    //selected = selected.options[selected.selectedIndex].value
-    let form = document.querySelector("#formPrognosis")
-    /* getCircuit().then((selected) => {
-        console.log(selected)
-        let circuit = selected.options[selected.selectedIndex].value
-        console.log("La valeur retournée est :" + selected.selectedIndex)
-        sendData(form, circuit)
-    }) */
+
 
     getCircuit()
     //let selected = document.getElementById("liste")
     /* let circuit = selected.options[selected.selectedIndex].value
     console.log("La valeur retournée est :" + selected.selectedIndex) */
     //console.log(selected)
-    document.addEventListener('DOMContentLoaded', function() {
-        let selected = document.getElementById("liste")
-        console.log(selected)
-     }, false);
 }
 
 
