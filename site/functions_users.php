@@ -253,23 +253,27 @@ function is_logged()
  * if(isset($_SESSION['auth']))
  */
 
- function insert_pronostic()
+/** 
+ * Retrieve the data fetched from  pronostic.php 
+ * Insert the data retrived to the database table prognosis
+ */
+function insert_pronostic()
  {
-    //extract($_POST);
+    
     $json = file_get_contents("php://input");
     $data = json_decode($json, true);
 
     var_dump($data);
 
     $userID = $_SESSION["auth"]["id"];
-    $circuitID = $data[0]["Circuit"];
+    $circuitID = $data[0]["circuitID"];
 
     echo $data[0]["Nom"] . "\n";
     echo "id : " . $userID . " au : " . $circuitID."\n";
 
     try
     {
-        $sql = "INSERT INTO test(user_id, race_id, pilot_id, position) VALUES(?, ?, ?, ?)";
+        $sql = "INSERT INTO prognosis(user_id, race_id, pilot_id, position) VALUES(?, ?, ?, ?)";
 
         $db = new dbClass();
         $conn = $db->dbConnect();
@@ -278,31 +282,18 @@ function is_logged()
         
         for($i = 0; $i < count($data); $i++)
         {
-            $piloteID = $data[$i]["Nom"];
+            $piloteID = $data[$i]["piloteID"];
             $rang = $data[$i]["Rang"];
             echo "Pilote: ".$piloteID." Rang: ".$rang."\n";
             $test = array($userID, $circuitID, $piloteID, $rang);
             $sth->execute($test);
         }
-        
-        /* $result = $sth->fetchAll();
-        if($result)
-        {
-            echo "ça marche";
-            print_r($result);
-        }
-        else
-        {
-            echo "ça marche pas \n";
-            print_r($result);
-        } */
-        
     } 
     catch(PDOException $e)
     {
         echo $e; 
         return false;
-    } 
+    }  
  }
 
 function modifierProfil()
@@ -323,6 +314,7 @@ function modifierProfil()
                 $sth = $conn->prepare($sql);
                 $sth->execute(array($pseudo, $_SESSION["auth"]["id"]));
 
+                $_SESSION["auth"]["nickname"] = $pseudo;
                 return true;
             }
             catch(PDOException $e)
@@ -333,6 +325,7 @@ function modifierProfil()
     }
     else
     {
-        echo "ça cloche ici !";
+        return false;
     }
 }
+

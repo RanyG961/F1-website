@@ -1,62 +1,24 @@
-/* const getCircuit = async function () {
-    try {
-        let dataCircuits = await fetch(
-            "https://ergast.com/api/f1/current.json"
-        )
-        if (dataCircuits.ok) {
-            let circuits = await dataCircuits.json()
-            // console.log(circuits)
-
-            let circuit = document.getElementById("listeCircuits")
-            let liste_Circuits = circuits.MRData.RaceTable
-            let raceID
-            // console.log(liste_Circuits)
-            circuit.innerHTML = ""
-
-            let select = document.createElement("select")
-            select.setAttribute("id", "liste")
-
-            circuit.appendChild(select)
-
-            for (let i = 0; i < liste_Circuits.Races.length; i++) {
-                let option = document.createElement("option")
-
-                option.innerHTML = liste_Circuits.Races[i].raceName
-                option.value = liste_Circuits.Races[i].raceName
-
-                raceID = liste_Circuits.Races[i].round
-                console.log(raceID)
-
-                select.appendChild(option)
-            }
-            //let selected = document.getElementById("liste")
-
-            /* let circuitID = selected.options[selected.selectedIndex].value
-            console.log("Le circuit choisit est : " + circuitID)
-            return circuitID */
-            /* return select
-           
-        } else {
-            console.error("Retour du serveur : ", dataCircuits.status)
-        }
-    } catch (e) {
-        console.log(e)
-    }
- } */
+const myInit = {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    mode: "cors",
+    cache: "default"
+}
 
 function getCircuit() 
 {
-
-    fetch("https://ergast.com/api/f1/current.json").then(function(dataCircuits){
+    let req = new Request("../Admin/circuits_2019.json", myInit)
+    fetch(req).then(function(dataCircuits){
         return dataCircuits.json()
     }).then(function(dataCircuits){
             let circuits = dataCircuits
             // console.log(circuits)
 
             let circuit = document.getElementById("listeCircuits")
-            let liste_Circuits = circuits.MRData.RaceTable
+            let liste_Circuits = circuits
             let raceID
-            // console.log(liste_Circuits)
             circuit.innerHTML = ""
 
             let select = document.createElement("select")
@@ -64,30 +26,22 @@ function getCircuit()
 
             circuit.appendChild(select)
 
-            
-
-            for (let i = 0; i < liste_Circuits.Races.length; i++) {
+            for (let i = 0; i < liste_Circuits.length; i++) {
                 let option = document.createElement("option")
-
-                option.innerHTML = liste_Circuits.Races[i].raceName
-                option.value = liste_Circuits.Races[i].raceName
-
-                raceID = liste_Circuits.Races[i].round
+                raceID = liste_Circuits[i].id
+                option.innerHTML = liste_Circuits[i].country
+                option.value = raceID + " " + liste_Circuits[i].country
 
                 select.appendChild(option)
 
             }
-            // let selected = document.getElementById("liste")
 
             select.addEventListener('change', () => {
                 // 
             })
             
             sendData(select)
-            
-            /* let circuitID = selected.options[selected.selectedIndex].value
-            console.log("Le circuit choisit est : " + circuitID)
-            return circuitID */
+
     }).catch(function (error){
         console.error(error)
     })
@@ -95,26 +49,27 @@ function getCircuit()
 
 const getPilotes = async function () {
     try {
-        let dataPilotes = await fetch(
-            "https://ergast.com/api/f1/2019/drivers.json"
-        )
+        let req = new Request("../Admin/pilotes_2019.json", myInit)
+
+        let dataPilotes = await fetch(req)
         if (dataPilotes.ok) {
             let results = await dataPilotes.json()
 
             let result = document.getElementById("listePilote")
-            let tablePilote = results.MRData.DriverTable
+            let tablePilote = results
             // console.log(tablePilote)
             result.innerHTML = ""
 
             let ul = document.createElement("ul")
             ul.classList.add("container")
+            ul.setAttribute("id", "pilotList")
             result.appendChild(ul)
 
-            for (let i = 0; i < tablePilote.Drivers.length; i++) {
+            for (let i = 0; i < tablePilote.length; i++) {
                 let li = document.createElement("li")
 
-                li.innerHTML = tablePilote.Drivers[i].familyName
-
+                li.innerHTML = tablePilote[i].last_name
+                li.value = tablePilote[i].id
                 li.classList.add("draggable")
                 li.setAttribute("draggable", "true")
 
@@ -139,7 +94,7 @@ const getPilotes = async function () {
 
             containers.forEach((container) => {
                 container.addEventListener("dragover", (e) => {
-                    /* console.log("drag over") */
+                    // console.log("drag over") 
                     e.preventDefault()
 
                     let afterElement = getDragAfterElement(
@@ -155,7 +110,14 @@ const getPilotes = async function () {
                     }
                 })
             })
-        }
+        } 
+
+        /* if (dataPilotes.ok) {
+            let results = await dataPilotes.json()
+            console.log(results)
+            let tablePilote = results[0]
+            console.log(tablePilote)
+        } */
     } catch (e) {
         console.log(e)
     }
@@ -189,25 +151,38 @@ function getDragAfterElement(container, y) {
 function sendData(select)
 {
     let button = document.getElementById("boutonPronostic")
+
+    let test = document.getElementById("pilotList")
+    let testli = test.getElementsByTagName("li")
+    
     button.addEventListener("click", function (e)
     {
         e.preventDefault()
         let circuit = select.options[select.selectedIndex].value
+        let mot = circuit.split(" ")
+        let circuitID = mot[0]
+        circuit = mot[1]
+        circuitID = parseInt(circuitID)
         console.log(select.selectedIndex)
         let pilotes = document.querySelectorAll(".draggable")
+        let pilotesID
         let pilotesSend = []
         let pilotesObjet = []
         let rang = 0
-
+        
         for(let i = 0; i < pilotes.length; i++)
         {
+            pilotesID = testli[i].value
+            console.log(pilotesID)
             pilotesSend[i] = pilotes[i].innerText
             rang++
             pilotesObjet.push(
                 {
                     Rang: rang,
                     Nom: pilotesSend[i],
-                    Circuit: circuit
+                    piloteID: pilotesID,
+                    Circuit: circuit,
+                    circuitID: circuitID
                 }
             ) 
         }
@@ -227,15 +202,8 @@ function sendData(select)
 }
 
 function main() {
-    
     getPilotes()
-
-
     getCircuit()
-    //let selected = document.getElementById("liste")
-    /* let circuit = selected.options[selected.selectedIndex].value
-    console.log("La valeur retournée est :" + selected.selectedIndex) */
-    //console.log(selected)
 }
 
 

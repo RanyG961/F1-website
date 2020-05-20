@@ -5,9 +5,9 @@ init_session();
 
 if(modifierProfil())
 {
-    echo "J'ai réussi";
+    header("Location: profil.php");
 }
 else
 {
-    echo "T'es nul";
+    header("Location: probleme.php");
 }

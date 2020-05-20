@@ -271,3 +271,53 @@ function supprime_compte()
         }
     }
 }
+
+function affichePilotes()
+{
+    try
+    {
+        $sql = "SELECT * FROM pilots";
+
+        $db = new dbClass();
+        $conn = $db->dbConnect();
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sth = $conn->prepare($sql);
+        $sth->execute();
+
+        $results = $sth->fetchAll();
+
+        $results = json_encode($results);
+        return $results;
+    }
+    catch(PDOException $e)
+    {
+        echo $e;
+        return false;
+    }
+}
+
+function afficheCircuits()
+{
+    try
+    {
+        $sql = "SELECT * FROM tracks";
+
+        $db = new dbClass();
+        $conn = $db->dbConnect();
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sth = $conn->prepare($sql);
+        $sth->execute();
+
+        $results = $sth->fetchAll();
+
+        $results = json_encode($results);
+        return $results;
+    }
+    catch(PDOException $e)
+    {
+        echo $e;
+        return false;
+    }
+}
