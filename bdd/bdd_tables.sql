@@ -96,5 +96,3 @@ CREATE TABLE prognosis (
     pilot_id INT UNSIGNED REFERENCES pilot(id),
     position INT UNSIGNED
 );
-
-

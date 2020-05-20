@@ -1,10 +1,10 @@
 <?php
 require_once "../bdd/db_class.php";
 
-function debug($variable)
+/* function debug($variable)
 {
     echo '<pre>' . print_r($variable, true) . '</pre>';
-}
+} */
 
 /**
  * initialise the connection.
@@ -85,6 +85,8 @@ function verif_utilisateur_admin()
     extract($_POST);
     $errors = array();
 
+    $identifiant = htmlspecialchars($identifiant);
+
     if(!(isset($identifiant) && isset($pwd)))
     {
         return false;
@@ -129,7 +131,6 @@ function verif_utilisateur_admin()
             {
                 return false;
             }
-
         }
         else
         {

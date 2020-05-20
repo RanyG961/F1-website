@@ -15,6 +15,7 @@ function nickname_exists()
 {
     extract($_POST);
     $errors = array();
+    $pseudo = htmlspecialchars($pseudo);
     if(empty($pseudo) || !preg_match('/^[a-zA-Z0-9_]+$/', $pseudo))
     {
         $errors['pseudo'] = "Votre pseudo n'est pas valide";
@@ -121,7 +122,7 @@ function password_est_valide()
 } 
 
 /**
- * Create a user account
+ * Create a user account$pseudo = htmlspecialchars($pseudo);
  * Return true if succesfully created
  */
 function create_account($is_admin){
@@ -191,7 +192,7 @@ function verif_utilisateur()
 {
     extract($_POST);
     $errors = array();
-
+    $identifiant = htmlspecialchars($identifiant);
     if(!(isset($identifiant) && isset($pwd)))
     {
         return false;
@@ -260,6 +261,78 @@ function is_logged()
 
     var_dump($data);
 
+    $userID = $_SESSION["auth"]["id"];
+    $circuitID = $data[0]["Circuit"];
+
     echo $data[0]["Nom"] . "\n";
-    echo "id : " . $_SESSION["auth"]["id"];
+    echo "id : " . $userID . " au : " . $circuitID."\n";
+
+    try
+    {
+        $sql = "INSERT INTO test(user_id, race_id, pilot_id, position) VALUES(?, ?, ?, ?)";
+
+        $db = new dbClass();
+        $conn = $db->dbConnect();
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sth = $conn->prepare($sql);
+        
+        for($i = 0; $i < count($data); $i++)
+        {
+            $piloteID = $data[$i]["Nom"];
+            $rang = $data[$i]["Rang"];
+            echo "Pilote: ".$piloteID." Rang: ".$rang."\n";
+            $test = array($userID, $circuitID, $piloteID, $rang);
+            $sth->execute($test);
+        }
+        
+        /* $result = $sth->fetchAll();
+        if($result)
+        {
+            echo "ça marche";
+            print_r($result);
+        }
+        else
+        {
+            echo "ça marche pas \n";
+            print_r($result);
+        } */
+        
+    } 
+    catch(PDOException $e)
+    {
+        echo $e; 
+        return false;
+    } 
  }
+
+function modifierProfil()
+{
+    extract($_POST);
+    $errors = [];
+
+    if(isset($pseudo) && !empty($pseudo))
+    {
+            try
+            {
+                $sql = "UPDATE users SET nickname = ? WHERE id = ?";
+
+                $db = new dbClass();
+                $conn = $db->dbConnect();
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+                $sth = $conn->prepare($sql);
+                $sth->execute(array($pseudo, $_SESSION["auth"]["id"]));
+
+                return true;
+            }
+            catch(PDOException $e)
+            {
+                echo $e;
+                return false;
+            }
+    }
+    else
+    {
+        echo "ça cloche ici !";
+    }
+}

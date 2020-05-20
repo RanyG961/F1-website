@@ -1,4 +1,4 @@
-const getCircuit = async function () {
+/* const getCircuit = async function () {
     try {
         let dataCircuits = await fetch(
             "https://ergast.com/api/f1/current.json"
@@ -9,6 +9,7 @@ const getCircuit = async function () {
 
             let circuit = document.getElementById("listeCircuits")
             let liste_Circuits = circuits.MRData.RaceTable
+            let raceID
             // console.log(liste_Circuits)
             circuit.innerHTML = ""
 
@@ -23,11 +24,17 @@ const getCircuit = async function () {
                 option.innerHTML = liste_Circuits.Races[i].raceName
                 option.value = liste_Circuits.Races[i].raceName
 
+                raceID = liste_Circuits.Races[i].round
+                console.log(raceID)
+
                 select.appendChild(option)
             }
-            let selected = document.getElementById("liste")
+            //let selected = document.getElementById("liste")
 
-            var circuitID = selected.options[selected.selectedIndex].value;
+            /* let circuitID = selected.options[selected.selectedIndex].value
+            console.log("Le circuit choisit est : " + circuitID)
+            return circuitID */
+            /* return select
            
         } else {
             console.error("Retour du serveur : ", dataCircuits.status)
@@ -35,6 +42,46 @@ const getCircuit = async function () {
     } catch (e) {
         console.log(e)
     }
+ } */
+
+function getCircuit() 
+{
+
+    fetch("https://ergast.com/api/f1/current.json").then(function(dataCircuits){
+        return dataCircuits.json()
+    }).then(function(dataCircuits){
+            let circuits = dataCircuits
+            // console.log(circuits)
+
+            let circuit = document.getElementById("listeCircuits")
+            let liste_Circuits = circuits.MRData.RaceTable
+            let raceID
+            // console.log(liste_Circuits)
+            circuit.innerHTML = ""
+
+            let select = document.createElement("select")
+            select.setAttribute("id", "liste")
+
+            circuit.appendChild(select)
+
+            for (let i = 0; i < liste_Circuits.Races.length; i++) {
+                let option = document.createElement("option")
+
+                option.innerHTML = liste_Circuits.Races[i].raceName
+                option.value = liste_Circuits.Races[i].raceName
+
+                raceID = liste_Circuits.Races[i].round
+
+                select.appendChild(option)
+            }
+            let selected = document.getElementById("liste")
+            
+            /* let circuitID = selected.options[selected.selectedIndex].value
+            console.log("Le circuit choisit est : " + circuitID)
+            return circuitID */
+    }).catch(function (error){
+        console.error(error)
+    })
 }
 
 const getPilotes = async function () {
@@ -130,7 +177,7 @@ function getDragAfterElement(container, y) {
     ).element
 }
 
-function sendData(form)
+function sendData(form, circuit)
 {
     form.addEventListener("submit", function (e) 
     {
@@ -148,7 +195,8 @@ function sendData(form)
             pilotesObjet.push(
                 {
                     Rang: rang,
-                    Nom: pilotesSend[i]
+                    Nom: pilotesSend[i],
+                    Circuit: circuit
                 }
             ) 
         }
@@ -168,15 +216,29 @@ function sendData(form)
 }
 
 function main() {
-    getCircuit()
-    getPilotes()
-
-    let circuitID
-    let form = document.querySelector("#formPrognosis")
     
-    console.log(circuitID)
-    sendData(form)
+    getPilotes()
+    //let selected
+    //selected = selected.options[selected.selectedIndex].value
+    let form = document.querySelector("#formPrognosis")
+    /* getCircuit().then((selected) => {
+        console.log(selected)
+        let circuit = selected.options[selected.selectedIndex].value
+        console.log("La valeur retournée est :" + selected.selectedIndex)
+        sendData(form, circuit)
+    }) */
+
+    getCircuit()
+    //let selected = document.getElementById("liste")
+    /* let circuit = selected.options[selected.selectedIndex].value
+    console.log("La valeur retournée est :" + selected.selectedIndex) */
+    //console.log(selected)
+    document.addEventListener('DOMContentLoaded', function() {
+        let selected = document.getElementById("liste")
+        console.log(selected)
+     }, false);
 }
 
 
 window.onload = main
+

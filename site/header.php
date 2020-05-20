@@ -22,7 +22,7 @@ init_session();
             <div id="connexion">
                 <ul>
                     <li>
-                        <span> Bienvenue <?= $_SESSION['auth']['nickname']; ?> </span>
+                        <a href="profil.php"> Editer mon profil <?= $_SESSION['auth']['nickname']; ?> </a>
                     </li>
                     <li>
                         <span> | </span>
