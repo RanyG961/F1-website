@@ -259,17 +259,16 @@ function is_logged()
  */
 function insert_pronostic()
  {
-    
     $json = file_get_contents("php://input");
     $data = json_decode($json, true);
 
-    var_dump($data);
+    //var_dump($data);
 
     $userID = $_SESSION["auth"]["id"];
     $circuitID = $data[0]["circuitID"];
 
-    echo $data[0]["Nom"] . "\n";
-    echo "id : " . $userID . " au : " . $circuitID."\n";
+    /* echo $data[0]["Nom"] . "\n";
+    echo "id : " . $userID . " au : " . $circuitID."\n"; */
 
     try
     {
@@ -284,10 +283,11 @@ function insert_pronostic()
         {
             $piloteID = $data[$i]["piloteID"];
             $rang = $data[$i]["Rang"];
-            echo "Pilote: ".$piloteID." Rang: ".$rang."\n";
+            //echo "Pilote: ".$piloteID." Rang: ".$rang."\n";
             $test = array($userID, $circuitID, $piloteID, $rang);
             $sth->execute($test);
         }
+        return true;
     } 
     catch(PDOException $e)
     {
@@ -329,3 +329,75 @@ function modifierProfil()
     }
 }
 
+function pronosticExist()
+{
+    $json = file_get_contents("php://input");
+    $data = json_decode($json, true);
+
+    $userID = $_SESSION["auth"]["id"];
+    $circuitID = $data[0]["circuitID"];
+
+    try
+    {
+        $sql = "SELECT * FROM prognosis WHERE user_id = :userID AND race_id = :circuitID";
+
+        $db = new dbClass();
+        $conn = $db->dbConnect();
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sth = $conn->prepare($sql);
+        
+        $sth->execute(array(':userID' => $userID, ':circuitID' => $circuitID));
+
+        $result = $sth->fetch();
+
+        if($result)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    } 
+    catch(PDOException $e)
+    {
+        echo $e; 
+        return false;
+    }  
+}
+
+function fetchResultat()
+{
+    $json = file_get_contents("php://input");
+    $circuitID = json_decode($json, true);
+    $userID = $_SESSION["auth"]["id"];
+
+    try
+    {
+        $sql = " SELECT pilots.last_name, prognosis.position FROM pilots, prognosis WHERE pilots.id = prognosis.pilot_id AND prognosis.race_id = :circuitID AND prognosis.user_id = :userID;";
+
+        $db = new dbClass();
+        $conn = $db->dbConnect();
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sth = $conn->prepare($sql);
+        
+        $sth->execute(array(':circuitID' => $circuitID, 'userID' => $userID));
+
+        $result = $sth->fetchAll();
+
+
+        if($result)
+        {
+            return $result;
+        }
+        else
+        {
+            return false;
+        }
+    } 
+    catch(PDOException $e)
+    {
+        echo $e; 
+        return false;
+    }  
+}
