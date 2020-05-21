@@ -374,7 +374,7 @@ function fetchResultat()
 
     try
     {
-        $sql = " SELECT pilots.last_name, prognosis.position FROM pilots, prognosis WHERE pilots.id = prognosis.pilot_id AND prognosis.race_id = :circuitID AND prognosis.user_id = :userID;";
+        $sql = " SELECT pilots.id, pilots.last_name, prognosis.position FROM pilots, prognosis WHERE pilots.id = prognosis.pilot_id AND prognosis.race_id = :circuitID AND prognosis.user_id = :userID;";
 
         $db = new dbClass();
         $conn = $db->dbConnect();

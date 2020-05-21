@@ -39,7 +39,7 @@ function firstTime(select) {
                 let li = document.createElement("li")
 
                 li.innerHTML = tablePilote[i].last_name
-                //li.value = tablePilote[i].id
+                li.value = tablePilote[i].id
                 li.classList.add("draggable")
                 li.setAttribute("draggable", "true")
 
@@ -154,7 +154,7 @@ function getCircuit() {
                         let li = document.createElement("li")
 
                         li.innerHTML = tablePilote[i].last_name
-                        //li.value = tablePilote[i].id
+                        li.value = tablePilote[i].id
                         li.classList.add("draggable")
                         li.setAttribute("draggable", "true")
 
