@@ -7,6 +7,86 @@ const myInit = {
     cache: "default"
 }
 
+function firstTime(select) {
+    let circuitName = "Australie"
+    console.log(circuitName)
+    let circuitID = 1
+
+    let res = fetch("affiche_prognosis.php", {
+        method: 'post',
+        body: JSON.stringify(circuitID),
+        headers: {
+            "Content-Type": "application/json",
+            'Accept': 'application/json'
+        }
+    }).then(response => response.text()).then(response => {
+        return response
+    }).catch(error => console.log(error))
+
+    res.then(pilotesPosition => {
+        if (pilotesPosition) {
+            let result = document.getElementById("listePilote")
+            let tablePilote = JSON.parse(pilotesPosition)
+            //console.log(tablePilote[0].last_name)
+            result.innerHTML = ""
+
+            let ul = document.createElement("ul")
+            ul.classList.add("container")
+            ul.setAttribute("id", "pilotList")
+            result.appendChild(ul)
+
+            for (let i = 0; i < tablePilote.length; i++) {
+                let li = document.createElement("li")
+
+                li.innerHTML = tablePilote[i].last_name
+                //li.value = tablePilote[i].id
+                li.classList.add("draggable")
+                li.setAttribute("draggable", "true")
+
+                ul.appendChild(li)
+            }
+
+            let draggables = document.querySelectorAll(".draggable")
+            // console.log(draggables)
+
+            let containers = document.querySelectorAll(".container")
+
+            draggables.forEach((draggable) => {
+                draggable.addEventListener("dragstart", () => {
+                    draggable.classList.add("dragging")
+                    // console.log("Drag start test")
+                })
+
+                draggable.addEventListener("dragend", () => {
+                    draggable.classList.remove("dragging")
+                })
+            })
+
+            containers.forEach((container) => {
+                container.addEventListener("dragover", (e) => {
+                    // console.log("drag over") 
+                    e.preventDefault()
+
+                    let afterElement = getDragAfterElement(
+                        container,
+                        e.clientY
+                    )
+                    let draggable = document.querySelector(".dragging")
+
+                    if (afterElement == null) {
+                        container.appendChild(draggable)
+                    } else {
+                        container.insertBefore(draggable, afterElement)
+                    }
+                })
+            })
+
+        } else {
+            getPilotes(select)
+        }
+    })
+}
+
 function getCircuit() {
     let req = new Request("../Admin/circuits_2019.json", myInit)
     fetch(req).then(function (dataCircuits) {
@@ -34,6 +114,8 @@ function getCircuit() {
             select.appendChild(option)
 
         }
+
+        firstTime(select)
         sendData(select)
 
         select.addEventListener('change', () => {
@@ -43,7 +125,7 @@ function getCircuit() {
             circuitName = mot[1]
             console.log(circuitName)
             let circuitID = mot[0]
-            
+
 
             let res = fetch("affiche_prognosis.php", {
                 method: 'post',
@@ -111,22 +193,21 @@ function getCircuit() {
                             } else {
                                 container.insertBefore(draggable, afterElement)
                             }
-                        }) 
+                        })
                     })
                 } else {
-                    getPilotes()
+                    getPilotes(select)
                 }
             })
         })
 
-        
 
     }).catch(function (error) {
         console.error(error)
     })
 }
 
-const getPilotes = async function () {
+const getPilotes = async function (select) {
 
     let req = new Request("../Admin/pilotes_2019.json", myInit)
     try {
@@ -215,19 +296,19 @@ function getDragAfterElement(container, y) {
                 return closest
             }
         }, {
-            offset: Number.NEGATIVE_INFINITY
-        }
+        offset: Number.NEGATIVE_INFINITY
+    }
     ).element
 }
 
 function sendData(select) {
     let button = document.getElementById("boutonPronostic")
 
-    let pilot = document.getElementById("pilotList")
-    let pilotli = pilot.getElementsByTagName("li")
 
-    
     button.addEventListener("click", function (e) {
+        let pilot = document.getElementById("pilotList")
+        let pilotli = pilot.getElementsByTagName("li")
+
         e.preventDefault()
 
         let circuit = select.options[select.selectedIndex].value
@@ -257,7 +338,6 @@ function sendData(select) {
                 circuitID: circuitID
             })
         }
-        alert("salut")
         fetch("confirmation_prognosis.php", {
             method: 'post',
             body: JSON.stringify(pilotesObjet),
@@ -266,9 +346,10 @@ function sendData(select) {
                 'Accept': 'application/json'
             }
         }).then(response => response.text()).then(response => {
-            console.log(response)
+            alert(response)
         }).catch(error => console.log(error))
     })
+    // }
 }
 
 function main() {
