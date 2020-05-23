@@ -284,8 +284,8 @@ function insert_pronostic()
             $piloteID = $data[$i]["piloteID"];
             $rang = $data[$i]["Rang"];
             //echo "Pilote: ".$piloteID." Rang: ".$rang."\n";
-            $test = array($userID, $circuitID, $piloteID, $rang);
-            $sth->execute($test);
+            $pronostic = array($userID, $circuitID, $piloteID, $rang);
+            $sth->execute($pronostic);
         }
         return true;
     } 
@@ -401,3 +401,45 @@ function fetchResultat()
         return false;
     }  
 }
+
+function insert_resultatCourse()
+{
+    $i = 0; 
+    $json = file_get_contents("2019_races.json");
+
+    $raceResult = json_decode($json, true);
+    $raceResult = $raceResult["MRData"]["RaceTable"]["Races"];
+    $nbPilotes = $raceResult[$i]["Results"];
+
+
+    try
+    {
+        $sql = "INSERT INTO race_results(race_id, pilot_id, position) SELECT tracks.id, pilots.id, ? FROM tracks, pilots WHERE tracks.circuitID = ? AND pilots.code = ?";
+
+        $db = new dbClass();
+        $conn = $db->dbConnect();
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sth = $conn->prepare($sql);
+
+        
+        for($i = 0; $i < count($raceResult); $i++)
+        {
+            for($j = 0; $j < count($nbPilotes); $j++)
+            {
+                $pilotesCode  = $raceResult[$i]["Results"][$j]["Driver"]["code"];
+                $pilotesPosition = $raceResult[$i]["Results"][$j]["position"];
+                $course = $raceResult[$i]["Circuit"]["circuitId"];
+                //$time = $raceResult[$i]["Results"][$j]["Time"]["time"];
+
+                $res = array($pilotesPosition, $course, $pilotesCode);
+
+                $sth->execute($res);
+            }
+        }
+    } 
+    catch(PDOException $e)
+    {
+        echo $e; 
+        return false;
+    } 
+} 
