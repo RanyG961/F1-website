@@ -195,36 +195,51 @@ const demandeClassement = async function(annee, table_pilote, table_constructeur
     try
     {
         let dataCourses = await fetch(`http://127.0.0.1:8000/site/php_ajax.php?annee=${annee}`)
+        let dataJoueurs = await fetch("test.php")
 
-        if(dataCourses.ok)
+        if(dataCourses.ok && dataJoueurs)
         {
             let rep = await dataCourses.json()
+            let repJoueurs = await dataJoueurs.json()
 
             var classements = generateRanking(rep.MRData.RaceTable.Races)
             var classementsConstructeur = classements.classementConstructeur
             var classementsPilote = classements.classementPilote
+            var classementsJoueur = generateRanking_joueurs(repJoueurs)
 
             // var table = document.querySelector("table")
             var tablePilotes = document.getElementById(table_pilote)
             var tableConstructeurs = document.getElementById(table_constructeur)
+            let tableJoueurs = document.getElementById("tableJoueur")
 
             let pilotes = document.getElementById("pilotes")
             let constructeurs = document.getElementById("constructeurs")
+            let joueurs = document.getElementById("joueurs")
 
             affichagePilote(classementsPilote, tablePilotes)
             affichageConstructeur(classementsConstructeur, tableConstructeurs)
+            affichageJoueurs(classementsJoueur, tableJoueurs)
 
             tablePilotes.style.display = "block"
             tableConstructeurs.style.display = "none"
+            tableJoueurs.style.display = "none"
 
             constructeurs.onclick = function () {
-                tablePilotes.style.display = "none"
                 tableConstructeurs.style.display = "block"
+                tablePilotes.style.display = "none"
+                tableJoueurs.style.display = "none"
             }
 
             pilotes.onclick = function () {
-                tableConstructeurs.style.display = "none"
                 tablePilotes.style.display = "block"
+                tableConstructeurs.style.display = "none"
+                tableJoueurs.style.display = "none"
+            }
+
+            joueurs.onclick = function () {
+                tableJoueurs.style.display = "block"
+                tablePilotes.style.display = "none"
+                tableConstructeurs.style.display = "none"
             }
         }
         else
@@ -236,6 +251,76 @@ const demandeClassement = async function(annee, table_pilote, table_constructeur
     {
         console.log(e)
     }
+}
+
+function affichageJoueurs(classementJoueurs, table)
+{
+    let titre = []
+
+    classementJoueurs.forEach(function (classement, rang){
+        titre.push(
+            {
+                Rang: rang + 1,
+                Joueur: classement.Joueur,
+                Points: classement.points
+            }
+        )
+    })
+    let data = Object.keys(titre[0])
+
+    generateTable(table, titre)
+    generateTableHead(table, data)
+}
+
+function generateRanking_joueurs(rep)
+{
+        let contestant = {} 
+            let contestants_array = []
+            let i
+            
+            let points = 0
+
+            //console.log(joueur + " " + p_pilotID + " " + p_position + " " + p_raceID + " " + r_pilotID + " " + r_position + " " + r_raceID)
+
+            for(i = 0; i < rep.length; i++)
+            {
+                let joueurs = rep[i].user_nickname
+
+                let p_pilotID = rep[i].pronostic_pilotID
+                let p_position = rep[i].pronostic_position
+                let p_raceID = rep[i].pronostic_raceID
+
+                let r_pilotID = rep[i].raceResultat_pilotID
+                let r_position = rep[i].raceResultat_position
+                let r_raceID = rep[i].raceResultat_raceID
+
+                
+                if((p_pilotID === r_pilotID) && (p_position === r_position) && (p_raceID === r_raceID))
+                {
+                    points++
+                    if (typeof contestant[joueurs] === 'undefined') {
+                        contestant[joueurs] = {
+                            Joueur: joueurs,
+                            points: 0
+                        }
+                    }
+                    contestant[joueurs].points += points
+                }
+            }
+
+            for(let joueur in contestant)
+            {
+                contestants_array.push(
+                    contestant[joueur]
+                )
+            }
+
+            contestants_array.sort((d1, d2) => {
+                console.log(contestants_array)
+                return d2.points - d1.points
+            })
+
+            return contestants_array
 }
 
 

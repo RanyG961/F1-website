@@ -443,3 +443,38 @@ function insert_resultatCourse()
         return false;
     } 
 } 
+
+function position()
+{
+    $userID = $_SESSION["auth"]["id"];
+    // p.pilot_id, p.race_id, p.user_id, p.position,  r.race_id, r.pilot_id, r.position
+    try
+    {
+        $sql = " SELECT u.nickname AS user_nickname,  r.race_id AS raceResultat_raceID, p.race_id AS pronostic_raceID, p.pilot_id AS pronostic_pilotID, p.position AS pronostic_position, r.pilot_id AS raceResultat_pilotID, r.position AS raceResultat_position FROM prognosis p, race_results r, users u WHERE r.pilot_id = p.pilot_id AND p.race_id = r.race_id AND u.id = p.user_id";
+
+        $db = new dbClass();
+        $conn = $db->dbConnect();
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sth = $conn->prepare($sql);
+        
+        $sth->execute();
+
+        $result = $sth->fetchAll();
+
+
+
+        if($result)
+        {
+            return json_encode($result, true);
+        }
+        else
+        {
+            return false;
+        }
+    } 
+    catch(PDOException $e)
+    {
+        echo $e; 
+        return false;
+    }  
+}
