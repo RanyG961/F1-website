@@ -33,3 +33,41 @@
     margin-right: auto;
     margin-top: 200px;
 }
+
+.annee-list
+{
+    margin-bottom: 7px;
+}
+
+.year-button
+{
+    height: 40px;
+    border-bottom: 1px solid red;
+    border-right: 1px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-pilote, .table-constructeur
+{
+    display: table;
+    width:80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center-title
+{
+    text-align: center;
+}
+
+.points-red
+{
+    color:red;
+}
+
+.center-cell
+{
+    text-align: center;
+}

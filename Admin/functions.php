@@ -13,7 +13,6 @@ require_once "../bdd/db_class.php";
 function create_database(){
     $db_obj = new dbClass();
     try{
-
         $conn = new PDO("mysql:host=" . $db_obj->getServername(), $db_obj->getUsername(), $db_obj->getPassword());
     
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

@@ -66,6 +66,9 @@ function generateTableHead(table, data) {
 
     for (let key of data) {
         let th = document.createElement("th")
+        if(key == "Points" || key == "Rang" || key == "Numéro"){
+            th.setAttribute("class", "center-title")
+        }
         let text = document.createTextNode(key)
 
         th.appendChild(text)
@@ -78,8 +81,24 @@ function generateTable(table, data) {
         let row = table.insertRow();
         for (key in element) {
             let cell = row.insertCell();
-            let text = document.createTextNode(element[key]);
-            cell.appendChild(text);
+            
+            if(key == "Points"){
+                let span = document.createElement("div")
+                span.setAttribute("class", "center-cell points-red")
+                span.innerHTML = element[key]
+                cell.appendChild(span)
+            }
+            else if(key == "Rang" || key == "Numéro"){
+                let span = document.createElement("div")
+                span.setAttribute("class", "center-cell")
+                span.innerHTML = element[key]
+                cell.appendChild(span)
+            }
+            else{
+                let text = document.createTextNode(element[key]);
+                cell.appendChild(text);
+            }
+            
         }
     }
 }
@@ -99,9 +118,12 @@ function affichageListeAnnee() {
 
         li.setAttribute("id", `annee-list-${annee}`)
         li.setAttribute("class", `annee-list`)
-
-        li.innerHTML = annee
         annee_liste.appendChild(li)
+
+        let div = document.createElement("div")
+        div.setAttribute("class", "year-button")
+        div.innerHTML = annee
+        li.appendChild(div)
     }
 
 
@@ -149,11 +171,15 @@ function affichagePilote(classementsPilote, table) {
     classementsPilote.forEach(function (classement, rang) {
         var pilote = Object.assign({}, classement.Driver)
         //console.log(`Rang : ${rang + 1} - ${pilote.permanentNumber}  ${pilote.givenName} ${pilote.familyName} - Points : ${classement.points}`)
+        let numero = ""
+        if(pilote.permanentNumber){
+            numero = pilote.permanentNumber
+        }
         titre.push
             (
                 {
                     Rang: rang + 1,
-                    Numéro: pilote.permanentNumber,
+                    Numéro: numero,
                     Pilote: pilote.givenName + " " + pilote.familyName,
                     Nationalité: pilote.nationality,
                     Constructeur: classement.Constructor.name,
@@ -194,18 +220,19 @@ const demandeClassement = async function(annee, table_pilote, table_constructeur
 {
     try
     {
-        let dataCourses = await fetch(`php_ajax.php?annee=${annee}`)
-        let dataJoueurs = await fetch("test.php")
+        let dataCourses = await fetch(`/site/php_ajax.php?annee=${annee}`)
+        // let dataJoueurs = await fetch("test.php")
 
-        if(dataCourses.ok && dataJoueurs.ok)
+        if(dataCourses.ok /*&& dataJoueurs.ok*/)
         {
             let rep = await dataCourses.json()
-            let repJoueurs = await dataJoueurs.json()
+            // let ansJoueurs = await dataJoueurs.text()
+            // let repJoueurs = JSON.parse(ansJoueurs)
 
             var classements = generateRanking(rep.MRData.RaceTable.Races)
             var classementsConstructeur = classements.classementConstructeur
             var classementsPilote = classements.classementPilote
-            var classementsJoueur = generateRanking_joueurs(repJoueurs)
+            // var classementsJoueur = generateRanking_joueurs(repJoueurs)
 
             // var table = document.querySelector("table")
             var tablePilotes = document.getElementById(table_pilote)
@@ -218,26 +245,26 @@ const demandeClassement = async function(annee, table_pilote, table_constructeur
 
             affichagePilote(classementsPilote, tablePilotes)
             affichageConstructeur(classementsConstructeur, tableConstructeurs)
-            affichageJoueurs(classementsJoueur, tableJoueurs)
+            // affichageJoueurs(classementsJoueur, tableJoueurs)
 
-            tablePilotes.style.display = "block"
+            tablePilotes.style.display = "table"
             tableConstructeurs.style.display = "none"
             tableJoueurs.style.display = "none"
 
             constructeurs.onclick = function () {
-                tableConstructeurs.style.display = "block"
+                tableConstructeurs.style.display = "table"
                 tablePilotes.style.display = "none"
                 tableJoueurs.style.display = "none"
             }
 
             pilotes.onclick = function () {
-                tablePilotes.style.display = "block"
+                tablePilotes.style.display = "table"
                 tableConstructeurs.style.display = "none"
                 tableJoueurs.style.display = "none"
             }
 
             joueurs.onclick = function () {
-                tableJoueurs.style.display = "block"
+                tableJoueurs.style.display = "table"
                 tablePilotes.style.display = "none"
                 tableConstructeurs.style.display = "none"
             }
