@@ -126,6 +126,7 @@ function password_est_valide()
  * Return true if succesfully created
  */
 function create_account($is_admin){
+    //var_dump($_POST);
     extract($_POST);
     $errors = array();
     
@@ -137,7 +138,7 @@ function create_account($is_admin){
         && isset($email)
         && isset($pwd)
         && isset($pwdConfirm)
-        && isset($tel))
+        && isset($tel) && isset($acceptTerms))
     ){
         return false;
     }
@@ -446,8 +447,6 @@ function insert_resultatCourse()
 
 function position()
 {
-    $userID = $_SESSION["auth"]["id"];
-    // p.pilot_id, p.race_id, p.user_id, p.position,  r.race_id, r.pilot_id, r.position
     try
     {
         $sql = " SELECT u.nickname AS user_nickname,  r.race_id AS raceResultat_raceID, p.race_id AS pronostic_raceID, p.pilot_id AS pronostic_pilotID, p.position AS pronostic_position, r.pilot_id AS raceResultat_pilotID, r.position AS raceResultat_position FROM prognosis p, race_results r, users u WHERE r.pilot_id = p.pilot_id AND p.race_id = r.race_id AND u.id = p.user_id";

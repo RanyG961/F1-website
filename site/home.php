@@ -25,11 +25,16 @@
             </div>
                 
             <div id="classement">
+                <script src="classementCourse.fetch.js"></script>
                 <h2> Classement </h2>
                 <ul id="classementGeneral">
-                    <li> Pilotes </li>
-                    <li> Constructeurs </li>
-                    <li> Joueurs </li>
+                    <li id="pilotes"> Pilotes </li>
+                    <li id="constructeurs"> Constructeurs </li>
+                    <li id="joueurs"> Joueurs </li>
+
+                    <table id="tablePilote"></table>
+                    <table id="tableConstructeur"></table>
+                    <table id="tableJoueur"></table>
                 </ul>
             </div>
         </div>    

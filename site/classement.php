@@ -14,8 +14,7 @@
             Joueurs
         </li>
     </ul>
-    <table id="tablePilote">
-    </table>
+    <table id="tablePilote"></table>
     <table id="tableConstructeur"></table>
     <table id="tableJoueur"></table>
 </div>

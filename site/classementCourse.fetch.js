@@ -84,63 +84,37 @@ function generateTable(table, data) {
     }
 }
 
-function affichageListeAnnee() {
-    let test = document.getElementById("test")
-    let date = new Date()
-    let annee_fin = date.getFullYear()
+// function affichageListeAnnee() {
+//     let test = document.getElementById("test")
 
-    let annee_liste = document.createElement("ul")
-    annee_liste.setAttribute("id", `annee-list`)
+//     li.addEventListener('click', () => {
+//         let table_pilote = document.createElement("table")
+//         let table_constructeur = document.createElement("table")
+//         table_pilote.setAttribute("id", `table-pilote-${annee}`)
+//         table_constructeur.setAttribute("id", `table-constructeur-${annee}`)
 
-    test.appendChild(annee_liste)
+//         table_pilote.setAttribute("class", `table-pilote`)
+//         table_constructeur.setAttribute("class", `table-constructeur`)
 
-    for (let annee = 2000; annee < annee_fin; annee++) {
-        let li = document.createElement("li")
+//         let to_remove = document.getElementsByClassName("annee-list")
 
-        li.setAttribute("id", `annee-list-${annee}`)
-        li.setAttribute("class", `annee-list`)
+//         let li_bis = document.getElementById(`annee-list-${annee_bis}`)
+//         let tp = document.getElementById(`table-pilote-${annee_bis}`)
+//         let tc = document.getElementById(`table-constructeur-${annee_bis}`)
 
-        li.innerHTML = annee
-        annee_liste.appendChild(li)
-    }
+//         if (tp != null && annee_bis != annee) {
+//             li_bis.removeChild(tp)
+//             li_bis.removeChild(tc)
+//         } else if (annee_bis == annee && tp == null) {
+//             li.appendChild(table_pilote)
+//             li.appendChild(table_constructeur)
 
-
-    for (let annee = 2000; annee < annee_fin; annee++) {
-        let li = document.getElementById(`annee-list-${annee}`)
-
-        li.addEventListener('click', () => {
-            let table_pilote = document.createElement("table")
-            let table_constructeur = document.createElement("table")
-            table_pilote.setAttribute("id", `table-pilote-${annee}`)
-            table_constructeur.setAttribute("id", `table-constructeur-${annee}`)
-
-            table_pilote.setAttribute("class", `table-pilote`)
-            table_constructeur.setAttribute("class", `table-constructeur`)
-
-            let to_remove = document.getElementsByClassName("annee-list")
-
-            for (let annee_bis = 2000; annee_bis < annee_fin; annee_bis++) {
-                let li_bis = document.getElementById(`annee-list-${annee_bis}`)
-                let tp = document.getElementById(`table-pilote-${annee_bis}`)
-                let tc = document.getElementById(`table-constructeur-${annee_bis}`)
-
-                if (tp != null && annee_bis != annee) {
-                    li_bis.removeChild(tp)
-                    li_bis.removeChild(tc)
-                }
-                else if (annee_bis == annee && tp == null) {
-                    li.appendChild(table_pilote)
-                    li.appendChild(table_constructeur)
-
-                    demandeClassement(annee, `table-pilote-${annee}`, `table-constructeur-${annee}`)
-                }
-
-            }
-        })
-    }
+//             demandeClassement(annee, `table-pilote-${annee}`, `table-constructeur-${annee}`)
+//         }
 
 
-}
+//     })
+//}
 
 function affichagePilote(classementsPilote, table) {
     //console.log(classementsPilote)
@@ -190,11 +164,11 @@ function affichageConstructeur(classementsConstructeur, table) {
     generateTableHead(table, data)
 }
 
-const demandeClassement = async function(annee, table_pilote, table_constructeur)
+const demandeClassement = async function()
 {
     try
     {
-        let dataCourses = await fetch(`http://127.0.0.1:8000/site/php_ajax.php?annee=${annee}`)
+        let dataCourses = await fetch(`2019_races.json`)
         let dataJoueurs = await fetch("test.php")
 
         if(dataCourses.ok && dataJoueurs.ok)
@@ -208,8 +182,8 @@ const demandeClassement = async function(annee, table_pilote, table_constructeur
             var classementsJoueur = generateRanking_joueurs(repJoueurs)
 
             // var table = document.querySelector("table")
-            var tablePilotes = document.getElementById(table_pilote)
-            var tableConstructeurs = document.getElementById(table_constructeur)
+            var tablePilotes = document.getElementById("tablePilote")
+            var tableConstructeurs = document.getElementById("tableConstructeur")
             let tableJoueurs = document.getElementById("tableJoueur")
 
             let pilotes = document.getElementById("pilotes")
@@ -351,7 +325,7 @@ function generateRanking_joueurs(rep)
 
 
 function main() {
-    affichageListeAnnee()
+    demandeClassement()
 }
 
 window.onload = main
