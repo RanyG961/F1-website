@@ -194,7 +194,7 @@ const demandeClassement = async function(annee, table_pilote, table_constructeur
 {
     try
     {
-        let dataCourses = await fetch(`http://127.0.0.1:8000/site/php_ajax.php?annee=${annee}`)
+        let dataCourses = await fetch(`php_ajax.php?annee=${annee}`)
         let dataJoueurs = await fetch("test.php")
 
         if(dataCourses.ok && dataJoueurs.ok)
