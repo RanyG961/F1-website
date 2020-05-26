@@ -220,21 +220,21 @@ const demandeClassement = async function(annee, table_pilote, table_constructeur
 {
     try
     {
-        let dataCourses = await fetch(`/site/php_ajax.php?annee=${annee}`)
-        // let dataJoueurs = await fetch("test.php")
+        let dataCourses = await fetch(`/site/php_fetch.php?annee=${annee}`)
+        let dataJoueurs = await fetch("races_json/position.json")
 
-        if(dataCourses.ok /*&& dataJoueurs.ok*/)
+        if(dataCourses.ok && dataJoueurs.ok)
         {
             let rep = await dataCourses.json()
-            // let ansJoueurs = await dataJoueurs.text()
-            // let repJoueurs = JSON.parse(ansJoueurs)
+
+            let repJoueurs = await dataJoueurs.json()
 
             var classements = generateRanking(rep.MRData.RaceTable.Races)
             var classementsConstructeur = classements.classementConstructeur
             var classementsPilote = classements.classementPilote
-            // var classementsJoueur = generateRanking_joueurs(repJoueurs)
+            var classementsJoueur = generateRanking_joueurs(repJoueurs)
 
-            // var table = document.querySelector("table")
+            var table = document.querySelector("table")
             var tablePilotes = document.getElementById(table_pilote)
             var tableConstructeurs = document.getElementById(table_constructeur)
             let tableJoueurs = document.getElementById("tableJoueur")
@@ -245,7 +245,7 @@ const demandeClassement = async function(annee, table_pilote, table_constructeur
 
             affichagePilote(classementsPilote, tablePilotes)
             affichageConstructeur(classementsConstructeur, tableConstructeurs)
-            // affichageJoueurs(classementsJoueur, tableJoueurs)
+            affichageJoueurs(classementsJoueur, tableJoueurs)
 
             tablePilotes.style.display = "table"
             tableConstructeurs.style.display = "none"

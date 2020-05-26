@@ -464,7 +464,8 @@ function position()
 
         if($result)
         {
-            return json_encode($result, true);
+            $result = json_encode($result, true);
+            file_put_contents("races_json/position.json", $result);
         }
         else
         {

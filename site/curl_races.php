@@ -16,7 +16,7 @@ for($i = 2000; $i < 2020; $i++)
     {
         if(curl_getinfo($curl, CURLINFO_HTTP_CODE) === 200)
         {
-            file_put_contents($i . "_races.json", $data_course);
+            file_put_contents("races_json/" . $i . "_races.json", $data_course);
         }
         
     }

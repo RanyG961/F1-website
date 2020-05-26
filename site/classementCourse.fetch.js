@@ -168,8 +168,8 @@ const demandeClassement = async function()
 {
     try
     {
-        let dataCourses = await fetch(`2019_races.json`)
-        let dataJoueurs = await fetch("test.php")
+        let dataCourses = await fetch("races_json/2019_races.json")
+        let dataJoueurs = await fetch("races_json/position.json")
 
         if(dataCourses.ok && dataJoueurs.ok)
         {
@@ -251,10 +251,8 @@ function generateRanking_joueurs(rep)
         let contestant = {} 
             let contestants_array = []
             let i
-            
             let points = 0
 
-            //console.log(joueur + " " + p_pilotID + " " + p_position + " " + p_raceID + " " + r_pilotID + " " + r_position + " " + r_raceID)
 
             for(i = 0; i < rep.length; i++)
             {
@@ -281,32 +279,6 @@ function generateRanking_joueurs(rep)
                     contestant[joueurs].points += points
                 }
             }
-
-           /*  rep.forEach(rep => {
-                let joueurs = rep.user_nickname
-
-                joueurs.forEach(joueur => {
-                    let p_pilotID = rep.pronostic_pilotID
-                    let p_position = rep.pronostic_raceID
-                    let p_raceID = rep.pronostic_raceID
-
-                    let r_pilotID = rep.raceResultat_pilotID
-                    let r_position = rep.raceResultat_position
-                    let r_raceID = rep.raceResultat_raceID
-
-                    if((p_pilotID === r_pilotID) && (p_position === r_position) && (p_raceID === r_raceID))
-                    {
-                        points++
-                        if (typeof contestant[joueurs] === 'undefined') {
-                            contestant[joueurs] = {
-                                Joueur: joueurs,
-                                points: 0
-                            }
-                        }
-                        contestant[joueurs].points += points
-                    }
-                })
-            }) */
 
             for(let joueur in contestant)
             {
