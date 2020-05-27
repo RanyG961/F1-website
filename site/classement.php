@@ -1,4 +1,5 @@
-<?php require_once "header.php"; ?>
+<?php require_once "header.php"; 
+header('Access-Control-Allow-Origin: *');  ?>
 
 <script src="classement.fetch.js"></script>
 

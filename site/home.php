@@ -1,5 +1,6 @@
 <?php 
     require 'header.php'; 
+    header('Access-Control-Allow-Origin: *');  
 ?>
         <div id="content">
             <div id="preTweets">
