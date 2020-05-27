@@ -1,6 +1,7 @@
 USE f1_website;
 
 ALTER TABLE pilots ADD code VARCHAR(5);
+ALTER TABLE pilots ADD still_driving BOOLEAN NOT NULL DEFAULT TRUE;
 
 INSERT INTO pilots(first_name, last_name) VALUES("Lewis", "Hamilton");
 INSERT INTO pilots(first_name, last_name) VALUES("Valtteri", "Bottas");
@@ -93,3 +94,35 @@ UPDATE tracks SET circuitID = "rodriguez" WHERE country = ("Mexique");
 UPDATE tracks SET circuitID = "americas" WHERE country = ("USA");
 UPDATE tracks SET circuitID = "interlagos" WHERE country = ("Bresil");
 UPDATE tracks SET circuitID = "yas_marina" WHERE country = ("EAU");
+
+INSERT INTO teams(name, engine, car_name) VALUES("Mercedes-AMG", "Mercedes", "W11");
+INSERT INTO teams(name, engine, car_name) VALUES("Scuderia-Ferrari", "Ferrari", "SF1000");
+INSERT INTO teams(name, engine, car_name) VALUES("Red-Bull", "Honda", "RB16");
+INSERT INTO teams(name, engine, car_name) VALUES("McLaren-F1", "Renault", "MCL35");
+INSERT INTO teams(name, engine, car_name) VALUES("Renault-F1", "Renault", "R.S.20");
+INSERT INTO teams(name, engine, car_name) VALUES("Alfa-Romeo", "Ferrari", "C39");
+INSERT INTO teams(name, engine, car_name) VALUES("BWT Racing-Point", "Mercedes", "RP20");
+INSERT INTO teams(name, engine, car_name) VALUES("Scuderia-AlphaTauri", "Honda", "AT01");
+INSERT INTO teams(name, engine, car_name) VALUES("Haas-F1", "Ferrari", "VF-20");
+INSERT INTO teams(name, engine, car_name) VALUES("Williams-Racing", "Mercedes", "FW43");
+
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES(1, 1, 44);
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES(2, 1, 77);
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES(5, 2, 5);
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES (4, 2, 16);
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES(3, 3, 33);
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES(8, 3, 23);
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES(6, 4, 55);
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES(11, 4, 55);
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES(9, 5, 3);
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES(14, 5, 60);
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES(12, 6, 7);
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES(17, 6, 99);
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES(10, 7, 11);
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES(15, 7, 18);
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES(13, 8, 26);
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES(7, 8, 10);
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES(18, 9, 8);
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES(16, 9, 20);
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES(19, 10, 63);
+INSERT INTO pilot_team(pilot_id, team_id, pilot_number) VALUES(20, 10, 88);

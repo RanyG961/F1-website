@@ -1,7 +1,7 @@
 <?php require_once "header.php"; ?>
 
 <div id="test">
-    <h1> Profil de <?= $_SESSION['auth']['nickname']; ?> ! </h1>
+    <h1> Profil de <?= $_SESSION['auth']['first_name'];?> <?= $_SESSION['auth']['last_name']; ?> ! </h1>
 
 
     <form id="editerProfil" action="modifier_profil.php" method="post">

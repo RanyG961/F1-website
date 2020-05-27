@@ -320,3 +320,171 @@ function afficheCircuits()
         return false;
     }
 }
+
+function ajouterPilote()
+{
+    extract($_POST);
+    //debug($_POST);
+    $nom = htmlspecialchars($nom);
+    $prenom = htmlspecialchars($prenom);
+    $code = htmlspecialchars($code);
+
+    if(!isset($nom, $prenom, $code))
+    {
+        return false;
+    }
+    else if(empty($nom) && empty($prenom) && empty($code))
+    {
+        return false;
+    }
+
+    try
+    {
+        $sql = "INSERT INTO pilots(first_name, last_name, code) VALUES(?, ?, ?);";
+
+        $db = new dbClass();
+        $conn = $db->dbConnect();
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sth = $conn->prepare($sql);
+        $sth->execute(array($prenom, $nom, $code));
+
+
+    }
+    catch(PDOException $e)
+    {
+        echo $e;
+        return false;
+    }
+    return true;
+}
+
+function piloteTeam()
+{
+    extract($_POST);
+
+    $nom = htmlspecialchars($nom);
+    $numero = htmlspecialchars($numero);
+    $equipe = htmlspecialchars($equipe);
+
+    if(!isset($nom, $numero, $code, $numero, $equipe))
+    {
+        return false;
+    }
+    else if(empty($nom) && empty($prenom) && empty($code) && empty($numero) && empty($equipe))
+    {
+        return false;
+    }
+
+    try
+    {
+        $sql = "INSERT INTO pilot_team(pilot_id, team_id, pilot_number) SELECT p.id, t.id, ? FROM pilots p, teams t WHERE p.last_name = ? AND t.name = ?; ";
+
+        $db = new dbClass();
+        $conn = $db->dbConnect();
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sth = $conn->prepare($sql);
+        $sth->execute(array($numero, $nom, $equipe));
+    }
+    catch(PDOException $e)
+    {
+        echo $e;
+        return false;
+    }
+    return true;
+
+}
+
+function afficheEquipes()
+{
+    try
+    {
+        $sql = "SELECT * FROM teams";
+
+        $db = new dbClass();
+        $conn = $db->dbConnect();
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sth = $conn->prepare($sql);
+        $sth->execute();
+
+        $results = $sth->fetchAll();
+
+        return $results;
+    }
+    catch(PDOException $e)
+    {
+        echo $e;
+        return false;
+    }
+}
+
+function update_pilote()
+{
+    extract($_GET);
+    //debug($_GET);
+    $value = intval($value, 10);
+
+    if(isset($id) && !empty($id)) 
+    {
+        if($value === 1)
+        {
+            try 
+            {
+                $sql = "UPDATE pilots SET still_driving = 0 WHERE id = ?";
+
+                $db = new dbClass();
+                $conn = $db->dbConnect();
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $sth = $conn->prepare($sql);
+                $sth->execute(array($id));
+            } catch (PDOException $e) {
+                echo $e;
+                return false;
+            }
+        }
+        else if($value === 0)
+        {
+            try 
+            {
+                $sql = "UPDATE pilots SET still_driving = 1 WHERE id = ?";
+
+                $db = new dbClass();
+                $conn = $db->dbConnect();
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $sth = $conn->prepare($sql);
+                $sth->execute(array($id));
+            } catch (PDOException $e) {
+                echo $e;
+                return false;
+            }
+        }
+    }
+}
+
+function affichePilotes_admin()
+{
+    try
+    {
+        $sql = " SELECT p.*, pt.pilot_number as numero, t.name as constructeur FROM pilots p, pilot_team pt, teams t WHERE p.id = pt.pilot_id AND pt.team_id = t.id;";
+
+        $db = new dbClass();
+        $conn = $db->dbConnect();
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sth = $conn->prepare($sql);
+        $sth->execute();
+
+        $results = $sth->fetchAll();
+
+        return $results;
+    }
+    catch(PDOException $e)
+    {
+        echo $e;
+        return false;
+    }
+}
