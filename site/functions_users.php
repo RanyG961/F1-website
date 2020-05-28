@@ -478,3 +478,75 @@ function position()
         return false;
     }  
 }
+
+function afficherPilote_user()
+{
+    try
+    {
+        $sql = "SELECT p.first_name, p.last_name, p.code, pt.pilot_number as numero, t.name as constructeur FROM pilots p, pilot_team pt, teams t WHERE p.id = pt.pilot_id AND pt.team_id = t.id AND p.still_driving = 1;";
+
+        $db = new dbClass();
+        $conn = $db->dbConnect();
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sth = $conn->prepare($sql);
+        $sth->execute();
+
+        $results = $sth->fetchAll();
+
+        return $results;
+    }
+    catch(PDOException $e)
+    {
+        echo $e;
+        return false;
+    }
+}
+
+function afficherConstructeur_user()
+{
+    try
+    {
+        $sql = "SELECT t.id, t.name AS constructeur, t.engine AS moteur, t.car_name AS monoplace FROM teams t;";
+
+        $db = new dbClass();
+        $conn = $db->dbConnect();
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sth = $conn->prepare($sql);
+        $sth->execute();
+
+        $results = $sth->fetchAll();
+
+        return $results;
+    }
+    catch(PDOException $e)
+    {
+        echo $e;
+        return false;
+    }
+}
+
+function piloteConstructeur($constructeur)
+{
+    try
+    {
+        $sql = "SELECT p.first_name, p.last_name, p.code FROM teams t, pilots p, pilot_team pt WHERE t.id = :constructeur AND p.id = pt.pilot_id AND pt.team_id = t.id AND p.still_driving = 1;";
+
+        $db = new dbClass();
+        $conn = $db->dbConnect();
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sth = $conn->prepare($sql);
+        $sth->execute(array(':constructeur' => $constructeur));
+
+        $results = $sth->fetchAll();
+
+        return $results;
+    }
+    catch(PDOException $e)
+    {
+        echo $e;
+        return false;
+    }
+}

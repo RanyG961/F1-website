@@ -469,7 +469,7 @@ function affichePilotes_admin()
 {
     try
     {
-        $sql = " SELECT p.*, pt.pilot_number as numero, t.name as constructeur FROM pilots p, pilot_team pt, teams t WHERE p.id = pt.pilot_id AND pt.team_id = t.id;";
+        $sql = "SELECT p.id, p.first_name, p.last_name, p.code, p.still_driving, pt.pilot_number as numero, t.name as constructeur FROM pilots p, pilot_team pt, teams t WHERE p.id = pt.pilot_id AND pt.team_id = t.id;";
 
         $db = new dbClass();
         $conn = $db->dbConnect();

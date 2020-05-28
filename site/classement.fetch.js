@@ -104,14 +104,14 @@ function generateTable(table, data) {
 }
 
 function affichageListeAnnee() {
-    let test = document.getElementById("test")
+    let classement = document.getElementById("classement")
     let date = new Date()
     let annee_fin = date.getFullYear()
 
     let annee_liste = document.createElement("ul")
     annee_liste.setAttribute("id", `annee-list`)
 
-    test.appendChild(annee_liste)
+    classement.appendChild(annee_liste)
 
     for (let annee = 2000; annee < annee_fin; annee++) {
         let li = document.createElement("li")
@@ -220,7 +220,7 @@ const demandeClassement = async function(annee, table_pilote, table_constructeur
 {
     try
     {
-        let dataCourses = await fetch(`/site/php_fetch.php?annee=${annee}`)
+        let dataCourses = await fetch(`php_fetch.php?annee=${annee}`)
         let dataJoueurs = await fetch("races_json/position.json")
 
         if(dataCourses.ok && dataJoueurs.ok)

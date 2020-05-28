@@ -12,5 +12,6 @@ if(verif_utilisateur_admin())
 }
 else
 {
-    header("Location: connexion.php");
+    echo "Erreur lors de la saisie de vos identifiants";
+    header("Location: admin_home.php");
 }
