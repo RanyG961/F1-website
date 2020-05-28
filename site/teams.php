@@ -5,33 +5,40 @@ header('Access-Control-Allow-Origin: *');  ?>
 
 <div class="list">
 
-    
-    <div class="row">
-    <fieldset class="list-container">
 
        <?php
         $teams = afficherConstructeur_user();
+        $i = 0;
         foreach ($teams as $team) :
         ?>
     
-            <div id="<?= $team['constructeur'] ?>">
-                <span class="constructeur"> <?= $team['constructeur'] ?> </span>
-                <span class="moteur"> <?= $team['moteur'] ?> </span>
-                <span class="monoplace"> <?= $team['monoplace'] ?> </span>
+            <div class="<?= $team['code'] ?> entire-team<?php if($i % 2 == 1): ?> grid-margin-top<?php endif; ?>">
+                <div class="constructeur-info">
+                    <div class="constructeur-nom">
+                        <span class="constructeur"> <?= $team['constructeur'] ?> </span>
+                        <span class="moteur"> <?= $team['moteur'] ?> </span>
+                        <span class="monoplace"> <?= $team['monoplace'] ?> </span>
+                    </div>
+                    <img class="constructeur-logo" src="img/logoCons/<?= $team['code'] ?>.png" alt="Logo de l'équipe"/>
+                </div>
                 <img class="constructeurImg" src="img/monoplaces/<?= $team['monoplace'] ?>.png" alt="photo de <?= $team['constructeur'] ?>" />
-                <?php $pilotes = piloteConstructeur($team['id']);
-                foreach ($pilotes as $pilote) :
-                ?>
-                    <span class="pilotes_fn"> <?= $pilote['first_name'] ?> </span>
-                    <span class="pilotes_ln"> <?= $pilote['last_name'] ?> </span>
-                    <img class="pilotesImg" src="img/pilotes/<?= $pilote['code'] ?>.png" alt="photo de <?= $pilote['last_name'] ?>" />
-                <?php endforeach; ?>
+                <div class="pilotes">
+                    <?php $pilotes = piloteConstructeur($team['id']);
+                    foreach ($pilotes as $pilote) :
+                    ?>
+                        <div class="pilote-info">
+                            <div class="pilote-nom">
+                                <span class="pilotes_fn"> <?= $pilote['first_name'] ?> </span>
+                                <span class="pilotes_ln"> <?= $pilote['last_name'] ?> </span>
+                            </div>
+                            <img class="pilotesImg" src="img/pilotes/<?= $pilote['code'] ?>.png" alt="photo de <?= $pilote['last_name'] ?>" />
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
-
+        <?php $i++; ?>
         <?php endforeach; ?>
            
-    </fieldset>
-    </div>
 </div>
 
 <?php require_once "footer.php"; ?>

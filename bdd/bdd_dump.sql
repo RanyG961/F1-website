@@ -282,8 +282,9 @@ CREATE TABLE `teams` (
   `engine` varchar(255) DEFAULT NULL,
   `car_name` varchar(255) DEFAULT NULL,
   `date` date DEFAULT NULL,
+  `code` varchar(5) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -292,7 +293,7 @@ CREATE TABLE `teams` (
 
 LOCK TABLES `teams` WRITE;
 /*!40000 ALTER TABLE `teams` DISABLE KEYS */;
-INSERT INTO `teams` VALUES (1,'Mercedes-AMG','Mercedes','W11',NULL),(2,'Scuderia-Ferrari','Ferrari','SF1000',NULL),(3,'Red-Bull','Honda','RB16',NULL),(4,'McLaren-F1','Renault','MCL35',NULL),(5,'Renault-F1','Renault','R.S.20',NULL),(6,'Alfa-Romeo','Ferrari','C39',NULL),(7,'BWT Racing-Point','Mercedes','RP20',NULL),(8,'Scuderia-AlphaTauri','Honda','AT01',NULL),(9,'Haas-F1','Ferrari','VF-20',NULL),(10,'Williams-Racing','Mercedes','FW43',NULL);
+INSERT INTO `teams` VALUES (1,'Mercedes-AMG','Mercedes','W11',NULL,'AMG'),(2,'Scuderia-Ferrari','Ferrari','SF1000',NULL,'SDF'),(3,'Red-Bull','Honda','RB16',NULL,'RDB'),(4,'McLaren-F1','Renault','MCL35',NULL,'MCL'),(5,'Racing-point','Renault','R.S.20',NULL,'REN'),(6,'Alfa-Romeo','Ferrari','C39',NULL,'AFR'),(7,'BWT Racing-Point','Mercedes','RP20',NULL,'RPO'),(8,'Scuderia-AlphaTauri','Honda','AT01',NULL,'SAT'),(9,'Haas-F1','Ferrari','VF-20',NULL,'HAS'),(10,'Williams-Racing','Mercedes','FW43',NULL,'WIL');
 /*!40000 ALTER TABLE `teams` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -364,4 +365,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-28 18:27:34
+-- Dump completed on 2020-05-28 19:38:16

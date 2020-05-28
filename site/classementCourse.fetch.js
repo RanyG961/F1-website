@@ -60,12 +60,39 @@ function generateRanking(races) {
     return { classementPilote: contestants_array, classementConstructeur: contestantsTeam_array }
 }
 
+// function generateTableHead(table, data) {
+//     let thead = table.createTHead()
+//     let row = thead.insertRow()
+
+//     for (let key of data) {
+//         let th = document.createElement("th")
+//         let text = document.createTextNode(key)
+
+//         th.appendChild(text)
+//         row.appendChild(th)
+//     }
+// }
+
+// function generateTable(table, data) {
+//     for (let element of data) {
+//         let row = table.insertRow();
+//         for (key in element) {
+//             let cell = row.insertCell();
+//             let text = document.createTextNode(element[key]);
+//             cell.appendChild(text);
+//         }
+//     }
+// }
+
 function generateTableHead(table, data) {
     let thead = table.createTHead()
     let row = thead.insertRow()
 
     for (let key of data) {
         let th = document.createElement("th")
+        if(key == "Points" || key == "Rang" || key == "Numéro"){
+            th.setAttribute("class", "center-title")
+        }
         let text = document.createTextNode(key)
 
         th.appendChild(text)
@@ -78,8 +105,19 @@ function generateTable(table, data) {
         let row = table.insertRow();
         for (key in element) {
             let cell = row.insertCell();
-            let text = document.createTextNode(element[key]);
-            cell.appendChild(text);
+            
+            if(key == "Points"){
+                let span = document.createElement("div")
+                span.setAttribute("class", "center-cell points-red")
+                span.innerHTML = element[key]
+                cell.appendChild(span)
+            }
+            else{
+                let span = document.createElement("div")
+                span.setAttribute("class", "center-cell")
+                span.innerHTML = element[key]
+                cell.appendChild(span)
+            }
         }
     }
 }
@@ -194,24 +232,24 @@ const demandeClassement = async function()
             affichageConstructeur(classementsConstructeur, tableConstructeurs)
             affichageJoueurs(classementsJoueur, tableJoueurs)
 
-            tablePilotes.style.display = "block"
+            tablePilotes.style.display = "table"
             tableConstructeurs.style.display = "none"
             tableJoueurs.style.display = "none"
 
             constructeurs.onclick = function () {
-                tableConstructeurs.style.display = "block"
+                tableConstructeurs.style.display = "table"
                 tablePilotes.style.display = "none"
                 tableJoueurs.style.display = "none"
             }
 
             pilotes.onclick = function () {
-                tablePilotes.style.display = "block"
+                tablePilotes.style.display = "table"
                 tableConstructeurs.style.display = "none"
                 tableJoueurs.style.display = "none"
             }
 
             joueurs.onclick = function () {
-                tableJoueurs.style.display = "block"
+                tableJoueurs.style.display = "table"
                 tablePilotes.style.display = "none"
                 tableConstructeurs.style.display = "none"
             }

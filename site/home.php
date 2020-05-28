@@ -32,11 +32,10 @@
                     <li id="pilotes"> Pilotes </li>
                     <li id="constructeurs"> Constructeurs </li>
                     <li id="joueurs"> Joueurs </li>
-
-                    <table id="tablePilote"></table>
-                    <table id="tableConstructeur"></table>
-                    <table id="tableJoueur"></table>
                 </ul>
+                <table id="tablePilote"></table>
+                <table id="tableConstructeur"></table>
+                <table id="tableJoueur"></table>
             </div>
         </div>    
 <?php require_once 'footer.php'; ?>

@@ -487,7 +487,7 @@ function afficherPilote_user()
 {
     try
     {
-        $sql = "SELECT p.first_name, p.last_name, p.code, pt.pilot_number as numero, t.name as constructeur FROM pilots p, pilot_team pt, teams t WHERE p.id = pt.pilot_id AND pt.team_id = t.id AND p.still_driving = 1;";
+        $sql = "SELECT t.code as code_constructeur, p.first_name, p.last_name, p.code, pt.pilot_number as numero, t.name as constructeur FROM pilots p, pilot_team pt, teams t WHERE p.id = pt.pilot_id AND pt.team_id = t.id AND p.still_driving = 1;";
 
         $db = new dbClass();
         $conn = $db->dbConnect();
@@ -511,7 +511,7 @@ function afficherConstructeur_user()
 {
     try
     {
-        $sql = "SELECT t.id, t.name AS constructeur, t.engine AS moteur, t.car_name AS monoplace FROM teams t;";
+        $sql = "SELECT t.id, t.code, t.name AS constructeur, t.engine AS moteur, t.car_name AS monoplace FROM teams t;";
 
         $db = new dbClass();
         $conn = $db->dbConnect();

@@ -1,57 +1,208 @@
-.list {
-    width: 900px;
+
+.list
+{
+    width: 1100px;
     margin-top: 200px;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    box-sizing: border-box;
-    flex-direction: row;
-    margin-right: 10px;
-    margin-left: 10px;
 }
 
-.list-container{
-    width: 400px;
-    margin: 10px;
-    border-top: solid 2px #000;
-    border-right: solid 2px #000;
-    border-top-right-radius: 10px;
-    align-items: center;
-    align-content: center;
-    padding: 0;
-    margin: 0;
+
+.entire-team
+{
+    box-sizing: border-box;
+    padding: 20px;
+    display: table;
+    width: 500px;
+    margin-bottom: 30px;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    border-radius: 0 10px 0 0;
 }
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -10px;
-    margin-left: -10px;
+
+.AMG:hover
+{
+    border-color: #00D2BE;
 }
+
+.SDF:hover
+{
+    border-color: #DC0000;
+}
+
+.RDB:hover
+{
+    border-color: #0600EF;
+}
+
+.MCL:hover
+{
+    border-color: #FF8700;
+}
+
+.REN:hover
+{
+    border-color: #FFF500;
+}
+
+.AFR:hover
+{
+    border-color: #960000;
+}
+
+.RPO:hover
+{
+    border-color: #F596C8;
+}
+
+.SAT:hover
+{
+    border-color: #FFFFFF;
+}
+
+.HAS:hover
+{
+    border-color: #787878;
+}
+
+.WIL:hover
+{
+    border-color: #0082FA;
+}
+
 
 .constructeurImg
 {
-    text-align: center;
-    background-size: 12px;
-    background-repeat: repeat;
-    background-size: 8px;
-    border-radius: 10px;
-    overflow: hidden;
-    background-position-x: -1px;
+    width: 100%;
 }
 
+.constructeur-info
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-fieldset{
-    border: 0;
-    padding: 0;
-    margin: 0;
-    display: block;
-    margin-inline-start: 2px;
-    margin-inline-end: 2px;
-    padding-block-start: 0.35em;
-    padding-inline-start: 0.75em;
-    padding-inline-end: 0.75em;
-    padding-block-end: 0.625em;
-    min-inline-size: min-content;
-    width: 200px;
-} 
+.constructeur-nom
+{
+    font-size: 20px;
+}
 
+.constructeur-logo
+{
+    height: 40px;
+}
+
+.pilotes
+{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.pilote-nom
+{
+    text-align: center;
+}
+
+.pilotesImg
+{
+    height: 150px;
+    width: auto;
+}
+
+.grid-margin-top
+{
+    margin-top: 50px;
+}
+
+/*******************/
+/* DRIVER          */
+/*******************/
+.entire-driver
+{
+    display: table;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 500px;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    border-radius: 0 10px 0 0;
+    margin-bottom: 20px;
+}
+
+.pilotes-nom
+{
+    font-size: 30px;
+}
+
+.team-number
+{
+    display: inline;
+    margin-left: 111px;
+}
+
+.pilote-info-photo
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.numero
+{
+    font-size: 50px;
+    text-align: center;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.num-AMG
+{
+    color: #00D2BE;
+}
+
+.num-SDF
+{
+    color: #DC0000;
+}
+
+.num-RDB
+{
+    color: #0600EF;
+}
+
+.num-MCL
+{
+    color: #FF8700;
+}
+
+.num-REN
+{
+    color: #FFF500;
+}
+
+.num-AFR
+{
+    color: #960000;
+}
+
+.num-RPO
+{
+    color: #F596C8;
+}
+
+.num-SAT
+{
+    color: #FFFFFF;
+}
+
+.num-HAS
+{
+    color: #787878;
+}
+
+.num-WIL
+{
+    color: #0082FA;
+}
