@@ -77,7 +77,7 @@ CREATE TABLE `pilot_team` (
   `pilot_number` int(10) unsigned DEFAULT NULL,
   `data` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,7 +86,7 @@ CREATE TABLE `pilot_team` (
 
 LOCK TABLES `pilot_team` WRITE;
 /*!40000 ALTER TABLE `pilot_team` DISABLE KEYS */;
-INSERT INTO `pilot_team` VALUES (1,1,1,44,NULL),(2,3,3,33,NULL),(3,2,1,77,NULL),(4,5,2,5,NULL),(5,4,2,16,NULL),(6,3,3,33,NULL),(7,8,3,23,NULL),(8,6,4,55,NULL),(9,11,4,4,NULL),(10,9,5,3,NULL),(11,14,5,60,NULL),(12,12,6,7,NULL),(13,17,6,99,NULL),(14,10,7,11,NULL),(15,15,7,18,NULL),(16,13,8,26,NULL),(17,7,8,10,NULL),(18,18,9,8,NULL),(19,16,9,20,NULL),(20,19,10,63,NULL),(21,20,10,88,NULL),(22,26,1,313,NULL),(23,28,1,961,NULL);
+INSERT INTO `pilot_team` VALUES (1,1,1,44,NULL),(2,3,3,33,NULL),(3,2,1,77,NULL),(4,5,2,5,NULL),(5,4,2,16,NULL),(7,8,3,23,NULL),(8,6,4,55,NULL),(9,11,4,4,NULL),(10,9,5,3,NULL),(11,14,5,60,NULL),(12,12,6,7,NULL),(13,17,6,99,NULL),(14,10,7,11,NULL),(15,15,7,18,NULL),(16,13,8,26,NULL),(17,7,8,10,NULL),(18,18,9,8,NULL),(19,16,9,20,NULL),(20,19,10,63,NULL),(21,20,10,88,NULL),(22,26,1,313,NULL),(23,28,1,961,NULL),(24,29,10,6,NULL),(25,30,5,31,NULL);
 /*!40000 ALTER TABLE `pilot_team` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -107,7 +107,7 @@ CREATE TABLE `pilots` (
   `code` varchar(5) DEFAULT NULL,
   `still_driving` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,7 +116,7 @@ CREATE TABLE `pilots` (
 
 LOCK TABLES `pilots` WRITE;
 /*!40000 ALTER TABLE `pilots` DISABLE KEYS */;
-INSERT INTO `pilots` VALUES (1,'Lewis','Hamilton',NULL,NULL,NULL,'HAM',1),(2,'Valtteri','Bottas',NULL,NULL,NULL,'BOT',1),(3,'Max','Verstappen',NULL,NULL,NULL,'VER',1),(4,'Charles','Leclerc',NULL,NULL,NULL,'LEC',1),(5,'Sebastian','Vettel',NULL,NULL,NULL,'VET',1),(6,'Carlos','Sainz Jr',NULL,NULL,NULL,'SAI',1),(7,'Pierre','Gasly',NULL,NULL,NULL,'GAS',1),(8,'Alexander','Albon',NULL,NULL,NULL,'ALB',1),(9,'Daniel','Ricciardo',NULL,NULL,NULL,'RIC',1),(10,'Sergio','Perez',NULL,NULL,NULL,'PER',1),(11,'Lando','Norris',NULL,NULL,NULL,'NOR',1),(12,'Kimi','Raikkonen',NULL,NULL,NULL,'RAI',1),(13,'Daniil','Kvyat',NULL,NULL,NULL,'KVY',1),(14,'Nico','Hulkennberg',NULL,NULL,NULL,'HUL',1),(15,'Lance','Stroll',NULL,NULL,NULL,'STR',1),(16,'Kevin','Magnussen',NULL,NULL,NULL,'MAG',1),(17,'Antonio','Giovinazzi',NULL,NULL,NULL,'GIO',1),(18,'Romain','Grosjean',NULL,NULL,NULL,'GRO',1),(19,'Robert','Kubica',NULL,NULL,NULL,'KUB',1),(20,'Georges','Russel',NULL,NULL,NULL,'RUS',1),(26,'Mohammed-Bashir','Mahdi',NULL,NULL,NULL,'MHD',0),(28,'Rany','Ghazzawi',NULL,NULL,NULL,'GHA',1);
+INSERT INTO `pilots` VALUES (1,'Lewis','Hamilton',NULL,NULL,NULL,'HAM',1),(2,'Valtteri','Bottas',NULL,NULL,NULL,'BOT',1),(3,'Max','Verstappen',NULL,NULL,NULL,'VER',1),(4,'Charles','Leclerc',NULL,NULL,NULL,'LEC',1),(5,'Sebastian','Vettel',NULL,NULL,NULL,'VET',1),(6,'Carlos','Sainz Jr',NULL,NULL,NULL,'SAI',1),(7,'Pierre','Gasly',NULL,NULL,NULL,'GAS',1),(8,'Alexander','Albon',NULL,NULL,NULL,'ALB',1),(9,'Daniel','Ricciardo',NULL,NULL,NULL,'RIC',1),(10,'Sergio','Perez',NULL,NULL,NULL,'PER',1),(11,'Lando','Norris',NULL,NULL,NULL,'NOR',1),(12,'Kimi','Raikkonen',NULL,NULL,NULL,'RAI',1),(13,'Daniil','Kvyat',NULL,NULL,NULL,'KVY',1),(14,'Nico','Hulkennberg',NULL,NULL,NULL,'HUL',0),(15,'Lance','Stroll',NULL,NULL,NULL,'STR',1),(16,'Kevin','Magnussen',NULL,NULL,NULL,'MAG',1),(17,'Antonio','Giovinazzi',NULL,NULL,NULL,'GIO',1),(18,'Romain','Grosjean',NULL,NULL,NULL,'GRO',1),(19,'Robert','Kubica',NULL,NULL,NULL,'KUB',0),(20,'Georges','Russel',NULL,NULL,NULL,'RUS',1),(26,'Mohammed-Bashir','Mahdi',NULL,NULL,NULL,'MHD',0),(28,'Rany','Ghazzawi',NULL,NULL,NULL,'GHA',0),(29,'Nicholas','Latifi',NULL,NULL,NULL,'LAT',1),(30,'Esteban','Ocon',NULL,NULL,NULL,'OCO',1);
 /*!40000 ALTER TABLE `pilots` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -364,4 +364,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-27 20:49:19
+-- Dump completed on 2020-05-28 18:27:34

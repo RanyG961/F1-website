@@ -142,8 +142,12 @@ function create_account($is_admin){
     ){
         return false;
     }
-    
+    $nom = htmlspecialchars($nom);
+    $pwd = htmlspecialchars($pwd);
     $pwd = hash("sha256", $pwd);
+    $pseudo = htmlspecialchars($pseudo);
+    $birthdate = htmlspecialchars($birthdate);
+    $email = htmlspecialchars($email);
 
 
     try{
