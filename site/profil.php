@@ -1,6 +1,6 @@
 <?php require_once "header.php"; ?>
 
-<div id="test">
+<div id="profil">
     <h1> Profil de <?= $_SESSION['auth']['first_name'];?> <?= $_SESSION['auth']['last_name']; ?> ! </h1>
 
 

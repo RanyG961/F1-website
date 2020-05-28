@@ -1,6 +1,7 @@
 <?php 
      require 'header.php';
 ?>
+<link rel="stylesheet" href="css/inscriptionConnexion_style.css">
     <div class="formulaire">
         <h2 class="titre"> Inscription </h2>   
         <form id="formInscription" class="form-margin-top" action="confirmation_inscription.php" method="post">

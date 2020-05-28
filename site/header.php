@@ -11,12 +11,10 @@ init_session();
     <title>Index</title>
     <link rel="stylesheet" href="css/helmet_checkbox.css">
     <link rel="stylesheet" href="css/home_style.css">
-    <link rel="stylesheet" href="css/inscriptionConnexion_style.css">
     <link rel="stylesheet" href="css/classement_style.css">
 </head>
 
 <body>
-    
         <header>
         <?php if(is_logged()): ?>
             <div id="connexion">
@@ -73,9 +71,7 @@ init_session();
                         <a href="classement.php"> Classement </a>
                     </li>
 
-                    <li>
-                        <a href="calendrier.php"> Calendrier </a>
-                    </li>
+
                 </ul>
             </nav>
         </header>

@@ -167,3 +167,11 @@ h2 {
 #footerMenu li span {
     color: red;
 }
+
+#profil
+{
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 200px;
+}

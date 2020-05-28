@@ -3,11 +3,13 @@ header('Access-Control-Allow-Origin: *');  ?>
 
 <link rel="stylesheet" href="css/driverTeam_style.css">
 
-<div id="drivers">
+<div class="list">
+    <fieldset class="list-container">
+    <div id="driver">
         <?php
             $pilotes = afficherPilote_user();
             foreach($pilotes as $pilote):
-        ?>
+                ?>
         <div id="<?= $pilote['code']?>"> 
             <span class="first_name"> <?= $pilote['first_name'] ?> </span>   
             <span class="last_name">  <?= $pilote['last_name'] ?> </span>
@@ -17,6 +19,8 @@ header('Access-Control-Allow-Origin: *');  ?>
         </div> 
         
         <?php endforeach; ?>
+    </div>
+    </fieldset>
 </div>    
 
 <?php require_once "footer.php"; ?>

@@ -1,13 +1,57 @@
-#drivers {
+.list {
     width: 900px;
-    margin-left: auto;
-    margin-right: auto;
     margin-top: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    box-sizing: border-box;
+    flex-direction: row;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
-#teams {
-    width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 200px;
+.list-container{
+    width: 400px;
+    margin: 10px;
+    border-top: solid 2px #000;
+    border-right: solid 2px #000;
+    border-top-right-radius: 10px;
+    align-items: center;
+    align-content: center;
+    padding: 0;
+    margin: 0;
 }
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
+.constructeurImg
+{
+    text-align: center;
+    background-size: 12px;
+    background-repeat: repeat;
+    background-size: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-position-x: -1px;
+}
+
+
+fieldset{
+    border: 0;
+    padding: 0;
+    margin: 0;
+    display: block;
+    margin-inline-start: 2px;
+    margin-inline-end: 2px;
+    padding-block-start: 0.35em;
+    padding-inline-start: 0.75em;
+    padding-inline-end: 0.75em;
+    padding-block-end: 0.625em;
+    min-inline-size: min-content;
+    width: 200px;
+} 
+
