@@ -16,54 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `fp_results`
---
-
-DROP TABLE IF EXISTS `fp_results`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `fp_results` (
-  `fp_id` int(10) unsigned NOT NULL,
-  `pilot_id` int(10) unsigned NOT NULL,
-  `nb_laps` int(10) unsigned DEFAULT NULL,
-  `best_time` time(3) DEFAULT NULL,
-  PRIMARY KEY (`fp_id`,`pilot_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `fp_results`
---
-
-LOCK TABLES `fp_results` WRITE;
-/*!40000 ALTER TABLE `fp_results` DISABLE KEYS */;
-/*!40000 ALTER TABLE `fp_results` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `free_practice`
---
-
-DROP TABLE IF EXISTS `free_practice`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `free_practice` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `date` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `free_practice`
---
-
-LOCK TABLES `free_practice` WRITE;
-/*!40000 ALTER TABLE `free_practice` DISABLE KEYS */;
-/*!40000 ALTER TABLE `free_practice` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `pilot_team`
 --
 
@@ -77,7 +29,7 @@ CREATE TABLE `pilot_team` (
   `pilot_number` int(10) unsigned DEFAULT NULL,
   `data` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,7 +38,7 @@ CREATE TABLE `pilot_team` (
 
 LOCK TABLES `pilot_team` WRITE;
 /*!40000 ALTER TABLE `pilot_team` DISABLE KEYS */;
-INSERT INTO `pilot_team` VALUES (1,1,1,44,NULL),(2,3,3,33,NULL),(3,2,1,77,NULL),(4,5,2,5,NULL),(5,4,2,16,NULL),(7,8,3,23,NULL),(8,6,4,55,NULL),(9,11,4,4,NULL),(10,9,5,3,NULL),(11,14,5,60,NULL),(12,12,6,7,NULL),(13,17,6,99,NULL),(14,10,7,11,NULL),(15,15,7,18,NULL),(16,13,8,26,NULL),(17,7,8,10,NULL),(18,18,9,8,NULL),(19,16,9,20,NULL),(20,19,10,63,NULL),(21,20,10,88,NULL),(22,26,1,313,NULL),(23,28,1,961,NULL),(24,29,10,6,NULL),(25,30,5,31,NULL);
+INSERT INTO `pilot_team` VALUES (1,1,1,44,NULL),(2,3,3,33,NULL),(3,2,1,77,NULL),(4,5,2,5,NULL),(5,4,2,16,NULL),(7,8,3,23,NULL),(8,6,4,55,NULL),(9,11,4,4,NULL),(10,9,5,3,NULL),(11,14,5,60,NULL),(12,12,6,7,NULL),(13,17,6,99,NULL),(14,10,7,11,NULL),(15,15,7,18,NULL),(16,13,8,26,NULL),(17,7,8,10,NULL),(18,18,9,8,NULL),(19,16,9,20,NULL),(20,19,10,63,NULL),(21,20,10,88,NULL),(22,26,1,313,NULL),(23,28,1,961,NULL),(24,29,10,6,NULL),(25,30,5,31,NULL),(26,31,5,3,NULL),(27,32,5,3,NULL),(28,33,1,961,NULL);
 /*!40000 ALTER TABLE `pilot_team` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -107,7 +59,7 @@ CREATE TABLE `pilots` (
   `code` varchar(5) DEFAULT NULL,
   `still_driving` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,7 +68,7 @@ CREATE TABLE `pilots` (
 
 LOCK TABLES `pilots` WRITE;
 /*!40000 ALTER TABLE `pilots` DISABLE KEYS */;
-INSERT INTO `pilots` VALUES (1,'Lewis','Hamilton',NULL,NULL,NULL,'HAM',1),(2,'Valtteri','Bottas',NULL,NULL,NULL,'BOT',1),(3,'Max','Verstappen',NULL,NULL,NULL,'VER',1),(4,'Charles','Leclerc',NULL,NULL,NULL,'LEC',1),(5,'Sebastian','Vettel',NULL,NULL,NULL,'VET',1),(6,'Carlos','Sainz Jr',NULL,NULL,NULL,'SAI',1),(7,'Pierre','Gasly',NULL,NULL,NULL,'GAS',1),(8,'Alexander','Albon',NULL,NULL,NULL,'ALB',1),(9,'Daniel','Ricciardo',NULL,NULL,NULL,'RIC',1),(10,'Sergio','Perez',NULL,NULL,NULL,'PER',1),(11,'Lando','Norris',NULL,NULL,NULL,'NOR',1),(12,'Kimi','Raikkonen',NULL,NULL,NULL,'RAI',1),(13,'Daniil','Kvyat',NULL,NULL,NULL,'KVY',1),(14,'Nico','Hulkennberg',NULL,NULL,NULL,'HUL',0),(15,'Lance','Stroll',NULL,NULL,NULL,'STR',1),(16,'Kevin','Magnussen',NULL,NULL,NULL,'MAG',1),(17,'Antonio','Giovinazzi',NULL,NULL,NULL,'GIO',1),(18,'Romain','Grosjean',NULL,NULL,NULL,'GRO',1),(19,'Robert','Kubica',NULL,NULL,NULL,'KUB',0),(20,'Georges','Russel',NULL,NULL,NULL,'RUS',1),(26,'Mohammed-Bashir','Mahdi',NULL,NULL,NULL,'MHD',0),(28,'Rany','Ghazzawi',NULL,NULL,NULL,'GHA',0),(29,'Nicholas','Latifi',NULL,NULL,NULL,'LAT',1),(30,'Esteban','Ocon',NULL,NULL,NULL,'OCO',1);
+INSERT INTO `pilots` VALUES (1,'Lewis','Hamilton',NULL,NULL,NULL,'HAM',1),(2,'Valtteri','Bottas',NULL,NULL,NULL,'BOT',1),(3,'Max','Verstappen',NULL,NULL,NULL,'VER',1),(4,'Charles','Leclerc',NULL,NULL,NULL,'LEC',1),(5,'Sebastian','Vettel',NULL,NULL,NULL,'VET',1),(6,'Carlos','Sainz Jr',NULL,NULL,NULL,'SAI',1),(7,'Pierre','Gasly',NULL,NULL,NULL,'GAS',1),(8,'Alexander','Albon',NULL,NULL,NULL,'ALB',1),(9,'Daniel','Ricciardio',NULL,NULL,NULL,'RIC',1),(10,'Sergio','Perez',NULL,NULL,NULL,'PER',1),(11,'Lando','Norris',NULL,NULL,NULL,'NOR',1),(12,'Kimi','Raikkonen',NULL,NULL,NULL,'RAI',1),(13,'Daniil','Kvyat',NULL,NULL,NULL,'KVY',1),(14,'Nico','Hulkennberg',NULL,NULL,NULL,'HUL',0),(15,'Lance','Stroll',NULL,NULL,NULL,'STR',1),(16,'Kevin','Magnussen',NULL,NULL,NULL,'MAG',1),(17,'Antonio','Giovinazzi',NULL,NULL,NULL,'GIO',1),(18,'Romain','Grosjean',NULL,NULL,NULL,'GRO',1),(19,'Robert','Kubica',NULL,NULL,NULL,'KUB',0),(20,'Georges','Russel',NULL,NULL,NULL,'RUS',1),(26,'Mohammed-Bashir','Mahdi',NULL,NULL,NULL,'MHD',0),(28,'Rany','Ghazzawi',NULL,NULL,NULL,'GHA',0),(29,'Nicholas','Latifi',NULL,NULL,NULL,'LAT',1),(30,'Esteban','Ocon',NULL,NULL,NULL,'OCO',1);
 /*!40000 ALTER TABLE `pilots` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,77 +100,6 @@ INSERT INTO `prognosis` VALUES (1,25,13,12,1),(2,25,13,5,2),(3,25,13,4,3),(4,25,
 UNLOCK TABLES;
 
 --
--- Table structure for table `quali_results`
---
-
-DROP TABLE IF EXISTS `quali_results`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `quali_results` (
-  `quali_id` int(10) unsigned NOT NULL,
-  `pilot_id` int(10) unsigned NOT NULL,
-  `time` time(3) DEFAULT NULL,
-  PRIMARY KEY (`quali_id`,`pilot_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `quali_results`
---
-
-LOCK TABLES `quali_results` WRITE;
-/*!40000 ALTER TABLE `quali_results` DISABLE KEYS */;
-/*!40000 ALTER TABLE `quali_results` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `qualification`
---
-
-DROP TABLE IF EXISTS `qualification`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `qualification` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `date` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `qualification`
---
-
-LOCK TABLES `qualification` WRITE;
-/*!40000 ALTER TABLE `qualification` DISABLE KEYS */;
-/*!40000 ALTER TABLE `qualification` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `race`
---
-
-DROP TABLE IF EXISTS `race`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `race` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `laps` int(10) unsigned DEFAULT NULL,
-  `date` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `race`
---
-
-LOCK TABLES `race` WRITE;
-/*!40000 ALTER TABLE `race` DISABLE KEYS */;
-/*!40000 ALTER TABLE `race` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `race_results`
 --
 
@@ -245,31 +126,6 @@ INSERT INTO `race_results` VALUES (1,1,2,NULL),(1,2,1,NULL),(1,3,3,NULL),(1,4,5,
 UNLOCK TABLES;
 
 --
--- Table structure for table `race_we`
---
-
-DROP TABLE IF EXISTS `race_we`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `race_we` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `race_id` int(10) unsigned DEFAULT NULL,
-  `quali_id` int(10) unsigned DEFAULT NULL,
-  `fp_id` int(10) unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `race_we`
---
-
-LOCK TABLES `race_we` WRITE;
-/*!40000 ALTER TABLE `race_we` DISABLE KEYS */;
-/*!40000 ALTER TABLE `race_we` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `teams`
 --
 
@@ -283,8 +139,9 @@ CREATE TABLE `teams` (
   `car_name` varchar(255) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `code` varchar(5) DEFAULT NULL,
+  `still_racing` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,7 +150,7 @@ CREATE TABLE `teams` (
 
 LOCK TABLES `teams` WRITE;
 /*!40000 ALTER TABLE `teams` DISABLE KEYS */;
-INSERT INTO `teams` VALUES (1,'Mercedes-AMG','Mercedes','W11',NULL,'AMG'),(2,'Scuderia-Ferrari','Ferrari','SF1000',NULL,'SDF'),(3,'Red-Bull','Honda','RB16',NULL,'RDB'),(4,'McLaren-F1','Renault','MCL35',NULL,'MCL'),(5,'Racing-point','Renault','R.S.20',NULL,'REN'),(6,'Alfa-Romeo','Ferrari','C39',NULL,'AFR'),(7,'BWT Racing-Point','Mercedes','RP20',NULL,'RPO'),(8,'Scuderia-AlphaTauri','Honda','AT01',NULL,'SAT'),(9,'Haas-F1','Ferrari','VF-20',NULL,'HAS'),(10,'Williams-Racing','Mercedes','FW43',NULL,'WIL');
+INSERT INTO `teams` VALUES (1,'Mercedes-AMG','Mercedes','W11',NULL,'AMG',1),(2,'Scuderia-Ferrari','Ferrari','SF1000',NULL,'SDF',1),(3,'Red-Bull','Honda','RB16',NULL,'RDB',1),(4,'McLaren-F1','Renault','MCL35',NULL,'MCL',1),(5,'Renault-F1','Renault','R.S.20',NULL,'REN',1),(6,'Alfa-Romeo','Ferrari','C39',NULL,'AFR',1),(7,'Racing-point','Mercedes','RP20',NULL,'RPO',1),(8,'AlphaTauri','Honda','AT01',NULL,'SAT',1),(9,'Haas-F1','Ferrari','VF-20',NULL,'HAS',1),(10,'Williams-Racing','Mercedes','FW43',NULL,'WIL',1);
 /*!40000 ALTER TABLE `teams` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -365,4 +222,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-28 19:38:16
+-- Dump completed on 2020-05-29  3:29:49

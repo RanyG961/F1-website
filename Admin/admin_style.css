@@ -3,6 +3,7 @@ h1,
 ul,
 li,
 div,
+a,
 span,
 h2,
 h3 {
@@ -14,13 +15,194 @@ h3 {
     font-family: Arial;
 }
 
-th
+h1
 {
-    letter-spacing: 2px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-td 
-{
-    text-align: center;
+h1, h2{
+    font-style: oblique;
+    font-size: 32px;
+    font-family: arial;
     letter-spacing: 1px;
+    color: darkgrey;
+    text-align: center;
+    
+}
+
+h3{
+    font-style: oblique;
+    font-size: 20px;
+    font-family: arial;
+    letter-spacing: 1px;
+    color: darkgrey;
+    text-align: center;
+    margin-top: 5px;
+}
+
+
+.ajout {
+    display: table;
+    text-align: center;
+    padding: 30px 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 350px;
+}
+
+.bouton {
+    padding: 15px 10px;
+    background-color: red;
+    color: #F1F1F1;
+    border: none;
+    border-radius: 10px;
+}
+
+::placeholder {
+    text-align: center;
+    color: rgb(131, 2, 13);
+    opacity: 0.6;
+}
+
+.couple {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.couple input {
+    padding: 5px;
+    width: 180px;
+    height: 24px;
+}
+
+#all {
+    width: 100%;
+    min-height: 100%;
+    display: table;
+}
+
+#button-id {
+    display: block;
+    padding: 15px 10px;
+    font-size: 15px;
+    background-color: darkgrey;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tab {
+    border-collapse: collapse;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.tab thead tr {
+    background-color: darkred;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.tab th,
+.tab td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.tab tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.tab tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.tab tr:last-of-type {
+    border-bottom: 2px solid darkred;
+}
+
+.link {
+    color: lightskyblue;
+}
+
+.link:hover {
+    text-decoration: underline;
+    color: lightcoral;
+}
+
+#nom
+{
+    color: darkgrey;
+    text-decoration: none;
+}
+#nom:hover
+{
+    text-decoration: underline;
+    color: lightcoral;
+}
+
+#deconnexion
+{
+    float: right;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.formulaire {
+    text-align: center;
+    display: table;
+
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 100vh;
+    width: 500px;
+}
+
+.form-margin-top
+{
+    margin-top: 15px;
+}
+
+.formulaire .form-width
+{
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.formulaire .bouton
+{
+    margin-top: 25px;
+}
+.ajout .bouton
+{
+    margin-top: 5px;
+}
+
+.titre {
+    text-align: center;
+    font-size: 30px;
+}
+
+#formInscription {
+    margin-bottom: 10px;
+}
+
+nav
+{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }

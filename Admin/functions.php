@@ -184,7 +184,7 @@ function update_admin()
     $admin = "admin";
     $superadmin = "superadmin";
 
-    if(isset($confirme) && !empty($confirme))
+    if(isset($id) && !empty($id))
     {
         if(strcmp($type, $admin) == 0)
         {
@@ -197,7 +197,7 @@ function update_admin()
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $sth = $conn->prepare($sql);
-                $sth->execute(array($confirme));
+                $sth->execute(array($id));
             }
             catch(PDOException $e)
             {
@@ -216,7 +216,7 @@ function update_admin()
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $sth = $conn->prepare($sql);
-                $sth->execute(array($confirme));
+                $sth->execute(array($id));
             }
             catch(PDOException $e)
             {
@@ -235,7 +235,7 @@ function update_admin()
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $sth = $conn->prepare($sql);
-                $sth->execute(array($confirme));
+                $sth->execute(array($id));
             }
             catch(PDOException $e)
             {
@@ -250,24 +250,37 @@ function supprime_compte()
 {
     extract($_GET);
 
-    if(isset($supprime) && !empty($supprime))
+    if(isset($supprime) && !empty($supprime) )
     {
-        try
+        $option = intval($option, 10);
+        if($option === 1)
         {
-            $sql = "DELETE FROM users WHERE id = ?";
+            try
+            {
+                $sql = "DELETE FROM users WHERE id = ?";
 
-            $db = new dbClass();
-            $conn = $db->dbConnect();
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $db = new dbClass();
+                $conn = $db->dbConnect();
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $sth = $conn->prepare($sql);
-            $sth->execute(array($supprime));
+                $sth = $conn->prepare($sql);
+                $sth->execute(array($supprime));
+            }
+            catch(PDOException $e)
+            {
+                echo $e;
+                return false;
+            }
+            return true;
         }
-        catch(PDOException $e)
+        else
         {
-            echo $e;
             return false;
         }
+    }
+    else
+    {
+        return false;
     }
 }
 
@@ -469,7 +482,7 @@ function affichePilotes_admin()
 {
     try
     {
-        $sql = "SELECT p.id, p.first_name, p.last_name, p.code, p.still_driving, pt.pilot_number as numero, t.name as constructeur FROM pilots p, pilot_team pt, teams t WHERE p.id = pt.pilot_id AND pt.team_id = t.id;";
+        $sql = "SELECT p.id, p.first_name, p.last_name, p.code, p.still_driving, pt.pilot_number as numero, t.name as constructeur FROM pilots p, pilot_team pt, teams t WHERE p.id = pt.pilot_id AND pt.team_id = t.id ORDER BY p.id ASC;";
 
         $db = new dbClass();
         $conn = $db->dbConnect();
@@ -485,6 +498,166 @@ function affichePilotes_admin()
     catch(PDOException $e)
     {
         echo $e;
+        return false;
+    }
+}
+
+function insererEquipe()
+{
+    extract($_POST);
+
+    $equipe = htmlspecialchars($equipe);
+    $moteur = htmlspecialchars($moteur);
+    $monoplace = htmlspecialchars($monoplace);
+    $code = htmlspecialchars($code);
+
+    debug($_POST);
+
+    if(!isset($equipe, $moteur, $monoplace, $code))
+    {
+        return false;
+    }
+    elseif(empty($equipe) && empty($moteur) && empty($monoplace) && empty($code))
+    {
+        return false;
+    }
+
+    try
+    {
+        $sql = "INSERT INTO teams(name, engine, car_name, code) VALUES(?, ?, ?, ?);";
+
+        $db = new dbClass();
+        $conn = $db->dbConnect();
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sth = $conn->prepare($sql);
+        $sth->execute(array($equipe, $moteur, $monoplace, $code));
+    }
+    catch(PDOException $e)
+    {
+        echo $e;
+        return false;
+    }
+    return true;
+}
+
+function update_equipe()
+{
+    extract($_GET);
+    //debug($_GET);
+    $value = intval($value, 10);
+
+    if(isset($id) && !empty($id)) 
+    {
+        if($value === 1)
+        {
+            try 
+            {
+                $sql = "UPDATE teams SET still_racing = 0 WHERE id = ?";
+
+                $db = new dbClass();
+                $conn = $db->dbConnect();
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $sth = $conn->prepare($sql);
+                $sth->execute(array($id));
+            } catch (PDOException $e) {
+                echo $e;
+                return false;
+            }
+        }
+        else if($value === 0)
+        {
+            try 
+            {
+                $sql = "UPDATE teams SET still_racing = 1 WHERE id = ?";
+
+                $db = new dbClass();
+                $conn = $db->dbConnect();
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $sth = $conn->prepare($sql);
+                $sth->execute(array($id));
+            } catch (PDOException $e) {
+                echo $e;
+                return false;
+            }
+        }
+    }
+}
+
+function supprime_pilote()
+{
+    extract($_GET);
+
+    if(isset($supprime) && !empty($supprime) )
+    {
+        $option = intval($option, 10);
+        if($option === 2)
+        {
+            try
+            {
+                $sql = "DELETE FROM pilots WHERE id = ?";
+
+                $db = new dbClass();
+                $conn = $db->dbConnect();
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $sth = $conn->prepare($sql);
+                $sth->execute(array($supprime));
+            }
+            catch(PDOException $e)
+            {
+                echo $e;
+                return false;
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function supprime_equipe()
+{
+    extract($_GET);
+
+    if(isset($supprime) && !empty($supprime) )
+    {
+        $option = intval($option, 10);
+        if($option === 3)
+        {
+            try
+            {
+                $sql = "DELETE FROM teams WHERE id = ?";
+
+                $db = new dbClass();
+                $conn = $db->dbConnect();
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $sth = $conn->prepare($sql);
+                $sth->execute(array($supprime));
+            }
+            catch(PDOException $e)
+            {
+                echo $e;
+                return false;
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
         return false;
     }
 }

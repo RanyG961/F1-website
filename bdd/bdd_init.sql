@@ -48,50 +48,12 @@ CREATE TABLE tracks (
     turns INT UNSIGNED
 );
 
-CREATE TABLE race (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    laps INT UNSIGNED,
-    date DATE
-);
-
 CREATE TABLE race_results (
     race_id INT UNSIGNED REFERENCES race(id),
     pilot_id INT UNSIGNED REFERENCES pilots(id),
     position INT UNSIGNED,
     time TIME(3),
     PRIMARY KEY(race_id, pilot_id)
-);
-
-CREATE TABLE qualification (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    date DATE
-);
-
-CREATE TABLE quali_results (
-    quali_id INT UNSIGNED REFERENCES qualification(id),
-    pilot_id INT UNSIGNED REFERENCES pilot(id),
-    time TIME(3),
-    PRIMARY KEY(quali_id, pilot_id)
-);
-
-CREATE TABLE free_practice (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    date DATE
-);
-
-CREATE TABLE fp_results (
-    fp_id INT UNSIGNED REFERENCES free_practice(id),
-    pilot_id INT UNSIGNED REFERENCES pilot(id),
-    nb_laps INT UNSIGNED,
-    best_time TIME(3),
-    PRIMARY KEY(fp_id, pilot_id)
-);
-
-CREATE TABLE race_we (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    race_id INT UNSIGNED REFERENCES race(id),
-    quali_id INT UNSIGNED REFERENCES qualification(id),
-    fp_id INT UNSIGNED REFERENCES free_practice(id)
 );
 
 CREATE TABLE prognosis (
@@ -101,5 +63,45 @@ CREATE TABLE prognosis (
     pilot_id INT UNSIGNED REFERENCES pilot(id),
     position INT UNSIGNED
 );
+-- CREATE TABLE race (
+--     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+--     laps INT UNSIGNED,
+--     date DATE
+-- );
+
+
+-- CREATE TABLE qualification (
+--     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+--     date DATE
+-- );
+
+-- CREATE TABLE quali_results (
+--     quali_id INT UNSIGNED REFERENCES qualification(id),
+--     pilot_id INT UNSIGNED REFERENCES pilot(id),
+--     time TIME(3),
+--     PRIMARY KEY(quali_id, pilot_id)
+-- );
+
+-- CREATE TABLE free_practice (
+--     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+--     date DATE
+-- );
+
+-- CREATE TABLE fp_results (
+--     fp_id INT UNSIGNED REFERENCES free_practice(id),
+--     pilot_id INT UNSIGNED REFERENCES pilot(id),
+--     nb_laps INT UNSIGNED,
+--     best_time TIME(3),
+--     PRIMARY KEY(fp_id, pilot_id)
+-- );
+
+-- CREATE TABLE race_we (
+--     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+--     race_id INT UNSIGNED REFERENCES race(id),
+--     quali_id INT UNSIGNED REFERENCES qualification(id),
+--     fp_id INT UNSIGNED REFERENCES free_practice(id)
+-- );
+
+
 
 

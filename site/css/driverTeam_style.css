@@ -85,7 +85,14 @@
     align-items: center;
     justify-content: space-between;
 }
-
+.constructeur
+{
+    font-weight: bold;
+}
+.monoplace
+{
+    font-style: italic;
+}
 .constructeur-nom
 {
     font-size: 20px;
