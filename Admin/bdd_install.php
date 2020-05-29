@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8" />
     <title> Installation </title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin_style.css">
 </head>
 
 <body>
     <?php
-        include "functions.php";
+        include "functions_install.php";
     ?>
     <div id="all">
     <?php

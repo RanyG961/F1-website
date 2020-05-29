@@ -1,10 +1,4 @@
-<<?php
-require_once "../site/functions_users.php";
-init_session();
-require_once "functions.php";
-require_once "admin_header.php";
-?> 
-<?php if (is_logged() && $_SESSION['auth']['id'] == 1) : ?> 
+<?php if (!admin_exists()) : ?>
 <h1> Create an admin account </h1>
     <div class="formulaire">
         <form id="formInscription" class="form-margin-top" action="inscription_redirect.php" method="post">
