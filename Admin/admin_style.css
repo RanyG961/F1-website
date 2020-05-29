@@ -51,6 +51,10 @@ h3{
     margin-right: auto;
     width: 350px;
 }
+.ajoutPilote{
+    width: 100%;
+    box-sizing: border-box;
+}
 
 .bouton {
     padding: 15px 10px;
@@ -161,48 +165,33 @@ h3{
     margin-right: 5px;
 }
 
-.formulaire {
-    text-align: center;
-    display: table;
-
-    margin-left: auto;
-    margin-right: auto;
-    min-height: 100vh;
-    width: 500px;
-}
-
-.form-margin-top
-{
-    margin-top: 15px;
-}
-
-.formulaire .form-width
-{
-    width: 200px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.formulaire .bouton
-{
-    margin-top: 25px;
-}
-.ajout .bouton
-{
-    margin-top: 5px;
-}
-
-.titre {
-    text-align: center;
-    font-size: 30px;
-}
-
-#formInscription {
-    margin-bottom: 10px;
-}
-
 nav
 {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
 }
+
+.formulaire
+{
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.formulaire input
+{
+    display: table;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.connexion
+{
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+

@@ -22,7 +22,7 @@
         include "install_new_account_form.php";
     }
     else{
-        include "go_to_admin_page.php";
+        include "admin_home.php";
     }
 
     ?>

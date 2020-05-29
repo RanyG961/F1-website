@@ -9,13 +9,14 @@ function debug($variable)
 
 /**
  * Verify if nickname is available and valid
- * Return true if nickname is available and valid
+ * Return nothing
  */
 function nickname_exists()
 {
     extract($_POST);
     $errors = array();
     $pseudo = htmlspecialchars($pseudo);
+
     if(empty($pseudo) || !preg_match('/^[a-zA-Z0-9_]+$/', $pseudo))
     {
         $errors['pseudo'] = "Votre pseudo n'est pas valide";
@@ -128,8 +129,10 @@ function password_est_valide()
 function create_account($is_admin){
     //var_dump($_POST);
     extract($_POST);
-    $errors = array();
-    
+    //$errors = array();
+
+    debug($_POST);
+    echo $is_admin;
     // if something is not set, we return false
     if(!(isset($nom)
         && isset($prenom)
@@ -137,16 +140,26 @@ function create_account($is_admin){
         && isset($birthdate)
         && isset($email)
         && isset($pwd)
-        && isset($pwdConfirm)
-        && isset($tel) && isset($acceptTerms))
-    ){
+        && isset($pwdConfirm)))
+    {
+        echo "coucou";
         return false;
     }
+
+    if($is_admin === 0)
+    {
+        if(isset($acceptTerms) && isset($tel))
+        {
+            return false;
+        }
+    }
+
     $nom = htmlspecialchars($nom);
+    $prenom = htmlspecialchars($prenom);
     $pwd = htmlspecialchars($pwd);
     $pwd = hash("sha256", $pwd);
     $pseudo = htmlspecialchars($pseudo);
-    $birthdate = htmlspecialchars($birthdate);
+    $birthdate = $birthdate;
     $email = htmlspecialchars($email);
 
 
@@ -159,6 +172,8 @@ function create_account($is_admin){
 
         $sth = $conn->prepare($sql);
         $sth->execute(array($prenom, $nom, $birthdate, $pwd, $pseudo, $email, $is_admin));
+
+        echo "salut";
     }
     catch(PDOException $e){
         echo $e;
@@ -306,32 +321,78 @@ function modifierProfil()
     extract($_POST);
     $errors = [];
 
-    if(isset($pseudo) && !empty($pseudo))
-    {
-            try
-            {
-                $sql = "UPDATE users SET nickname = ? WHERE id = ?";
 
-                $db = new dbClass();
-                $conn = $db->dbConnect();
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-                $sth = $conn->prepare($sql);
-                $sth->execute(array($pseudo, $_SESSION["auth"]["id"]));
-
-                $_SESSION["auth"]["nickname"] = $pseudo;
-                return true;
-            }
-            catch(PDOException $e)
-            {
-                echo $e;
-                return false;
-            }
-    }
-    else
+    if(isset($pseudo) && !empty($pseudo) && (strcmp($_SESSION["auth"]["nickname"],$pseudo) != 0))
     {
-        return false;
+        $pseudo = htmlspecialchars($pseudo);
+        try
+        {
+            $sql = "UPDATE users SET nickname = ? WHERE id = ?";
+
+            $db = new dbClass();
+            $conn = $db->dbConnect();
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+            $sth = $conn->prepare($sql);
+            $sth->execute(array($pseudo, $_SESSION["auth"]["id"]));
+
+            $_SESSION["auth"]["nickname"] = $pseudo;
+            return true;
+        }
+        catch(PDOException $e)
+        {
+            echo $e;
+            return false;
+        }
     }
+    elseif(isset($email) && !empty($email))
+    {
+        $email = htmlspecialchars($email);
+        try
+        {
+            $sql = "UPDATE users SET mail = ? WHERE id = ?";
+
+            $db = new dbClass();
+            $conn = $db->dbConnect();
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+            $sth = $conn->prepare($sql);
+            $sth->execute(array($email, $_SESSION["auth"]["id"]));
+
+            $_SESSION["auth"]["mail"] = $email;
+            return true;
+        }
+        catch(PDOException $e)
+        {
+            echo $e;
+            return false;
+        }
+    }
+    elseif(isset($pwd, $pwdConfirm) && !empty($pwd) && !empty($pwdConfirm))
+    {
+        $pwd = htmlspecialchars($pwd);
+        $pwd = hash("sha256", $pwd);
+
+        try
+        {
+            $sql = "UPDATE users SET password = ? WHERE id = ?";
+
+            $db = new dbClass();
+            $conn = $db->dbConnect();
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+            $sth = $conn->prepare($sql);
+            $sth->execute(array($pwd, $_SESSION["auth"]["id"]));
+
+            return true;
+        }
+        catch(PDOException $e)
+        {
+            echo $e;
+            return false;
+        }
+    }
+    return false;
 }
 
 function pronosticExist()

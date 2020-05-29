@@ -71,7 +71,7 @@ require_once "admin_header.php";
 <?php else: ?>
     <div class="formulaire">
         <h2 class="titre"> Connexion </h2>
-        <form class="ajout" action="connexion_redirect.php" method="POST">
+        <form class="connexion" action="connexion_redirect.php" method="POST">
                 <input type="text" placeholder="Identifiant" id="identifiant" name="identifiant"  required />
                 <input type="password" id="pwd" name="pwd" placeholder="Mot de passe"  required />
                 <input type="submit" value="Connexion" class="bouton"/>

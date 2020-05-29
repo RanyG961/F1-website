@@ -4,7 +4,7 @@
   
     require 'header.php';
 ?>
-<link rel="stylesheet" href="css/inscriptionConnexion_style.css">
+_style.css">
     <div class="formulaire">
         <h2 class="titre"> Connexion </h2>
         <form id="formConnexion" class="form-margin-top" action="confirmation_connexion.php" method="POST">

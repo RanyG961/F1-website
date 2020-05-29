@@ -6,14 +6,22 @@ if(!pronosticExist())
 {
     if(insert_pronostic())
     {
-        echo "Votre pronostic a été bien pris en compte";
+        
+        if(position())
+        {
+            echo "Votre pronostic a été bien pris en compte";
+        }
+        else
+        {
+            echo "Votre pronostic n'a pas été bien pris en compte";
+        }
     }
     else
     {
-        echo "Problème lors de la saisie de votre pronostic";
+        echo "Votre pronostic n'a pas été bien pris en compte";
     }
 }
 else
 {
-    echo "t as déjà pronostiqué frérot";
+    echo "Vous avez déjà pronostiqué";
 }

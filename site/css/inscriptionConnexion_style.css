@@ -49,13 +49,7 @@
     opacity: 0.6;
 }
 
-.bouton {
-    padding: 15px 10px;
-    background-color: red;
-    color: #F1F1F1;
-    border: none;
-    border-radius: 10px;
-}
+
 
 .formulaire .bouton
 {
@@ -100,4 +94,25 @@
     border-color: red;
 }
 
+#profil
+{
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 200px;
+}
 
+
+#editerProfil
+{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#profil h1
+{
+    text-align: center;
+}

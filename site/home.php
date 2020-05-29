@@ -6,18 +6,23 @@
             <div id="preTweets">
                 <div id="presentation">
                     <p id="presentationF1"> 
-                        La Formule 1 aussi appelé F1, est une des fameuses discipline du sport automobile, elle est aussi considérée comme la catégorie reine de ce sport.
-
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam non vulputate dui. Donec feugiat ligula massa, sed posuere justo auctor ac. Ut tellus orci, ultricies quis tincidunt ut, semper nec metus. Phasellus congue nisl ipsum, malesuada viverra eros pulvinar ut. Duis erat nulla, finibus sit amet fermentum ac, consectetur at neque. Aliquam sodales neque sed orci porttitor finibus. Nunc a odio eget tellus interdum gravida vel non orci. Vestibulum nunc nisi, commodo id erat sed, blandit iaculis augue. Mauris ex sem, convallis porttitor elementum a, rutrum et massa. Etiam porta augue eros, ut aliquet nulla viverra sed. Proin consequat at nisl id gravida. Mauris vel dolor nisi. Donec quis quam bibendum, blandit odio sit amet, ultricies tortor. 
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam non vulputate dui. Donec feugiat ligula massa, sed posuere justo auctor ac. Ut tellus orci, ultricies quis tincidunt ut, semper nec metus. Phasellus congue nisl ipsum, malesuada viverra eros pulvinar ut. Duis erat nulla, finibus sit amet fermentum ac, consectetur at neque. Aliquam sodales neque sed orci porttitor finibus. Nunc a odio eget tellus interdum gravida vel non orci. Vestibulum nunc nisi, commodo id erat sed, blandit iaculis augue. Mauris ex sem, convallis porttitor elementum a, rutrum et massa. Etiam porta augue eros, ut aliquet nulla viverra sed. Proin consequat at nisl id gravida. Mauris vel dolor nisi. Donec quis quam bibendum, blandit odio sit amet, ultricies tortor. 
+                    La Formule 1 est généralement abrégée en F1, qui est une discipline des sports mécaniques et est considérée comme la principale catégorie de ce sport. Au fil des ans, elle s'est propagé dans le monde entier, avec les Jeux Olympiques et la Coupe du Monde de Football, est devenue l'un des événements sportifs les plus connus et célèbres.
+                    <br>
+                    Depuis 1950, le Championnat du monde d'auto est organisé chaque année et depuis 1958, le championnat du monde est proposé aux constructeurs automobiles. La compétition est basée sur le Grand Prix, avec des courses de monoplaces sur des routes fermées en permanence, mais parfois sur des villes et des circuits temporaires comme Monaco, Singapour et Bakou..
+                    <br>
+                    Ce sport est géré par la Fédération internationale de l'automobile (FIA), géré par la Formula One Authority (FOA) et une série de sociétés satellites contrôlées par Liberty Media. Après l'ère des artisans dans les années 1960 et 1970, il a progressivement attiré de grands constructeurs automobiles mondiaux, qui y ont investi beaucoup d'argent, espérant utiliser les médias pour signaler d'éventuels succès. 
+                    La Formule 1 est considérée comme une vitrine technologique pour l'industrie automobile. La voiture expérimente des innovations technologiques, parfois dérivées de la technologie spatiale, qui peuvent ensuite être appliquées aux voitures de série. En plus de la compétition, le terme de Formule 1 représente également toutes les règles techniques de la monoplace que la FIA met à jour chaque année.
+                    <br>
+                    Ces règles sont très strictes sur la taille de la voiture, la cylindrée du moteur et la technologie utilisée. Ils ont également défini des mesures de sécurité automobile pour assurer la protection du conducteur. Les voitures monoplaces qui satisfont aux exigences du règlement de la Formule Un sont généralement mentionnées dans les conditions générales de la Formule Un.
                     </p>
                     <p id="presentationSite">
-                        Praesent urna orci, mollis in nulla eu, efficitur tincidunt lectus. Aliquam erat volutpat. Vivamus posuere ultrices laoreet. Suspendisse at augue eget lectus ullamcorper pulvinar semper sed nisi. Cras semper ornare maximus. Curabitur at lectus a velit euismod accumsan. Mauris lacinia sollicitudin risus vitae iaculis.
-
-                        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec mattis, leo in pellentesque viverra, orci nulla posuere magna, sit amet luctus erat ligula vitae lorem. Nam varius nisl tortor, eget sodales eros posuere nec. Morbi ac odio pharetra, commodo dui non, viverra nulla. Suspendisse porta tellus in consequat sollicitudin. Aenean et tristique nisi. Phasellus ultrices dolor sed dui rutrum, et interdum mauris maximus.
-
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam non vulputate dui. Donec feugiat ligula massa, sed posuere justo auctor ac. Ut tellus orci, ultricies quis tincidunt ut, semper nec metus. Phasellus congue nisl ipsum, malesuada viverra eros pulvinar ut. Duis erat nulla, finibus sit amet fermentum ac, consectetur at neque. Aliquam sodales neque sed orci porttitor finibus. Nunc a odio eget tellus interdum gravida vel non orci. Vestibulum nunc nisi, commodo id erat sed, blandit iaculis augue. Mauris ex sem, convallis porttitor elementum a, rutrum et massa. Etiam porta augue eros, ut aliquet nulla viverra sed. Proin consequat at nisl id gravida. Mauris vel dolor nisi. Donec quis quam bibendum, blandit odio sit amet, ultricies tortor. 
-                        ...
+                    Notre site web vise et a pour objectif d'être votre meilleur accompagnant lors de chaque week-end de grand-prix, il vise aussi à être le site web qui vous permettra de ne plus avoir à dire à vos amis et aux autres passionnés comme vous un certain "tu vois je te l'avais dit qu'y aura ce classement à la fin de la course", votre pronostic se chargera de le faire pour vous !
+                    <br>
+                    Ce site vous permettra de voir le classement de chaque pilote, constructeur mais aussi joueur et surtout il vous permettra donc de pronostiquer chaque course que vous souhaitez pour que vous puissiez vous comparer et vivre pleinement avec tout les passionnés comme vous chaque saison de Formule 1.
+                    <br>
+                    Pour que ce projet puisse atteindre cet objectif, nous nous sommes inspirés du site officiel de la Formule 1 car qui d'autre que le site de la discipline elle-même, pourra vous faire ressentir et ressortir ce monde si exclusif qu'est la Formule 1.
+                    <br>
+                    Mais à la différence du site officiel, nous avons décidé d'opter pour un site plus épuré et simplifié avec des fonctionnalités simples mais qui va à l'essentiel pour pouvoir garder cette authenticité et ne pas sentir une si grande différence entre le site d'une entreprise de plusieurs milliards de dollars et le site d'un passionné.
                     </p>
                 </div>
                 <div id="tweets">
@@ -26,7 +31,7 @@
             </div>
                 
             <div id="classement">
-                <script src="classementCourse.fetch.js"></script>
+                <script src="js/classementCourse.fetch.js"></script>
                 <h2> Classement </h2>
                 <ul id="classementGeneral">
                     <li id="pilotes"> Pilotes </li>

@@ -13,11 +13,11 @@ require_once "admin_header.php";
 
     <h3> Ajouter un pilote</h3>
     <form class="ajout" action="ajout_pilote.php" method="post">
-            <input type="text" placeholder="Nom" id="nom" name="nom" required />
-            <input type="text" placeholder="Prénom" id="prenom" name="prenom" required />
-            <input type="text" placeholder="Code (3 premières lettres)" id="code" name="code" required />
-            <input type="number" placeholder="Numéro" id="numero" name="numero" required />
-            <select name="equipe">
+            <input class="ajoutPilote" type="text" placeholder="Nom" id="nomP" name="nom" required />
+            <input class="ajoutPilote" type="text" placeholder="Prénom" id="prenom" name="prenom" required />
+            <input class="ajoutPilote" type="text" placeholder="Code (3 premières lettres)" id="code" name="code" required />
+            <input class="ajoutPilote" type="number" placeholder="Numéro" id="numero" name="numero" required />
+            <select class="ajoutPilote" name="equipe">
                     <?php $equipes = afficheEquipes(); 
                           foreach($equipes as $equipe): 
                     ?>

@@ -12,12 +12,19 @@
     margin-top: 15px;
 }
 
+#divPrognosis
+{
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .draggable
 {
     padding: 1rem;
     background-color: #F1F1F1;
     border: 1px solid red;
-    cursor: move;
+    cursor: grab;
     text-align: center;
 }
 
@@ -34,6 +41,26 @@
     margin-top: 200px;
 }
 
+.bouton {
+    padding: 15px 10px;
+    background-color: red;
+    color: #F1F1F1;
+    border: none;
+    border-radius: 10px;
+}
+
+#boutonPronostic
+{
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+} 
+
+
 .annee-list
 {
     margin-bottom: 7px;
@@ -49,7 +76,7 @@
     justify-content: center;
 }
 
-.table-pilote, .table-constructeur
+.table-pilote, .table-constructeur, .table-joueur
 {
     display: table;
     width:80%;
@@ -57,7 +84,12 @@
     margin-right: auto;
 }
 
-#tablePilote, #tableConstructeur
+#tableJoueur
+{
+    text-align: center;
+}
+
+#tablePilote, #tableConstructeur, #tableJoueur
 {
     display: table;
     width:80%;

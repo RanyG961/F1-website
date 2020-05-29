@@ -88,80 +88,14 @@ function generateTable(table, data) {
                 span.innerHTML = element[key]
                 cell.appendChild(span)
             }
-            else if(key == "Rang" || key == "Numéro"){
+            else{
                 let span = document.createElement("div")
                 span.setAttribute("class", "center-cell")
                 span.innerHTML = element[key]
                 cell.appendChild(span)
             }
-            else{
-                let text = document.createTextNode(element[key]);
-                cell.appendChild(text);
-            }
-            
         }
     }
-}
-
-function affichageListeAnnee() {
-    let classement = document.getElementById("classement")
-    let date = new Date()
-    let annee_fin = date.getFullYear()
-
-    let annee_liste = document.createElement("ul")
-    annee_liste.setAttribute("id", `annee-list`)
-
-    classement.appendChild(annee_liste)
-
-    for (let annee = 2000; annee < annee_fin; annee++) {
-        let li = document.createElement("li")
-
-        li.setAttribute("id", `annee-list-${annee}`)
-        li.setAttribute("class", `annee-list`)
-        annee_liste.appendChild(li)
-
-        let div = document.createElement("div")
-        div.setAttribute("class", "year-button")
-        div.innerHTML = annee
-        li.appendChild(div)
-    }
-
-
-    for (let annee = 2000; annee < annee_fin; annee++) {
-        let li = document.getElementById(`annee-list-${annee}`)
-
-        li.addEventListener('click', () => {
-            let table_pilote = document.createElement("table")
-            let table_constructeur = document.createElement("table")
-            table_pilote.setAttribute("id", `table-pilote-${annee}`)
-            table_constructeur.setAttribute("id", `table-constructeur-${annee}`)
-
-            table_pilote.setAttribute("class", `table-pilote`)
-            table_constructeur.setAttribute("class", `table-constructeur`)
-
-            let to_remove = document.getElementsByClassName("annee-list")
-
-            for (let annee_bis = 2000; annee_bis < annee_fin; annee_bis++) {
-                let li_bis = document.getElementById(`annee-list-${annee_bis}`)
-                let tp = document.getElementById(`table-pilote-${annee_bis}`)
-                let tc = document.getElementById(`table-constructeur-${annee_bis}`)
-
-                if (tp != null && annee_bis != annee) {
-                    li_bis.removeChild(tp)
-                    li_bis.removeChild(tc)
-                }
-                else if (annee_bis == annee && tp == null) {
-                    li.appendChild(table_pilote)
-                    li.appendChild(table_constructeur)
-
-                    demandeClassement(annee, `table-pilote-${annee}`, `table-constructeur-${annee}`)
-                }
-
-            }
-        })
-    }
-
-
 }
 
 function affichagePilote(classementsPilote, table) {
@@ -171,15 +105,11 @@ function affichagePilote(classementsPilote, table) {
     classementsPilote.forEach(function (classement, rang) {
         var pilote = Object.assign({}, classement.Driver)
         //console.log(`Rang : ${rang + 1} - ${pilote.permanentNumber}  ${pilote.givenName} ${pilote.familyName} - Points : ${classement.points}`)
-        let numero = ""
-        if(pilote.permanentNumber){
-            numero = pilote.permanentNumber
-        }
         titre.push
             (
                 {
                     Rang: rang + 1,
-                    Numéro: numero,
+                    Numéro: pilote.permanentNumber,
                     Pilote: pilote.givenName + " " + pilote.familyName,
                     Nationalité: pilote.nationality,
                     Constructeur: classement.Constructor.name,
@@ -216,17 +146,16 @@ function affichageConstructeur(classementsConstructeur, table) {
     generateTableHead(table, data)
 }
 
-const demandeClassement = async function(annee, table_pilote, table_constructeur)
+const demandeClassement = async function()
 {
     try
     {
-        let dataCourses = await fetch(`php_fetch.php?annee=${annee}`)
+        let dataCourses = await fetch("races_json/2019_races.json")
         let dataJoueurs = await fetch("races_json/position.json")
 
         if(dataCourses.ok && dataJoueurs.ok)
         {
             let rep = await dataCourses.json()
-
             let repJoueurs = await dataJoueurs.json()
 
             var classements = generateRanking(rep.MRData.RaceTable.Races)
@@ -234,9 +163,9 @@ const demandeClassement = async function(annee, table_pilote, table_constructeur
             var classementsPilote = classements.classementPilote
             var classementsJoueur = generateRanking_joueurs(repJoueurs)
 
-            var table = document.querySelector("table")
-            var tablePilotes = document.getElementById(table_pilote)
-            var tableConstructeurs = document.getElementById(table_constructeur)
+            // var table = document.querySelector("table")
+            var tablePilotes = document.getElementById("tablePilote")
+            var tableConstructeurs = document.getElementById("tableConstructeur")
             let tableJoueurs = document.getElementById("tableJoueur")
 
             let pilotes = document.getElementById("pilotes")
@@ -302,83 +231,50 @@ function affichageJoueurs(classementJoueurs, table)
 function generateRanking_joueurs(rep)
 {
         let contestant = {} 
-            let contestants_array = []
-            let i
-            
-            let points = 0
+        let contestants_array = []
+        let i
 
-            //console.log(joueur + " " + p_pilotID + " " + p_position + " " + p_raceID + " " + r_pilotID + " " + r_position + " " + r_raceID)
+        for (i = 0; i < rep.length; i++) {
+            let joueurs = rep[i].user_nickname
 
-            for(i = 0; i < rep.length; i++)
-            {
-                let joueurs = rep[i].user_nickname
+            let p_pilotID = rep[i].pronostic_pilotID
+            let p_position = rep[i].pronostic_position
+            let p_raceID = rep[i].pronostic_raceID
 
-                let p_pilotID = rep[i].pronostic_pilotID
-                let p_position = rep[i].pronostic_position
-                let p_raceID = rep[i].pronostic_raceID
+            let r_pilotID = rep[i].raceResultat_pilotID
+            let r_position = rep[i].raceResultat_position
+            let r_raceID = rep[i].raceResultat_raceID
 
-                let r_pilotID = rep[i].raceResultat_pilotID
-                let r_position = rep[i].raceResultat_position
-                let r_raceID = rep[i].raceResultat_raceID
 
-                
-                if((p_pilotID === r_pilotID) && (p_position === r_position) && (p_raceID === r_raceID))
-                {
-                    points++
-                    if (typeof contestant[joueurs] === 'undefined') {
-                        contestant[joueurs] = {
-                            Joueur: joueurs,
-                            points: 0
-                        }
+            if ((p_pilotID === r_pilotID) && (p_position === r_position) && (p_raceID === r_raceID)) {
+
+                if (typeof contestant[joueurs] === 'undefined') {
+                    contestant[joueurs] = {
+                        Joueur: joueurs,
+                        points: 0
                     }
-                    contestant[joueurs].points += points
                 }
+                contestant[joueurs].points++
             }
+        }
 
-           /*  rep.forEach(rep => {
-                let joueurs = rep.user_nickname
+        for (let joueur in contestant) {
+            contestants_array.push(
+                contestant[joueur]
+            )
+        }
 
-                joueurs.forEach(joueur => {
-                    let p_pilotID = rep.pronostic_pilotID
-                    let p_position = rep.pronostic_raceID
-                    let p_raceID = rep.pronostic_raceID
+        contestants_array.sort((d1, d2) => {
+            console.log(contestants_array)
+            return d2.points - d1.points
+        })
 
-                    let r_pilotID = rep.raceResultat_pilotID
-                    let r_position = rep.raceResultat_position
-                    let r_raceID = rep.raceResultat_raceID
-
-                    if((p_pilotID === r_pilotID) && (p_position === r_position) && (p_raceID === r_raceID))
-                    {
-                        points++
-                        if (typeof contestant[joueurs] === 'undefined') {
-                            contestant[joueurs] = {
-                                Joueur: joueurs,
-                                points: 0
-                            }
-                        }
-                        contestant[joueurs].points += points
-                    }
-                })
-            }) */
-
-            for(let joueur in contestant)
-            {
-                contestants_array.push(
-                    contestant[joueur]
-                )
-            }
-
-            contestants_array.sort((d1, d2) => {
-                console.log(contestants_array)
-                return d2.points - d1.points
-            })
-
-            return contestants_array
+        return contestants_array
 }
 
 
 function main() {
-    affichageListeAnnee()
+    demandeClassement()
 }
 
 window.onload = main

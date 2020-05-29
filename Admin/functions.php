@@ -36,7 +36,7 @@ function verif_utilisateur_admin()
         $sth = $conn->prepare($sql);
         $sth->execute(array(':identifiant' => $identifiant, ':password_clear' => $password_clear));
 
-        $result = $sth->fetch();
+            $result = $sth->fetch();
 
         if($result)
         {
@@ -215,7 +215,7 @@ function affichePilotes()
 {
     try
     {
-        $sql = "SELECT * FROM pilots";
+        $sql = "SELECT * FROM pilots WHERE still_driving = 1";
 
         $db = new dbClass();
         $conn = $db->dbConnect();

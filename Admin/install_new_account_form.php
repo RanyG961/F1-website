@@ -1,4 +1,3 @@
-<?php if (!admin_exists()) : ?>
 <h1> Create an admin account </h1>
     <div class="formulaire">
         <form id="formInscription" class="form-margin-top" action="inscription_redirect.php" method="post">
@@ -14,7 +13,4 @@
         </div>
         </form>
     </div>
-<?php else :
-        header("Location: admin_home.php");
-?>
-<?php endif; ?>
+

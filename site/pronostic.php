@@ -1,9 +1,9 @@
 <?php require_once "header.php"; ?>
 
 <!-- <script src="pronostic_ajax.js"></script> -->
-<script src="pronostic.fetch.js"></script>
+<script src="js/pronostic.fetch.js"></script>
 
-<form id="formPrognosis">
+<div id="divPrognosis">
     <div id="listeCircuits">
 
     </div>
@@ -15,6 +15,7 @@
     <?php if(is_logged()): ?>
         <input type="button" value="Confirmer" class="bouton" id="boutonPronostic"/>
     <?php endif; ?>
-</form>
+    
+    </div>
 
 <?php require_once "footer.php"; ?>

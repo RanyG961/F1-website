@@ -15,9 +15,8 @@ CREATE TABLE pilots (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(255),
     last_name VARCHAR(255),
-    birthdate DATE,
-    twitter VARCHAR(255),
-    instagram VARCHAR(255)
+    code VARCHAR(5),
+    still_driving BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE teams (
@@ -25,7 +24,8 @@ CREATE TABLE teams (
     name VARCHAR(255),
     engine VARCHAR(255),
     car_name VARCHAR(255),
-    date DATE
+    code varchar(5),
+    still_driving BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE pilot_team (
@@ -33,23 +33,18 @@ CREATE TABLE pilot_team (
     pilot_id INT REFERENCES pilots(id),
     team_id INT REFERENCES teams(id),
     pilot_number INT UNSIGNED,
-    data DATE
 );
 
 CREATE TABLE tracks (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255),
     country VARCHAR(255),
-    city VARCHAR(255),
-    length FLOAT,
-    turns INT UNSIGNED
+    circuitID varchar(20)
 );
 
 CREATE TABLE race_results (
     race_id INT UNSIGNED REFERENCES race(id),
     pilot_id INT UNSIGNED REFERENCES pilots(id),
     position INT UNSIGNED,
-    time TIME(3),
     PRIMARY KEY(race_id, pilot_id)
 );
 
