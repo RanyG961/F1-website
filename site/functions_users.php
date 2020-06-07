@@ -127,11 +127,7 @@ function password_est_valide()
  * Return true if succesfully created
  */
 function create_account($is_admin){
-    //var_dump($_POST);
     extract($_POST);
-    //$errors = array();
-
-    debug($_POST);
     echo $is_admin;
     // if something is not set, we return false
     if(!(isset($nom)
@@ -142,13 +138,12 @@ function create_account($is_admin){
         && isset($pwd)
         && isset($pwdConfirm)))
     {
-        echo "coucou";
         return false;
     }
 
-    if($is_admin === 0)
+    if($is_admin === 1)
     {
-        if(isset($acceptTerms) && isset($tel))
+        if(!(isset($acceptTerms) && isset($tel)))
         {
             return false;
         }
