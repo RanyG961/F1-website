@@ -14,6 +14,7 @@ require_once "admin_header.php";
     <nav>
         <a class="link" href="equipes.php"> Equipes </a>
         <a class="link" href="pilotes.php"> Pilotes </a>
+        <a class="link" href="circuits.php"> Circuits </a>
     </nav>
     <h2> Liste des membres </h2>
 

@@ -65,7 +65,7 @@ require_once "admin_header.php";
             </td>
             <?php if($_SESSION['auth']['id'] == 1): ?>
                     <td> <a class="link" href="supprime_compte.php?option=2&supprime=<?= $pilote['id'] ?>"> Supprimer </a> </td>
-                <?php endif; ?>
+            <?php endif; ?>
         </tr>
         <?php endforeach; ?>
     </table>

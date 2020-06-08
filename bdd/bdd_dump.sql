@@ -170,7 +170,7 @@ CREATE TABLE `tracks` (
   `turns` int(10) unsigned DEFAULT NULL,
   `circuitID` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,7 +179,7 @@ CREATE TABLE `tracks` (
 
 LOCK TABLES `tracks` WRITE;
 /*!40000 ALTER TABLE `tracks` DISABLE KEYS */;
-INSERT INTO `tracks` VALUES (1,NULL,'Australie',NULL,NULL,NULL,'albert_park'),(2,NULL,'Bahrein',NULL,NULL,NULL,'bahrain'),(3,NULL,'Chine',NULL,NULL,NULL,'shanghai'),(4,NULL,'Azerbaidjan',NULL,NULL,NULL,'BAK'),(5,NULL,'Espagne',NULL,NULL,NULL,'catalunya'),(6,NULL,'Monaco',NULL,NULL,NULL,'monaco'),(7,NULL,'Canada',NULL,NULL,NULL,'villeneuve'),(8,NULL,'France',NULL,NULL,NULL,'ricard'),(9,NULL,'Autriche',NULL,NULL,NULL,'red_bull_ring'),(10,NULL,'Grande-Bretagne',NULL,NULL,NULL,'silverstone'),(11,NULL,'Allemagne',NULL,NULL,NULL,'hockenheimring'),(12,NULL,'Hongrie',NULL,NULL,NULL,'hungaroring'),(13,NULL,'Belgique',NULL,NULL,NULL,'spa'),(14,NULL,'Italie',NULL,NULL,NULL,'monza'),(15,NULL,'Singapour',NULL,NULL,NULL,'marina_bay'),(16,NULL,'Russie',NULL,NULL,NULL,'sochi'),(17,NULL,'Japon',NULL,NULL,NULL,'suzuka'),(18,NULL,'Mexique',NULL,NULL,NULL,'rodriguez'),(19,NULL,'USA',NULL,NULL,NULL,'americas'),(20,NULL,'Bresil',NULL,NULL,NULL,'interlagos'),(21,NULL,'EAU',NULL,NULL,NULL,'yas_marina');
+INSERT INTO `tracks` VALUES (1,'Circuit de l\'Albert Park','Australie','Melbourne',5.303,58,'albert_park'),(2,'Circuit de Sakhir','Bahrein','Sakhir',5.412,57,'bahrain'),(3,'Circuit de Shanghai','Chine','Shanghai',5.451,56,'shanghai'),(4,'Circuit de Bakou','Azerbaidjan','Bakou',6.003,51,'BAK'),(5,'Circuit de Barcelona-Catalunya','Espagne','Barcelone',4.655,66,'catalunya'),(6,'Circuit de Monaco','Monaco','Monaco',3.337,78,'monaco'),(7,'Circuit Gilles Villeneuve','Canada','Montreal',4.361,70,'villeneuve'),(8,'Circuit Paul Ricard','France','Castellet',5.842,53,'ricard'),(9,'Red Bull Ring','Autriche','Spielberg',4.318,71,'red_bull_ring'),(10,'Circuit de Silverstone','Grande-Bretagne','Silverstone',5.891,52,'silverstone'),(11,'HockenheimRing','Allemagne','Hockenheim',4.574,67,'hockenheimring'),(12,'Hungaroring','Hongrie','Budapest',4.381,70,'hungaroring'),(13,'Circuit de Spa-Francorchamps','Belgique','Francorchamps',7.004,44,'spa'),(14,'Circuit de Monza','Italie','Monza',5.793,53,'monza'),(15,'Circuit de Marina Bay','Singapour','Singapour',5.073,61,'marina_bay'),(16,'Circuit de Sotchi','Russie','Sotchi',5.872,53,'sochi'),(17,'Circuit de Suzuka','Japon','Suzuka',5.807,53,'suzuka'),(18,'Circuit Hermanos Rodriguez','Mexique','Mexico',4.304,71,'rodriguez'),(19,'Circuit des Ameriques','USA','Austin',5.513,56,'americas'),(20,'Circuit d\'Interlagos','Bresil','Sao Paulo',4.309,71,'interlagos'),(21,'Circuit Yas Marina','EAU','Abou Dhabi',5.554,55,'yas_marina');
 /*!40000 ALTER TABLE `tracks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,7 +200,7 @@ CREATE TABLE `users` (
   `mail` varchar(255) NOT NULL,
   `is_admin` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -209,7 +209,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Rany','Ghazzawi','1996-08-11','76c763ef936c0519e00dc1d80c5d6df8fcafd31a58d5adc2bd2ba7c02da0c3e1','ranyg','ranywwe@hotmail.com',1),(20,'Mel','Ouhaibi','1997-06-24','b54867801f48e0eb0bfd9a896b83013a4e6964687784419cbcb8e2879f7610db','mel313','mel313@hotmail.com',0),(21,'Mohammed-Bashir','Mahdi','1998-01-20','b54867801f48e0eb0bfd9a896b83013a4e6964687784419cbcb8e2879f7610db','momo313','mobash@gmail.com',0),(25,'Abdel','Youbi','2010-01-01','5208870013924dec86081e8507b049c8bca1b9ab6a85889b83ca4c93c4af22b3','youbi212','youbi@hotmail.com',1),(28,'Hala','Zeaiter','1968-11-05','a171be25368d4182dcd29ca87672f7686373ba0680b720604dba0b2779f3aad5','halaz','hala.z@live.fr',0);
+INSERT INTO `users` VALUES (1,'Rany','Ghazzawi','1996-08-11','76c763ef936c0519e00dc1d80c5d6df8fcafd31a58d5adc2bd2ba7c02da0c3e1','ranyg','ranywwe@hotmail.com',1),(20,'Mel','Ouhaibi','1997-06-24','b54867801f48e0eb0bfd9a896b83013a4e6964687784419cbcb8e2879f7610db','mel313','mel313@hotmail.com',0),(21,'Mohammed-Bashir','Mahdi','1998-01-20','b54867801f48e0eb0bfd9a896b83013a4e6964687784419cbcb8e2879f7610db','momo313','mobash@gmail.com',0),(25,'Abdel','Youbi','2010-01-01','5208870013924dec86081e8507b049c8bca1b9ab6a85889b83ca4c93c4af22b3','youbi212','youbi@hotmail.com',1),(28,'Hala','Zeaiter','1968-11-05','a171be25368d4182dcd29ca87672f7686373ba0680b720604dba0b2779f3aad5','halaz','hala.z@live.fr',0),(32,'Semmy','Baiticle','2000-10-05','1a67e8be1af8ddadc2084fb8dea4fd448c708cd28c992096987e0afb17715bda','zeitouni','baiticle@hotmail.fr',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -222,4 +222,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-29 20:17:29
+-- Dump completed on 2020-06-08  3:12:00

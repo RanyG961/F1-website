@@ -22,5 +22,10 @@ if ($_GET['supprime'])
         supprime_equipe();
         header("Location: equipes.php");
     }
+    elseif($option === 4)
+    {
+        supprime_circuit();
+        header("Location: circuits.php");
+    }
 }
 

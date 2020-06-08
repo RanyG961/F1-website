@@ -588,3 +588,80 @@ function supprime_equipe()
         return false;
     }
 }
+
+function supprime_circuit()
+{
+    extract($_GET);
+
+    if(isset($supprime) && !empty($supprime) )
+    {
+        $option = intval($option, 10);
+        if($option === 4)
+        {
+            try
+            {
+                $sql = "DELETE FROM tracks WHERE id = ?";
+
+                $db = new dbClass();
+                $conn = $db->dbConnect();
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $sth = $conn->prepare($sql);
+                $sth->execute(array($supprime));
+            }
+            catch(PDOException $e)
+            {
+                echo $e;
+                return false;
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function insererCircuit()
+{
+    extract($_POST);
+
+    $nom = htmlspecialchars($nom);
+    $pays = htmlspecialchars($pays);
+    $ville = htmlspecialchars($ville);
+    $long = htmlspecialchars($long);
+    $tours = htmlspecialchars($tours);
+    $circuitID = htmlspecialchars($circuitID);
+
+    if(!isset($nom, $pays, $ville, $long, $tours, $circuitID))
+    {
+        return false;
+    }
+    elseif(empty($nom) && empty($pays) && empty($ville) && empty($long) && empty($tours) && empty($circuitID))
+    {
+        return false;
+    }
+
+    try
+    {
+        $sql = "INSERT INTO tracks(name, country, city, length, turns, circuitID) VALUES(?, ?, ?, ?, ?, ?);";
+
+        $db = new dbClass();
+        $conn = $db->dbConnect();
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sth = $conn->prepare($sql);
+        $sth->execute(array($nom, $pays, $ville, $long, $tours, $circuitID));
+    }
+    catch(PDOException $e)
+    {
+        echo $e;
+        return false;
+    }
+    return true;
+}
