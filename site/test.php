@@ -4,8 +4,6 @@ header('Access-Control-Allow-Origin: *');  ?>
 <link rel="stylesheet" href="css/driverTeam_style.css">
 
 <div class="list">
-
-
        <?php
         $teams = afficherConstructeur_user();
         $i = 0;

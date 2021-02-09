@@ -2,7 +2,7 @@
 header('Access-Control-Allow-Origin: *');  ?>
 
 <script src="js/classement.fetch.js"></script>
-
+fd
 <div id="classement">
     <ul id="classementGeneral">
         <li id="pilotes">
